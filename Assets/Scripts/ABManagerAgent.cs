@@ -75,8 +75,8 @@ public class ABManagerAgent : Agent
         var avgVel = abController.GetAvgVel();
         var velGoal = moveDirection * targetSpeed;
         sensor.AddObservation(Vector3.Distance(velGoal, avgVel));
-        sensor.AddObservation(avgVel);
         sensor.AddObservation(velGoal);
+        sensor.AddObservation(avgVel);
 
         sensor.AddObservation(Quaternion.FromToRotation(pelvisForward, moveDirection));
         sensor.AddObservation(pelvisForward);
@@ -126,12 +126,6 @@ public class ABManagerAgent : Agent
 
             float heightReward = Mathf.Clamp(1 - heightDelta / targetHeight, 0, 1);
             float lookReward = Mathf.Abs(lookDot);
-
-
-            // Debug.Log("leftForceRatio: " + leftForceRatio +
-            //           ", speedReward: " + speedReward +
-            //           ", heightReward: " + heightReward +
-            //           ", lookReward: " + lookReward);
 
             AddReward(leftForceRatio);
             AddReward(speedReward);

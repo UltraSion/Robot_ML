@@ -20,12 +20,17 @@ public class ABController : MonoBehaviour
     private float[] GetInfo(int index)
     {
         ABManager toGet = managers[index];
-        float[] info = new float[5];
-        info[0] = toGet.Force;
-        info[1] = toGet.jointPos;
-        info[2] = toGet.Velocity;
-        info[3] = toGet.Acceleration;
-        info[4] = toGet.Mass;
+        var relativePos = pelvis.transform.InverseTransformPoint(toGet.transform.position);
+        int i = 0;
+        float[] info = new float[8];
+        info[i++] = toGet.Force;
+        info[i++] = relativePos.x;
+        info[i++] = relativePos.y;
+        info[i++] = relativePos.z;
+        info[i++] = toGet.jointPos;
+        info[i++] = toGet.Velocity;
+        info[i++] = toGet.Acceleration;
+        info[i++] = toGet.Mass;
 
         return info;
     }
