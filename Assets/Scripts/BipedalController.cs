@@ -9,7 +9,7 @@ namespace Walk.Scripts
 {
 public class BipedalController : MonoBehaviour
 {
-    public List<DriveController> managers = new List<DriveController>();
+    public List<DriveController> controllers = new List<DriveController>();
     public ArticulationBody pelvis;
 
     public float maximumForce;
@@ -51,7 +51,7 @@ public class BipedalController : MonoBehaviour
 
     private float[] GetFloatInfo(int index)
     {
-        DriveController toGet = managers[index];
+        DriveController toGet = controllers[index];
         float[] info = new float[]
         {
             toGet.Force,
@@ -66,10 +66,10 @@ public class BipedalController : MonoBehaviour
 
     public float[][] GetFloatInfos()
     {
-        float[][] infos = new float[managers.Count + 1][];
+        float[][] infos = new float[controllers.Count + 1][];
 
         int index;
-        for (index = 0; index < managers.Count; index++)
+        for (index = 0; index < controllers.Count; index++)
         {
             infos[index] = GetFloatInfo(index);
         }
@@ -86,7 +86,7 @@ public class BipedalController : MonoBehaviour
 
     private Vector3[] GetVectorInfo(int index)
     {
-        ArticulationBody toGet = managers[index].articulationBody;
+        ArticulationBody toGet = controllers[index].articulationBody;
 
         Vector3[] info =
         {
@@ -100,10 +100,10 @@ public class BipedalController : MonoBehaviour
 
     public Vector3[][] GetVectorInfos()
     {
-        Vector3[][] infos = new Vector3[managers.Count + 1][];
+        Vector3[][] infos = new Vector3[controllers.Count + 2][];
 
         int index;
-        for (index = 0; index < managers.Count; index++)
+        for (index = 0; index < controllers.Count; index++)
         {
             infos[index] = GetVectorInfo(index);
         }
@@ -111,19 +111,15 @@ public class BipedalController : MonoBehaviour
         infos[index++] = new[]
         {
             pelvis.angularVelocity,
-            pelvis.linearVelocity
+            pelvis.linearVelocity,
+            GetAvgVel(),
+            targetVelocity * moveDir
         };
 
         foreach (var info in infos)
         {
             pelvis.transform.InverseTransformDirections(info);
         }
-
-        infos[index++] = new[]
-        {
-            GetAvgVel(),
-            targetVelocity * moveDir
-        };
 
         return infos;
     }
@@ -144,7 +140,7 @@ public class BipedalController : MonoBehaviour
     {
         Vector3 velSum = Vector3.zero;
         int bodyCount = 0;
-        foreach (var manager in managers)
+        foreach (var manager in controllers)
         {
             ArticulationBody body = manager.articulationBody;
             if (body.mass <= 0)
@@ -160,31 +156,31 @@ public class BipedalController : MonoBehaviour
 
     public void SetDrive(float[] forceRatios, float[] targets)
     {
-        if (forceRatios.Length != managers.Count)
+        if (forceRatios.Length != controllers.Count)
             throw new Exception("forceRatios.length is Not Match Controllers.Count");
 
-        if (targets.Length != managers.Count)
+        if (targets.Length != controllers.Count)
             throw new Exception("targets.length is Not Match Controllers.Count");
 
         List<float> driveForces = new();
 
         int i = 0;
-        managers.ForEach(manager => driveForces.Add(manager.MaxForce * forceRatios[i++]));
+        controllers.ForEach(manager => driveForces.Add(manager.MaxForce * forceRatios[i++]));
         float forceSum = driveForces.Sum();
 
         i = 0;
-        managers.ForEach(manager => manager.SetTarget(targets[i++]));
+        controllers.ForEach(manager => manager.SetTarget(targets[i++]));
 
         i = 0;
         if (forceSum > maximumForce)
         {
             float ratioSum = forceRatios.Sum();
-            managers.ForEach(manager => manager.SetForceLimit(forceRatios[i++] / ratioSum * maximumForce));
+            controllers.ForEach(manager => manager.SetForceLimit(forceRatios[i++] / ratioSum * maximumForce));
             outputForce = maximumForce;
         }
         else
         {
-            managers.ForEach(manager => manager.SetForceLimit(driveForces[i++]));
+            controllers.ForEach(manager => manager.SetForceLimit(driveForces[i++]));
             outputForce = forceSum;
         }
     }
