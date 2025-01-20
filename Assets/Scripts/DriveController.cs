@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Walk.Scripts
 {
-public class ABManager : MonoBehaviour
+public class DriveController : MonoBehaviour
 {
     public ArticulationBody articulationBody;
-
 
     public float Force
     {
@@ -17,13 +16,7 @@ public class ABManager : MonoBehaviour
             return forceLimit == 0 ? forceLimit : articulationBody.driveForce[0] / forceLimit;
         }
     }
-
-    public float Velocity => articulationBody.jointVelocity[0];
-    public float Acceleration => articulationBody.jointAcceleration[0];
-
-    public float Mass => articulationBody.mass;
-
-    public float jointPos
+    public float JointPos
     {
         get
         {
@@ -32,6 +25,11 @@ public class ABManager : MonoBehaviour
             return Mathf.InverseLerp(drive.lowerLimit, drive.upperLimit, curPos);
         }
     }
+    public float Velocity => articulationBody.jointVelocity[0];
+    public float Acceleration => articulationBody.jointAcceleration[0];
+    public float Mass => articulationBody.mass;
+
+    public float MaxForce = 50000f;
 
     void Start()
     {
