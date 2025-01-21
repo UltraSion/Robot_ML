@@ -27,6 +27,8 @@ public class BipedalController : MonoBehaviour
     public float VelocityAccuracy
         => Mathf.Clamp01(1 - VelocityDeltaMagnitude / targetVelocity);
 
+    public float PelvisUprightDot => Vector3.Dot(pelvis.transform.up, Vector3.up);
+
     public float targetHeight;
 
 
@@ -100,7 +102,7 @@ public class BipedalController : MonoBehaviour
 
     public Vector3[][] GetVectorInfos()
     {
-        Vector3[][] infos = new Vector3[controllers.Count + 2][];
+        Vector3[][] infos = new Vector3[controllers.Count + 1][];
 
         int index;
         for (index = 0; index < controllers.Count; index++)

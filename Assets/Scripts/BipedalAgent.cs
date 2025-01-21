@@ -13,9 +13,6 @@ public class BipedalAgent : Agent
 {
     private BipedalController bipedalController;
 
-    public float minForce = 100000f;
-    public float maxForce = 200000f;
-
     public Vector3 StartPos;
 
     private List<float> backUpPos = new List<float>();
@@ -49,7 +46,6 @@ public class BipedalAgent : Agent
 
         bipedalController.SetSpeed(Random.Range(0.0001f, 20f));
         bipedalController.SetHeight(Random.Range(2.5f, 4.5f));
-        bipedalController.maximumForce = Random.Range(minForce, maxForce);
     }
 
     public override void OnEpisodeBegin()
@@ -118,9 +114,8 @@ public class BipedalAgent : Agent
         float speedReward = bipedalController.VelocityAccuracy;
 
         float heightReward = Mathf.Clamp01(1 - heightDelta / bipedalController.targetHeight);
-        // float lookReward = Mathf.Abs(bipedalController.LookDot);
-
-        float reward = (heightReward + speedReward * 2f) * efficiency;
+        float pelvisUprightReward = (bipedalController.PelvisUprightDot + 1f) * 0.5f;
+        float reward = (heightReward + pelvisUprightReward * 2f + speedReward * 3f) * efficiency;
 
         AddReward(reward);
     }
