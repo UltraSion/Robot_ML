@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-namespace Walk.Scripts
-{
 public class BipedalAgent : Agent
 {
     private BipedalController bipedalController;
@@ -44,8 +40,10 @@ public class BipedalAgent : Agent
         float moveDir = Random.Range(0.0f, 360.0f);
         bipedalController.SetMoveDirection(new Vector3(Mathf.Cos(moveDir), 0f, Mathf.Sin(moveDir)));
 
-        bipedalController.SetSpeed(Random.Range(0.0001f, 20f));
-        bipedalController.SetHeight(Random.Range(2.5f, 4.5f));
+        bipedalController.SetSpeed(Random.Range(0.0001f, 10f));
+        // bipedalController.SetHeight(Random.Range(2f, 4.5f));
+        // bipedalController.SetSpeed(4f);
+        bipedalController.SetHeight(3f);
     }
 
     public override void OnEpisodeBegin()
@@ -56,30 +54,7 @@ public class BipedalAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        var floatObservations = bipedalController.GetFloatInfos();
-        var vectorObservations = bipedalController.GetVectorInfos();
-        var quaternionObservations = bipedalController.GetQuaternionInfo();
-
-        foreach (var floats in floatObservations)
-        {
-            foreach (var f in floats)
-            {
-                sensor.AddObservation(f);
-            }
-        }
-
-        foreach (var vectors in vectorObservations)
-        {
-            foreach (var v in vectors)
-            {
-                sensor.AddObservation(v);
-            }
-        }
-
-        foreach (var q in quaternionObservations)
-        {
-            sensor.AddObservation(q);
-        }
+        bipedalController.CollectObservations(sensor);
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -102,10 +77,6 @@ public class BipedalAgent : Agent
 
     private void FixedUpdate()
     {
-        if (bipedalController.pelvis.transform.position.y  is <= 0.5f or >= 6.0f)
-        {
-            EndEpisode();
-        }
         float efficiency = bipedalController.Efficiency;
 
         float pelvisY = bipedalController.pelvis.transform.position.y;
@@ -115,9 +86,9 @@ public class BipedalAgent : Agent
 
         float heightReward = Mathf.Clamp01(1 - heightDelta / bipedalController.targetHeight);
         float pelvisUprightReward = (bipedalController.PelvisUprightDot + 1f) * 0.5f;
-        float reward = (heightReward + pelvisUprightReward * 2f + speedReward * 3f) * efficiency;
-
+        // float reward = pelvisUprightReward + heightReward * 2 + speedReward * 3f;
+        float lookReward = bipedalController.FootLookDot;
+        float reward = pelvisUprightReward + lookReward + speedReward * efficiency;
         AddReward(reward);
     }
-}
 }
