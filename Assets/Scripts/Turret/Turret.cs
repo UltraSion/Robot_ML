@@ -1,33 +1,12 @@
-﻿using Controller.AimControllers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Turret
 {
-public class Turret : MonoBehaviour
+public class Turret : MonoBehaviour, ITurret
 {
-    public Camera cam;
-    public AimDirectionGetter AimDirectionGetter;
-
-    private void Start()
+    public virtual void TargetLookDir(Vector3 targetDir)
     {
-        // AimDirectionGetter = GetComponent<AimDirectionGetter>();
-        AimDirectionGetter.SetCamera(cam);
-    }
-
-    public void TargetVector(Vector3 dir)
-    {
-
-    }
-
-    private void Update()
-    {
-        UpdateCamDir();
-    }
-
-    private void UpdateCamDir()
-    {
-        cam.transform.rotation = Quaternion.RotateTowards(cam.transform.rotation, AimDirectionGetter.GetAimRotation(),
-            30f * Time.deltaTime);
+        throw new System.NotImplementedException();
     }
 }
 }
