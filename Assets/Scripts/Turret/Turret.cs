@@ -1,12 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Turret
 {
-public class Turret : MonoBehaviour, ITurret
+public class Turret : MonoBehaviour
 {
-    public virtual void TargetLookDir(Vector3 targetDir)
+    public Vector3 TargetPoint;
+
+    protected virtual void RotateTurret()
     {
         throw new System.NotImplementedException();
+    }
+
+    void Update()
+    {
+        RotateTurret();
     }
 }
 }

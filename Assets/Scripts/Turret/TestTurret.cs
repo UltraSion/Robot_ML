@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DefaultNamespace;
+using UnityEngine;
 
 namespace Turret
 {
@@ -6,9 +7,9 @@ public class TestTurret : Turret
 {
     public GameObject turretHead;
 
-    public override void TargetLookDir(Vector3 targetDir)
+    protected override void RotateTurret()
     {
-        turretHead.transform.rotation = Quaternion.LookRotation(targetDir);
+        turretHead.transform.rotation = Quaternion.LookRotation(TargetPoint - Hub.MainCamera.transform.position);
     }
 }
 }
