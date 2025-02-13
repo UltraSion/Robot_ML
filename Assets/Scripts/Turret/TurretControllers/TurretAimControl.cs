@@ -8,22 +8,33 @@ namespace Turret.TurretControllers
 public class TurretAimControl : MonoBehaviour
 {
     private Turret turret;
-    private AbstractTurretCameraState _turretCameraStateState;
     private Camera _camera;
+    private AbstractTurretCameraState _turretCameraState;
 
     private void Awake()
     {
         turret = GetComponent<Turret>();
         _camera = Hub.MainCamera;
-        _turretCameraStateState = new TurretCameraStateNormal(_camera.transform.rotation.eulerAngles);
+        _turretCameraState = new TurretCameraStateNormal(_camera.transform.rotation.eulerAngles);
     }
 
     private void Update()
     {
-        _camera.transform.rotation = _turretCameraStateState.GetCameraRot();
-        turret.TargetPoint = _turretCameraStateState.GetTurretAimPoint();
+        UpdateCameraRot();
+        turret.TargetPoint = _turretCameraState.GetTurretAimPoint();
 
-        _turretCameraStateState = _turretCameraStateState.UpdateState();
+        _turretCameraState = _turretCameraState.UpdateState();
+    }
+
+    public void UpdateCameraRot()
+    {
+        var cameraRot = _camera.transform.localEulerAngles;
+        var targetRot = _turretCameraState.GetCameraRot().eulerAngles;
+
+        cameraRot.x = targetRot.x;
+        cameraRot.y = targetRot.y;
+
+        _camera.transform.localEulerAngles = cameraRot;
     }
 }
 }

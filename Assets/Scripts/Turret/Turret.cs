@@ -12,7 +12,7 @@ public class Turret : MonoBehaviour
         throw new System.NotImplementedException();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         RotateTurret();
     }

@@ -26,7 +26,7 @@ public abstract class AbstractTurretCameraState
     }
 
     public virtual Vector3 GetTurretAimPoint()
-        => _camera.transform.position + _camera.transform.forward;
+        => _camera.transform.forward;
 
     public abstract AbstractTurretCameraState UpdateState();
 }
@@ -61,7 +61,7 @@ public class TurretCameraStateHeadOnly : AbstractTurretCameraState
     }
 
     public override Vector3 GetTurretAimPoint()
-        => _camera.transform.position + _turretAimPoint;
+        => _turretAimPoint;
 
     public override AbstractTurretCameraState UpdateState()
     {
