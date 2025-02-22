@@ -78,6 +78,9 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
 
     private bool IsJumping()
     {
+        if (Checkers.Count == 0)
+            return false;
+
         bool IsJumping = true;
 
         foreach (var checker in Checkers)
@@ -118,7 +121,6 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
         {
             Checkers.ForEach(checker => checker.Reset());
             EndEpisode();
-            Debug.Log("jumping");
             return;
         }
         float pelvisY = bipedalController.pelvis.transform.position.y;
