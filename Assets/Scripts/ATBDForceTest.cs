@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+namespace DefaultNamespace
+{
 public class ATBDForceTest : MonoBehaviour
 {
     public ArticulationBody articulationBody;
@@ -45,4 +47,5 @@ public class ATBDForceTest : MonoBehaviour
         float force = stiffness * (targetPos - currentPos) * Mathf.Deg2Rad + damping * (targetVel - currentVel);
         return force;
     }
+}
 }
