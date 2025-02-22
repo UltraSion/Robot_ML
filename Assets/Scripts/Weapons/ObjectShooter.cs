@@ -2,15 +2,19 @@
 
 namespace Weapons
 {
-public class ObjectShooter
+public class ObjectShooter : MonoBehaviour
 {
     public GameObject toShoot;
 
-    public Vector3 ShootPos;
+    [SerializeField]
+    private float shootForce;
 
     public void Shoot()
     {
-
+        var shootDir = transform.forward;
+        var projectile = Instantiate(toShoot, transform.position, transform.rotation);
+        var rgBody = projectile.GetComponent<Rigidbody>();
+        rgBody.AddForce(shootDir * shootForce);
     }
 }
 }
