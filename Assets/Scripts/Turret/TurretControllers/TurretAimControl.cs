@@ -1,5 +1,4 @@
 ﻿using System;
-using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
 

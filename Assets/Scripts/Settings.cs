@@ -1,7 +1,4 @@
-﻿namespace DefaultNamespace
-{
-public class Settings
+﻿public class Settings
 {
     
-}
 }

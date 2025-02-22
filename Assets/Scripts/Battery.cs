@@ -1,10 +1,7 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace DefaultNamespace
-{
-public class Battery : MonoBehaviour, IPowerSource
+public class Battery : PowerSource
 {
     public bool isInfinite;
 
@@ -44,7 +41,7 @@ public class Battery : MonoBehaviour, IPowerSource
     [SerializeField]
     private float outputForce;
 
-    public float UsableForce
+    public override float UsableForce
     {
         get
         {
@@ -58,7 +55,7 @@ public class Battery : MonoBehaviour, IPowerSource
         }
     }
 
-    public float ReleaseForce(float requestedForceAmount)
+    public override float ReleaseForce(float requestedForceAmount)
     {
         if (isInfinite)
             return outputForce;
@@ -85,5 +82,4 @@ public class Battery : MonoBehaviour, IPowerSource
 
         return chargeableForceAmount;
     }
-}
 }

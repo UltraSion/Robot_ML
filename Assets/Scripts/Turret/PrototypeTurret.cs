@@ -1,4 +1,4 @@
-﻿using DefaultNamespace;
+﻿using Robotic;
 using UnityEngine;
 
 namespace Turret
@@ -16,9 +16,8 @@ public class PrototypeTurret : Turret
         targetRot.x = targetRot.x > 180 ? targetRot.x - 360 : targetRot.x;
         targetRot.y = targetRot.y > 180 ? targetRot.y - 360 : targetRot.y;
 
-        Debug.Log($"XForce: {XJoint.driveForce}, YForce: {YJoint.driveForce}");
-        XJoint.SetTarget(targetRot.x);
-        YJoint.SetTarget(targetRot.y);
+        XJoint.Target = targetRot.x;
+        YJoint.Target = targetRot.y;
     }
 }
 }
