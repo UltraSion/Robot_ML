@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-public class Generator : MonoBehaviour, IPowerSource
+public class Generator : PowerSource
 {
     public Battery Battery;
 
@@ -23,9 +23,9 @@ public class Generator : MonoBehaviour, IPowerSource
     }
 
 
-    public float UsableForce { get; }
+    public override float UsableForce { get; }
 
-    public float ReleaseForce(float requestedForceAmount)
+    public override float ReleaseForce(float requestedForceAmount)
     {
         throw new NotImplementedException();
     }

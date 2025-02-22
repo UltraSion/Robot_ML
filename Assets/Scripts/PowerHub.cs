@@ -5,10 +5,10 @@ namespace DefaultNamespace
 {
 public class PowerHub : MonoBehaviour, IPowerSource
 {
-    public List<IPowerSource> Batteries = new();
-    public List<IPowerSource> Generators = new();
+    public List<PowerSource> Batteries = new();
+    public List<PowerSource> Generators = new();
 
-    private static float GetUsableForce(List<IPowerSource> sources)
+    private static float GetUsableForce(List<PowerSource> sources)
     {
         float force = 0f;
         sources.ForEach(source => force += source.UsableForce);

@@ -1,12 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DefaultNamespace
 {
-public interface IPowerSource
+public abstract class PowerSource : MonoBehaviour, IPowerSource
 {
-    public float UsableForce { get; }
-
-    public float ReleaseForce(float requestedForceAmount);
+    public abstract float UsableForce { get; }
+    public abstract float ReleaseForce(float requestedForceAmount);
 }
 }
