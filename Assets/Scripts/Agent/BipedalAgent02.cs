@@ -18,8 +18,6 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
 
     private List<float> backUpPos = new List<float>();
 
-    public List<WalkChecker> Checkers;
-
     private List<ArticulationDrive> startState = new();
 
     protected override void Awake()
@@ -76,22 +74,6 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
         RandTarget();
     }
 
-    private bool IsJumping()
-    {
-        if (Checkers.Count == 0)
-            return false;
-
-        bool IsJumping = true;
-
-        foreach (var checker in Checkers)
-        {
-            if (checker.IsGround)
-                IsJumping = false;
-        }
-
-        return IsJumping;
-    }
-
     public override void CollectObservations(VectorSensor sensor)
     {
         bipedalController.CollectObservations(sensor);
@@ -117,12 +99,6 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
 
     private void FixedUpdate()
     {
-        if (IsJumping())
-        {
-            Checkers.ForEach(checker => checker.Reset());
-            EndEpisode();
-            return;
-        }
         float pelvisY = bipedalController.pelvis.transform.position.y;
 
         float speedReward = bipedalController.VelocityAccuracy;
