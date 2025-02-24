@@ -17,8 +17,12 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
     public Vector3 startPos;
 
     private List<float> backUpPos = new List<float>();
+    private List<float> backUpVel = new List<float>();
+    private List<float> backUpAccel = new List<float>();
 
     private List<ArticulationDrive> startState = new();
+
+    public List<WalkChecker> Checkers;
 
     protected override void Awake()
     {
@@ -31,6 +35,9 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
     {
         startPos = transform.position;
         bipedalController.pelvis.GetJointPositions(backUpPos);
+        bipedalController.pelvis.GetJointVelocities(backUpVel);
+        bipedalController.pelvis.GetJointAccelerations(backUpAccel);
+
         bipedalController.controllers.ForEach(controller => startState.Add(controller.articulationBody.xDrive));
 
         RandTarget();
@@ -38,7 +45,9 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
 
     private void ResetBody()
     {
-        bipedalController.pelvis.TeleportRoot(startPos, Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0));
+        // bipedalController.pelvis.TeleportRoot(startPos, Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0));
+        bipedalController.pelvis.TeleportRoot(startPos, Quaternion.identity);
+
         bipedalController.pelvis.linearVelocity = Vector3.zero;
         bipedalController.pelvis.angularVelocity = Vector3.zero;
         bipedalController.controllers.ForEach(controller =>
@@ -50,11 +59,18 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
         body.angularVelocity = Vector3.zero;
 
         bipedalController.pelvis.SetJointPositions(backUpPos);
+        bipedalController.pelvis.SetJointVelocities(backUpVel);
 
         for (int i = 0; i < startState.Count; i++)
         {
             bipedalController.controllers[i].articulationBody.xDrive = startState[i];
         }
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+            ResetBody();
     }
 
     public void RandTarget()
@@ -97,8 +113,28 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
         bipedalController.SetDrive(forceRatios, targets);
     }
 
+    private bool IsJumping()
+    {
+        bool isJumping = true;
+
+        foreach (var checker in Checkers)
+        {
+            if (checker.IsGround)
+                isJumping = false;
+        }
+
+        return isJumping;
+    }
+
     private void FixedUpdate()
     {
+        if (IsJumping())
+        {
+            Checkers.ForEach(checker => checker.Reset());
+            EndEpisode();
+            return;
+        }
+
         float pelvisY = bipedalController.pelvis.transform.position.y;
 
         float speedReward = bipedalController.VelocityAccuracy;
