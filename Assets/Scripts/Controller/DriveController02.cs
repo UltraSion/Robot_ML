@@ -71,6 +71,10 @@ public class DriveController02 : MonoBehaviour
     void Awake()
     {
          articulationBody = GetComponent<ArticulationBody>();
+
+         var drive = articulationBody.xDrive;
+         drive.forceLimit = 0f;
+         articulationBody.xDrive = drive;
     }
 }
 }
