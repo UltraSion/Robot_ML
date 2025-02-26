@@ -7,7 +7,10 @@ public class GroundChecker : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if(other.transform.CompareTag("Ground"))
+        if (other.transform.CompareTag("Ground"))
+        {
+            agent.AddReward((-1f));
             agent.EndEpisode();
+        }
     }
 }
