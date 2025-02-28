@@ -13,8 +13,11 @@ public class ResetDetector : MonoBehaviour
     {
         float y = transform.position.y;
 
-        if(y > maxHeight || y < minHeight)
+        if (y > maxHeight || y < minHeight)
+        {
+            agent.AddReward(-1f);
             agent.EndEpisode();
+        }
     }
 }
 }
