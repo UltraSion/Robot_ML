@@ -10,19 +10,44 @@ namespace Controller
 {
 public class BipedalController02 : MonoBehaviour
 {
-    public List<DriveController02> controllers = new();
     public ArticulationBody pelvis;
-    public ArticulationBody rFoot;
-    public ArticulationBody lFoot;
 
-    public PowerHub powerHub;
+    public DriveController02 r_ThighX;
+    public DriveController02 r_ThighZ;
+    public DriveController02 r_ThighY;
+    public DriveController02 r_Shine;
+    public DriveController02 r_Foot;
+    public DriveController02 l_ThighX;
+    public DriveController02 l_ThighZ;
+    public DriveController02 l_ThighY;
+    public DriveController02 l_Shine;
+    public DriveController02 l_Foot;
+    public DriveController02 body;
+
+    public List<DriveController02> controllers = new();
+
     public PositionSupporter positionSupporter;
     [SerializeField] private Vector3 moveDir;
     [SerializeField] private float targetVelocity;
-    [SerializeField] private float targetHeight;
 
-    public float[][] LastFloatObservations;
-    public Vector3[][] LastVectorObservations;
+    public PowerHub powerHub;
+
+    public float Efficiency { get; private set; }
+
+    private void Awake()
+    {
+        controllers.Add(r_ThighX);
+        controllers.Add(r_ThighZ);
+        controllers.Add(r_ThighY);
+        controllers.Add(r_Shine);
+        controllers.Add(r_Foot);
+        controllers.Add(l_ThighX);
+        controllers.Add(l_ThighZ);
+        controllers.Add(l_ThighY);
+        controllers.Add(l_Shine);
+        controllers.Add(l_Foot);
+        controllers.Add(body);
+    }
 
     public Vector3 MoveDir
     {
@@ -32,24 +57,13 @@ public class BipedalController02 : MonoBehaviour
 
     public float TargetVelocity
     {
+        get => targetVelocity;
         set
         {
             if (value < 0)
                 throw new Exception("The speed is Out of Range");
 
             targetVelocity = value;
-        }
-    }
-
-    public float TargetHeight
-    {
-        get => targetHeight;
-        set
-        {
-            if (value < 0)
-                throw new Exception("The height is Out of Range");
-
-            targetHeight = value;
         }
     }
 
@@ -66,7 +80,34 @@ public class BipedalController02 : MonoBehaviour
     }
 
     public float VelocityAccuracy
-        => Mathf.Clamp01(1 - VelocityDeltaMagnitude / targetVelocity);
+    {
+        get
+        {
+            var velDelta = Vector3.Distance(GetAvgVel(), MoveDir * targetVelocity);
+            var velAccuracy = Mathf.Clamp(velDelta, 0, targetVelocity);
+            return Mathf.Clamp01(1 - velAccuracy / targetVelocity);
+        }
+    }
+
+    public float VelocityAccuracy2
+    {
+        get
+        {
+            var myAvgVel = GetAvgVel();
+            var targetVel = moveDir * targetVelocity;
+
+            var dirAccuracy = Vector3.Dot(myAvgVel.normalized, targetVel.normalized);
+            dirAccuracy = (dirAccuracy + 1f) * 0.5f;
+
+            float mySpeed = myAvgVel.magnitude;
+            float targetSpeed = targetVelocity;
+
+            var speedDelta = Mathf.Clamp(Mathf.Abs(mySpeed - targetSpeed), 0, targetSpeed);
+            var speedAccuracy = Mathf.Clamp01(1 - speedDelta / targetSpeed);
+
+            return dirAccuracy * speedAccuracy;
+        }
+    }
 
     public float PelvisUprightDot
         => Vector3.Dot(pelvis.transform.up, Vector3.up);
@@ -75,10 +116,10 @@ public class BipedalController02 : MonoBehaviour
     {
         get
         {
-            Vector3 leftFootForward = lFoot.transform.forward;
+            Vector3 leftFootForward = l_Foot.transform.forward;
             leftFootForward.y = 0;
             leftFootForward.Normalize();
-            Vector3 rightFootForward = rFoot.transform.forward;
+            Vector3 rightFootForward = r_Foot.transform.forward;
             rightFootForward.y = 0;
             rightFootForward.Normalize();
 
@@ -88,7 +129,7 @@ public class BipedalController02 : MonoBehaviour
             leftDot = (leftDot + 1) * 0.5f;
             rightDot = (rightDot + 1) * 0.5f;
 
-            return (leftDot + rightDot) * 0.5f;
+            return leftDot * rightDot;
         }
     }
 
@@ -168,7 +209,8 @@ public class BipedalController02 : MonoBehaviour
 
     public void CollectObservations(VectorSensor sensor)
     {
-        positionSupporter.UpdateOrientation(pelvis.transform, MoveDir);
+        positionSupporter.UpdateOrientation(pelvis.transform);
+        MoveDir = positionSupporter.transform.forward;
 
         var floatObservations = GetFloatInfos();
         var vectorObservations = GetVectorInfos();
@@ -188,9 +230,6 @@ public class BipedalController02 : MonoBehaviour
                 sensor.AddObservation(v);
             }
         }
-
-        LastFloatObservations = floatObservations;
-        LastVectorObservations = vectorObservations;
     }
 
     private Vector3 GetAvgVel()
@@ -228,12 +267,13 @@ public class BipedalController02 : MonoBehaviour
         controllers.ForEach(controller => controller.Target = targets[i++]);
 
         float forceToUse = requestedForcesSum < usableForce ? requestedForcesSum : usableForce;
-        float usableRatio = forceToUse / requestedForcesSum;
+        float usableRatio = requestedForcesSum == 0 ? 1 : forceToUse / requestedForcesSum;
 
         i = 0;
         controllers.ForEach(controller => controller.ForceUseRatio = forceRatios[i++] * usableRatio);
 
         powerHub.ReleaseForce(forceToUse);
+        Efficiency = 1f - forceToUse / usableForce;
     }
 }
 }
