@@ -8,8 +8,7 @@ public class DriveController02 : MonoBehaviour
 {
     public ArticulationBody articulationBody;
 
-    [SerializeField]
-    private float maxForce;
+    [SerializeField] private float maxForce;
 
     public float MaxForce
     {
@@ -51,7 +50,7 @@ public class DriveController02 : MonoBehaviour
         set
         {
             var drive = articulationBody.xDrive;
-            drive.target =  Mathf.Lerp(drive.lowerLimit, drive.upperLimit, value);
+            drive.target = Mathf.Lerp(drive.lowerLimit, drive.upperLimit, value);
             articulationBody.xDrive = drive;
         }
     }
@@ -65,16 +64,17 @@ public class DriveController02 : MonoBehaviour
             return Mathf.InverseLerp(drive.lowerLimit, drive.upperLimit, curPos);
         }
     }
+
     public float Velocity => articulationBody.jointVelocity[0];
     public float Acceleration => articulationBody.jointAcceleration[0];
 
     void Awake()
     {
-         articulationBody = GetComponent<ArticulationBody>();
+        articulationBody = GetComponent<ArticulationBody>();
 
-         var drive = articulationBody.xDrive;
-         drive.forceLimit = 0f;
-         articulationBody.xDrive = drive;
+        var drive = articulationBody.xDrive;
+        drive.forceLimit = 0f;
+        articulationBody.xDrive = drive;
     }
 }
 }
