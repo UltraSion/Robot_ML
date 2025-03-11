@@ -11,6 +11,8 @@ public class BipedalAgentSetting : MonoBehaviour
     public float forcePower;
     public float forceInterval;
 
+    public float targetRandTimer;
+
     public static BipedalAgentSetting instance;
 
     private void Awake()

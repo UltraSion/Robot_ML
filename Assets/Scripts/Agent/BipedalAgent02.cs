@@ -22,8 +22,10 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
     public GameObject targetObject;
 
     public BipedalAgentSetting setting;
+    public BipedalAgentUI agentUI;
 
     public float forceTimer = 0;
+    public float targetRandTimer = 0;
 
     [SerializeField] [Range(0, 1)] private float averageSpeedReward = 0;
     public float Avg_speedReward => averageSpeedReward;
@@ -98,6 +100,9 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
 
         averageSpeedReward = 0f;
         CurStep = 0f;
+
+        forceTimer = 0f;
+        targetRandTimer = 0f;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -145,6 +150,17 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
         {
             RandTargetObject();
             AddReward(1f);
+            targetRandTimer = 0f;
+        }
+
+        if (targetRandTimer > setting.targetRandTimer)
+        {
+            RandTargetObject();
+            targetRandTimer = 0f;
+        }
+        else
+        {
+            targetRandTimer += Time.fixedDeltaTime;
         }
 
         if (forceTimer > setting.forceInterval)
@@ -156,8 +172,8 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
             var y = Mathf.Sin(n1) * Mathf.Sin(n2);
             var z = Mathf.Cos(n1);
             var force = setting.forcePower * Random.Range(0.5f, 1f) * new Vector3(x, y, z);
-            GetRandomParts().AddForce(force);
-            forceTimer = 0;
+            GetRandomParts().AddForce(force, ForceMode.Impulse);
+            forceTimer = 0f;
         }
         else
         {
@@ -170,10 +186,18 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
         float footReward = bipedalController.FootLookDot;
 
         float efficiency = bipedalController.Efficiency;
-        float difficulty = speedReward * bipedalController.TargetVelocity / setting.maxSpeed;
-        float efficiencyReward = difficulty + efficiency * (1 - difficulty);
+        float difficulty = speedReward * (bipedalController.TargetVelocity / setting.maxSpeed);
+        float effortReward = speedReward * (difficulty + efficiency * (1 - difficulty));
 
-        float reward = speedReward * efficiencyReward * pelvisLookReward * footReward;
+        agentUI?.UpdateParameters(
+            bipedalController.TargetVelocity,
+            speedReward,
+            effortReward,
+            pelvisLookReward,
+            footReward
+            );
+
+        float reward = speedReward * effortReward * pelvisLookReward * footReward;
 
         CalculateAverageSpeedReward(speedReward);
         AddReward(reward);
@@ -241,7 +265,7 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
         if (bipedalController.TargetVelocity < setting.maxSpeed * 0.9)
             return;
 
-        if (CurStep < 300)
+        if (CurStep < MaxStep * 0.9f)
             return;
 
         if (averageSpeedReward < 0.5f)
