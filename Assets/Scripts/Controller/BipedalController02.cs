@@ -52,7 +52,7 @@ public class BipedalController02 : MonoBehaviour
     public Vector3 MoveDir
     {
         get => moveDir;
-        set => moveDir = value;
+        set => moveDir = value.normalized;
     }
 
     public float TargetVelocity
@@ -94,7 +94,7 @@ public class BipedalController02 : MonoBehaviour
         get
         {
             var myAvgVel = GetAvgVel();
-            var targetVel = moveDir * targetVelocity;
+            var targetVel = MoveDir * targetVelocity;
 
             var dirAccuracy = Vector3.Dot(myAvgVel.normalized, targetVel.normalized);
             dirAccuracy = (dirAccuracy + 1f) * 0.5f;
@@ -118,13 +118,11 @@ public class BipedalController02 : MonoBehaviour
         {
             Vector3 leftFootForward = l_Foot.transform.forward;
             leftFootForward.y = 0;
-            leftFootForward.Normalize();
             Vector3 rightFootForward = r_Foot.transform.forward;
             rightFootForward.y = 0;
-            rightFootForward.Normalize();
 
-            float leftDot = Vector3.Dot(MoveDir, leftFootForward);
-            float rightDot = Vector3.Dot(MoveDir, rightFootForward);
+            float leftDot = Vector3.Dot(MoveDir, leftFootForward.normalized);
+            float rightDot = Vector3.Dot(MoveDir, rightFootForward.normalized);
 
             leftDot = (leftDot + 1) * 0.5f;
             rightDot = (rightDot + 1) * 0.5f;
