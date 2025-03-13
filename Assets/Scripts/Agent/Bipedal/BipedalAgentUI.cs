@@ -27,8 +27,8 @@ public class BipedalAgentUI : MonoBehaviour
     public Slider totalRewardSlider;
     public Slider episodeLengthSlider;
 
-    public BipedalAgent02 bipedalAgent;
-    public BipedalController02 bipedalController;
+    public BipedalAgent bipedalAgent;
+    public BipedalController bipedalController;
     public AgentSetting setting;
 
     private float agentTargetSpeed;

@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 namespace Controller
 {
-public class BipedalController02 : MonoBehaviour
+public class BipedalController : MonoBehaviour
 {
     public ArticulationBody pelvis;
 

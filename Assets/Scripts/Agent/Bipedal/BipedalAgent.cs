@@ -8,9 +8,9 @@ using Random = UnityEngine.Random;
 
 namespace Agent
 {
-public class BipedalAgent02 : Unity.MLAgents.Agent
+public class BipedalAgent : Unity.MLAgents.Agent
 {
-    private BipedalController02 bipedalController;
+    private BipedalController bipedalController;
 
     private Vector3 startPos;
 
@@ -35,7 +35,7 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
     protected override void Awake()
     {
         base.Awake();
-        bipedalController = GetComponent<BipedalController02>();
+        bipedalController = GetComponent<BipedalController>();
     }
 
     private void Start()
