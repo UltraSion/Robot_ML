@@ -45,7 +45,7 @@ public abstract class LegAgent : Unity.MLAgents.Agent
        RandTargetVelocity();
     }
 
-    private void RandTargetVelocity()
+    protected virtual void RandTargetVelocity()
         => legController.TargetVelocity = Mathf.Pow(Random.Range(0, 1f), 0.5f) * (setting.maxSpeed - setting.minSpeed) + setting.minSpeed;
 
 

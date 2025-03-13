@@ -3,12 +3,18 @@ using DefaultNamespace;
 using Randomables;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Agent.SymmetryQuadPed
 {
 public class SymmetryQuadPedAgent : LegAgent
 {
     public SymmetryQuadPedUI ui;
+
+    protected override void RandTargetVelocity()
+    {
+        legController.TargetVelocity = Random.Range(setting.minSpeed, setting.maxSpeed);
+    }
 
     protected override float GetReward()
     {
