@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Controller;
+using DefaultNamespace;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
     private List<ArticulationDrive> startState = new();
 
     public GameObject targetObject;
+    public RandomGroundMesh ground;
 
     public BipedalAgentSetting setting;
     public BipedalAgentUI agentUI;
@@ -74,8 +76,10 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
 
     private void RandTarget()
     {
-        bipedalController.TargetVelocity = Random.Range(setting.minSpeed, setting.maxSpeed);
+        float range = setting.maxSpeed - setting.minSpeed;
+        bipedalController.TargetVelocity = Mathf.Pow(Random.Range(0, 1f), 0.5f) * range + setting.minSpeed;
         RandTargetObject();
+        ground.GenerateShape();
     }
 
     private void RandTargetObject()
@@ -189,15 +193,17 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
         float difficulty = speedReward * (bipedalController.TargetVelocity / setting.maxSpeed);
         float effortReward = speedReward * (difficulty + efficiency * (1 - difficulty));
 
+        float reward = speedReward * effortReward * pelvisLookReward * footReward;
+        reward = Mathf.Clamp01(reward);
+
         agentUI?.UpdateParameters(
             bipedalController.TargetVelocity,
             speedReward,
             effortReward,
             pelvisLookReward,
-            footReward
+            footReward,
+            reward
             );
-
-        float reward = speedReward * effortReward * pelvisLookReward * footReward;
 
         CalculateAverageSpeedReward(speedReward);
         AddReward(reward);
