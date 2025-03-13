@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Agent
 {
-public class BipedalAgentSetting : MonoBehaviour
+public class AgentSetting : MonoBehaviour
 {
     public float minSpeed;
     public float maxSpeed;
@@ -13,7 +13,7 @@ public class BipedalAgentSetting : MonoBehaviour
 
     public float targetRandTimer;
 
-    public static BipedalAgentSetting instance;
+    public static AgentSetting instance;
 
     private void Awake()
     {

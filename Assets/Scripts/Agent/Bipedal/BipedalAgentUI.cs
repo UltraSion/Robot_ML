@@ -29,7 +29,7 @@ public class BipedalAgentUI : MonoBehaviour
 
     public BipedalAgent02 bipedalAgent;
     public BipedalController02 bipedalController;
-    public BipedalAgentSetting setting;
+    public AgentSetting setting;
 
     private float agentTargetSpeed;
     private float agentSpeedReward;

@@ -16,14 +16,13 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
 
     private List<float> backUpPos = new List<float>();
     private List<float> backUpVel = new List<float>();
-    private List<float> backUpAccel = new List<float>();
 
     private List<ArticulationDrive> startState = new();
 
     public GameObject targetObject;
     public RandomGroundMesh ground;
 
-    public BipedalAgentSetting setting;
+    public AgentSetting setting;
     public BipedalAgentUI agentUI;
 
     public float forceTimer = 0;
@@ -41,12 +40,11 @@ public class BipedalAgent02 : Unity.MLAgents.Agent
 
     private void Start()
     {
-        setting = BipedalAgentSetting.instance;
+        setting = AgentSetting.instance;
 
         startPos = transform.position;
         bipedalController.pelvis.GetJointPositions(backUpPos);
         bipedalController.pelvis.GetJointVelocities(backUpVel);
-        bipedalController.pelvis.GetJointAccelerations(backUpAccel);
 
         bipedalController.controllers.ForEach(controller => startState.Add(controller.articulationBody.xDrive));
 
