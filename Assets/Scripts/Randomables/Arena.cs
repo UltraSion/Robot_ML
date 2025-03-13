@@ -10,7 +10,7 @@ public class Arena : RandomObject
     public TargetObject TargetObject;
     public RandomGroundMesh RandomGroundMesh;
 
-    private List<RandomObject> randomObjects;
+    private List<RandomObject> randomObjects = new();
 
     public override void Rand()
         => randomObjects.ForEach(r => r.Rand());

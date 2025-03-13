@@ -6,20 +6,15 @@ using UnityEngine.Serialization;
 
 namespace Agent.SymmetryQuadPed
 {
-public class SymmetryQuadPedAgent : Unity.MLAgents.Agent
+public class SymmetryQuadPedAgent : LegAgent
 {
-    private SymmetryQuadPedController _controller;
-
-    public Arena arena;
-
-    private void Start()
+    protected override float GetReward()
     {
-        _controller = GetComponent<SymmetryQuadPedController>();
-    }
-
-    public override void OnEpisodeBegin()
-    {
-        arena.Rand();
+        float speedReward = legController.VelocityAccuracy;
+        float efficiency = legController.Efficiency;
+        float difficulty = speedReward * (legController.TargetVelocity / setting.maxSpeed);
+        float effortReward = speedReward * (difficulty + efficiency * (1 - difficulty));
+        return speedReward * effortReward;
     }
 }
 }

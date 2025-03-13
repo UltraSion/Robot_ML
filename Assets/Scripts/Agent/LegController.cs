@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Controller;
+using DefaultNamespace;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -20,9 +21,11 @@ public abstract class LegController : MonoBehaviour
 
     [SerializeField] protected PositionSupporter supporter;
 
-    public float Efficiency { get; protected set; }
+    public TargetObject targetObject;
 
-    public Vector3 MoveDir
+    public float Efficiency { get; private set; }
+
+    protected Vector3 MoveDir
     {
         get => moveDir;
         set => moveDir = value.normalized;

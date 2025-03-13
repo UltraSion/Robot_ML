@@ -11,7 +11,7 @@ namespace Agent
 public abstract class LegAgent : Unity.MLAgents.Agent
 {
     public Arena arena;
-    private LegController legController;
+    protected LegController legController;
 
     private Vector3 startPos;
     private List<float> backUpPos = new List<float>();
@@ -39,9 +39,15 @@ public abstract class LegAgent : Unity.MLAgents.Agent
         legController.root.GetJointVelocities(backUpVel);
 
         legController.controllers.ForEach(controller => startState.Add(controller.articulationBody.xDrive));
+        legController.targetObject = arena.TargetObject;
 
        arena.Rand();
+       RandTargetVelocity();
     }
+
+    private void RandTargetVelocity()
+        => legController.TargetVelocity = Mathf.Pow(Random.Range(0, 1f), 0.5f) * (setting.maxSpeed - setting.minSpeed) + setting.minSpeed;
+
 
     private void ResetBody()
     {
@@ -66,8 +72,8 @@ public abstract class LegAgent : Unity.MLAgents.Agent
         OptimizeMaxSpeed();
         ResetBody();
 
-        legController.TargetVelocity = Mathf.Pow(Random.Range(0, 1f), 0.5f) * (setting.maxSpeed - setting.minSpeed) + setting.minSpeed;
-        arena.TargetObject.Rand();
+        RandTargetVelocity();
+        arena.Rand();
 
         averageSpeedReward = 0f;
         CurStep = 0f;
