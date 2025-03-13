@@ -1,20 +1,15 @@
 ﻿using UnityEngine;
+using Weapons.ProjectileEntities;
 
 namespace Weapons
 {
-public class ObjectShooter : MonoBehaviour
+public abstract class ObjectShooter : MonoBehaviour
 {
-    public GameObject toShoot;
+    public ProjectileEntity toShoot;
 
     [SerializeField]
-    private float shootForce;
+    protected float shootForce;
 
-    public void Shoot()
-    {
-        var shootDir = transform.forward;
-        var projectile = Instantiate(toShoot, transform.position, transform.rotation);
-        var rgBody = projectile.GetComponent<Rigidbody>();
-        rgBody.AddForce(shootDir * shootForce);
-    }
+    public abstract void Shoot();
 }
 }

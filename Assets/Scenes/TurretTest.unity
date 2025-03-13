@@ -960,6 +960,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 542238646852483017, guid: 09d7576bbbb845e45b5b69355b5b097b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5005170179834899339, guid: 09d7576bbbb845e45b5b69355b5b097b, type: 3}
       propertyPath: m_Name
       value: PrototypeTurret

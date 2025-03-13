@@ -4,84 +4,141 @@ using System.Linq;
 using Agent;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Controller
 {
-public class BipedalController : MonoBehaviour
+public class BipedalController02 : MonoBehaviour
 {
-    public List<DriveController> controllers = new List<DriveController>();
     public ArticulationBody pelvis;
-    public ArticulationBody rFoot;
-    public ArticulationBody lFoot;
 
-    public float maximumForce;
-    public float outputForce;
-    public float Efficiency => Mathf.Clamp01(1 - outputForce / maximumForce);
+    public DriveController r_ThighX;
+    public DriveController r_ThighZ;
+    public DriveController r_ThighY;
+    public DriveController r_Shine;
+    public DriveController r_Foot;
+    public DriveController l_ThighX;
+    public DriveController l_ThighZ;
+    public DriveController l_ThighY;
+    public DriveController l_Shine;
+    public DriveController l_Foot;
+    public DriveController body;
 
-    public Vector3 moveDir;
-    public float LookDot => Vector3.Dot(moveDir, pelvis.transform.forward);
+    public List<DriveController> controllers = new();
 
-    public float targetVelocity;
+    public PositionSupporter positionSupporter;
+    [SerializeField] private Vector3 moveDir;
+    [SerializeField] private float targetVelocity;
+
+    public PowerHub powerHub;
+
+    public float Efficiency { get; private set; }
+
+    private void Awake()
+    {
+        controllers.Add(r_ThighX);
+        controllers.Add(r_ThighZ);
+        controllers.Add(r_ThighY);
+        controllers.Add(r_Shine);
+        controllers.Add(r_Foot);
+        controllers.Add(l_ThighX);
+        controllers.Add(l_ThighZ);
+        controllers.Add(l_ThighY);
+        controllers.Add(l_Shine);
+        controllers.Add(l_Foot);
+        controllers.Add(body);
+    }
+
+    public Vector3 MoveDir
+    {
+        get => moveDir;
+        set => moveDir = value.normalized;
+    }
+
+    public float TargetVelocity
+    {
+        get => targetVelocity;
+        set
+        {
+            if (value < 0)
+                throw new Exception("The speed is Out of Range");
+
+            targetVelocity = value;
+        }
+    }
+
+    public float LookDot
+        => Vector3.Dot(MoveDir, pelvis.transform.forward);
 
     public float VelocityDeltaMagnitude
-        => Mathf.Clamp(Vector3.Distance(GetAvgVel(), moveDir * targetVelocity), 0, targetVelocity);
+    {
+        get
+        {
+            var velDelta = Vector3.Distance(GetAvgVel(), MoveDir * targetVelocity);
+            return Mathf.Clamp(velDelta, 0, targetVelocity);
+        }
+    }
 
     public float VelocityAccuracy
-        => Mathf.Clamp01(1 - VelocityDeltaMagnitude / targetVelocity);
+    {
+        get
+        {
+            var velDelta = Vector3.Distance(GetAvgVel(), MoveDir * targetVelocity);
+            var velAccuracy = Mathf.Clamp(velDelta, 0, targetVelocity);
+            return Mathf.Clamp01(1 - velAccuracy / targetVelocity);
+        }
+    }
 
-    public float PelvisUprightDot => Vector3.Dot(pelvis.transform.up, Vector3.up);
+    public float VelocityAccuracy2
+    {
+        get
+        {
+            var myAvgVel = GetAvgVel();
+            var targetVel = MoveDir * targetVelocity;
+
+            var dirAccuracy = Vector3.Dot(myAvgVel.normalized, targetVel.normalized);
+            dirAccuracy = (dirAccuracy + 1f) * 0.5f;
+
+            float mySpeed = myAvgVel.magnitude;
+            float targetSpeed = targetVelocity;
+
+            var speedDelta = Mathf.Clamp(Mathf.Abs(mySpeed - targetSpeed), 0, targetSpeed);
+            var speedAccuracy = Mathf.Clamp01(1 - speedDelta / targetSpeed);
+
+            return dirAccuracy * speedAccuracy;
+        }
+    }
+
+    public float PelvisUprightDot
+        => Vector3.Dot(pelvis.transform.up, Vector3.up);
 
     public float FootLookDot
     {
         get
         {
-            Vector3 leftFootForward = lFoot.transform.forward;
+            Vector3 leftFootForward = l_Foot.transform.forward;
             leftFootForward.y = 0;
-            leftFootForward = leftFootForward.normalized;
-            Vector3 rightFootForward = rFoot.transform.forward;
+            Vector3 rightFootForward = r_Foot.transform.forward;
             rightFootForward.y = 0;
-            rightFootForward = rightFootForward.normalized;
 
-            float leftDot = Vector3.Dot(moveDir, leftFootForward);
-            float rightDot = Vector3.Dot(moveDir, rightFootForward);
+            float leftDot = Vector3.Dot(MoveDir, leftFootForward.normalized);
+            float rightDot = Vector3.Dot(MoveDir, rightFootForward.normalized);
 
             leftDot = (leftDot + 1) * 0.5f;
             rightDot = (rightDot + 1) * 0.5f;
 
-            return (leftDot + rightDot) * 0.5f;
+            return leftDot * rightDot;
         }
     }
-
-    public float targetHeight;
-
-    public PositionSupporter positionSupporter;
-
-    public void SetSpeed(float speed)
-    {
-        if (speed < 0)
-            throw new Exception("The speed is Out of Range");
-
-        targetVelocity = speed;
-    }
-
-    public void SetHeight(float height)
-    {
-        if (height < 0)
-            throw new Exception("The height is Out of Range");
-
-        targetHeight = height;
-    }
-
-    public void SetMoveDirection(Vector3 direction)
-        => moveDir = direction;
 
     private float[] GetFloatInfo(int index)
     {
         DriveController toGet = controllers[index];
         return new[]
         {
-            toGet.softMaxForce,
-            // toGet.ForceUsage,
+            toGet.MaxForce,
+            toGet.ForceUseRatio,
+            toGet.Target - toGet.JointPos,
             toGet.Target,
             toGet.JointPos,
             toGet.Velocity,
@@ -93,10 +150,7 @@ public class BipedalController : MonoBehaviour
     {
         return new[]
         {
-            maximumForce,
-            outputForce / maximumForce,
-            targetHeight,
-            Vector3.Distance(GetAvgVel(), targetVelocity * moveDir),
+            Vector3.Distance(GetAvgVel(), targetVelocity * MoveDir),
             LookDot,
             PelvisUprightDot
         };
@@ -131,7 +185,7 @@ public class BipedalController : MonoBehaviour
             pelvis.angularVelocity,
             pelvis.linearVelocity,
             GetAvgVel(),
-            targetVelocity * moveDir
+            targetVelocity * MoveDir
         };
     }
 
@@ -140,7 +194,7 @@ public class BipedalController : MonoBehaviour
         Vector3[][] infos = new Vector3[controllers.Count + 1][];
 
         int index = 0;
-        controllers.ForEach(_=> infos[index] = GetVectorInfo(index++));
+        controllers.ForEach(_ => infos[index] = GetVectorInfo(index++));
         infos[index] = GetBodyVectorInfo();
 
         foreach (var info in infos)
@@ -153,7 +207,8 @@ public class BipedalController : MonoBehaviour
 
     public void CollectObservations(VectorSensor sensor)
     {
-        positionSupporter.UpdateOrientation(pelvis.transform, moveDir);
+        positionSupporter.UpdateOrientation(pelvis.transform);
+        MoveDir = positionSupporter.transform.forward;
 
         var floatObservations = GetFloatInfos();
         var vectorObservations = GetVectorInfos();
@@ -179,9 +234,9 @@ public class BipedalController : MonoBehaviour
     {
         Vector3 velSum = Vector3.zero;
         int bodyCount = 0;
-        foreach (var manager in controllers)
+        foreach (var controller in controllers)
         {
-            ArticulationBody body = manager.articulationBody;
+            ArticulationBody body = controller.articulationBody;
             if (body.mass <= 0)
                 continue;
 
@@ -192,7 +247,7 @@ public class BipedalController : MonoBehaviour
         return velSum / bodyCount;
     }
 
-    public void SetDrive(float forceUsage, float[] forceRatios, float[] targets)
+    public void SetDrive(float[] forceRatios, float[] targets)
     {
         if (forceRatios.Length != controllers.Count)
             throw new Exception("forceRatios.length is Not Match Controllers.Count");
@@ -200,40 +255,23 @@ public class BipedalController : MonoBehaviour
         if (targets.Length != controllers.Count)
             throw new Exception("targets.length is Not Match Controllers.Count");
 
-        // List<float> driveForces = new();
-        //
-        // int i = 0;
-        // controllers.ForEach(manager => driveForces.Add(manager.MaxForce * forceRatios[i++]));
-        // float forceSum = driveForces.Sum();
-        //
-        // i = 0;
-        // controllers.ForEach(manager => manager.SetTarget(targets[i++]));
-        //
-        // i = 0;
-        // if (forceSum > maximumForce)
-        // {
-        //     float ratioSum = forceRatios.Sum();
-        //     controllers.ForEach(manager => manager.SetForceLimit(forceRatios[i++] / ratioSum * maximumForce));
-        //     outputForce = maximumForce;
-        // }
-        // else
-        // {
-        //     controllers.ForEach(manager => manager.SetForceLimit(driveForces[i++]));
-        //     outputForce = forceSum;
-        // }
-
-        outputForce = maximumForce * forceUsage;
+        float usableForce = powerHub.UsableForce;
+        float requestedForcesSum = 0f;
 
         int i = 0;
-        controllers.ForEach(manager => manager.SetTarget(targets[i++]));
-        float ratioSum = forceRatios.Sum();
+        controllers.ForEach(controller => requestedForcesSum += controller.MaxForce * forceRatios[i++]);
 
         i = 0;
-        controllers.ForEach(controller =>
-        {
-            controller.softMaxForce = forceRatios[i++] / ratioSum;
-            controller.SetForceLimit(outputForce * controller.softMaxForce);
-        });
+        controllers.ForEach(controller => controller.Target = targets[i++]);
+
+        float forceToUse = requestedForcesSum < usableForce ? requestedForcesSum : usableForce;
+        float usableRatio = requestedForcesSum == 0 ? 1 : forceToUse / requestedForcesSum;
+
+        i = 0;
+        controllers.ForEach(controller => controller.ForceUseRatio = forceRatios[i++] * usableRatio);
+
+        powerHub.ReleaseForce(forceToUse);
+        Efficiency = 1f - forceToUse / usableForce;
     }
 }
 }

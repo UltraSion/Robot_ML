@@ -9,7 +9,7 @@ public class GroundChecker : MonoBehaviour
     {
         if (other.transform.CompareTag("Ground"))
         {
-            agent.AddReward((-1f));
+            // agent.AddReward((-1f));
             agent.EndEpisode();
         }
     }

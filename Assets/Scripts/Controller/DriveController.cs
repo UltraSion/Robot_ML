@@ -1,33 +1,60 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Controller
 {
 public class DriveController : MonoBehaviour
 {
     public ArticulationBody articulationBody;
-    // public float MaxForce = 20000f;
-    public float driveForce => articulationBody.driveForce[0];
-    public float softMaxForce;
 
-    // public float ForceUsage
-    // {
-    //     get
-    //     {
-    //         var forceLimit = articulationBody.xDrive.forceLimit;
-    //         return forceLimit / MaxForce;
-    //     }
-    // }
+    [SerializeField] private float maxForce;
+
+    public float MaxForce
+    {
+        get => maxForce;
+        set
+        {
+            if (value < 0)
+                return;
+
+            maxForce = value;
+        }
+    }
+
+    public float DriveForce => articulationBody.driveForce[0];
+
+    public float ForceUseRatio
+    {
+        get
+        {
+            var drive = articulationBody.xDrive;
+            return Mathf.InverseLerp(0f, maxForce, drive.forceLimit);
+        }
+        set
+        {
+            var drive = articulationBody.xDrive;
+            drive.forceLimit =  Mathf.Lerp(0f, maxForce, value);
+            articulationBody.xDrive = drive;
+        }
+    }
 
     public float Target
     {
         get
         {
             var drive = articulationBody.xDrive;
-            var target = drive.target;
-            return Mathf.InverseLerp(drive.lowerLimit, drive.upperLimit, target);
+            return Mathf.InverseLerp(drive.lowerLimit, drive.upperLimit, drive.target);
+        }
+
+        set
+        {
+            var drive = articulationBody.xDrive;
+            drive.target = Mathf.Lerp(drive.lowerLimit, drive.upperLimit, value);
+            articulationBody.xDrive = drive;
         }
     }
+
     public float JointPos
     {
         get
@@ -37,29 +64,16 @@ public class DriveController : MonoBehaviour
             return Mathf.InverseLerp(drive.lowerLimit, drive.upperLimit, curPos);
         }
     }
+
     public float Velocity => articulationBody.jointVelocity[0];
     public float Acceleration => articulationBody.jointAcceleration[0];
-    // public float Mass => articulationBody.mass;
 
-    void Start()
+    void Awake()
     {
         articulationBody = GetComponent<ArticulationBody>();
-    }
-
-    public void SetForceLimit(float force)
-    {
-        var drive = articulationBody.xDrive;
-        drive.forceLimit = force;
-        articulationBody.xDrive = drive;
-    }
-
-    public void SetTarget(float value)
-    {
-        if (value is < 0 or > 1)
-            throw new Exception("Value is Out of Range");
 
         var drive = articulationBody.xDrive;
-        drive.target =  Mathf.Lerp(drive.lowerLimit, drive.upperLimit, value);
+        drive.forceLimit = 0f;
         articulationBody.xDrive = drive;
     }
 }
