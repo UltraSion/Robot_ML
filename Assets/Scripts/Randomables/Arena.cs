@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace DefaultNamespace
+namespace Randomables
 {
 public class Arena : RandomObject
 {
-    public List<RandomObject> randomObjects;
+    [SerializeField] private List<RandomObject> randomObjects;
 
     public override void Rand()
         => randomObjects.ForEach(r => r.Rand());
