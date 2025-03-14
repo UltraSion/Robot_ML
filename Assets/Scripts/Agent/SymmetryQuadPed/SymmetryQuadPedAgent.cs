@@ -22,7 +22,8 @@ public class SymmetryQuadPedAgent : LegAgent
         float efficiency = legController.Efficiency;
         float difficulty = speedReward * (legController.TargetVelocity / setting.maxSpeed);
         float effortReward = speedReward * (difficulty + efficiency * (1 - difficulty));
-        float reward = speedReward * effortReward;
+        float lookReward = legController.LookDot;
+        float reward = speedReward * effortReward * lookReward;
 
         ui?.UpdateParameters(legController.TargetVelocity, speedReward, effortReward, reward);
 
