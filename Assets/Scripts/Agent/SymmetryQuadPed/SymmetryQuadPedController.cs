@@ -28,6 +28,22 @@ public class SymmetryQuadPedController : LegController
     public DriveController shine4;
     public DriveController foot4;
 
+    public override float LookDot
+    {
+        get
+        {
+            var r1 = Quaternion.LookRotation(root.transform.position + moveDir).eulerAngles;
+            var r2 = root.transform.rotation.eulerAngles;
+
+            var delta = Mathf.Abs(r1.y - r2.y);
+            delta = delta < 180 ? delta : delta - 360;
+            delta = Mathf.Abs(delta) / 180;
+
+            var lookDot = Mathf.Cos(4 * Mathf.PI * delta) * 0.5f + 0.5f;
+            return lookDot;
+        }
+    }
+
     private void Awake()
     {
         controllers.Add(thighY1);
