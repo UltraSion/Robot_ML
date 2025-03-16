@@ -46,6 +46,9 @@ public abstract class LegController : MonoBehaviour
     public virtual float LookDot
         => Vector3.Dot(root.transform.forward, moveDir);
 
+    public virtual float UpRightDot
+        => Vector3.Dot(root.transform.up, Vector3.up);
+
     public float VelocityAccuracy
     {
         get
