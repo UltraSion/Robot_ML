@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Controller;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
@@ -7,6 +8,14 @@ namespace Agent.SymmetryQuadPed
 {
 public class SymmetryQuadPedController : LegController
 {
+    private class Leg
+    {
+        public DriveController thighY;
+        public DriveController thighX;
+        public DriveController shine;
+        public GameObject foot;
+    }
+
     [Header("LegParts")]
     public DriveController thighY1;
     public DriveController thighX1;
@@ -24,25 +33,51 @@ public class SymmetryQuadPedController : LegController
     public DriveController thighX4;
     public DriveController shine4;
 
-    public DriveController foot1;
-    public DriveController foot2;
-    public DriveController foot3;
-    public DriveController foot4;
+    public GameObject foot1;
+    public GameObject foot2;
+    public GameObject foot3;
+    public GameObject foot4;
+
+    private int firstLeg = 0;
+    private List<Leg> _legs = new();
+
+    private Vector3 RotationDelta
+    {
+        get
+        {
+            var dir = root.transform.InverseTransformDirection(moveDir);
+            var lookDir = Quaternion.LookRotation(dir).eulerAngles;
+
+            lookDir.x = lookDir.x < 180 ? lookDir.x : lookDir.x - 360;
+            lookDir.y = lookDir.y < 180 ? lookDir.y : lookDir.y - 360;
+            lookDir.z = lookDir.z < 180 ? lookDir.z : lookDir.z - 360;
+
+            return lookDir;
+        }
+    }
 
     public override float LookDot
     {
         get
         {
-            var r1 = Quaternion.LookRotation(moveDir).eulerAngles;
-            var r2 = root.transform.rotation.eulerAngles;
-
-            var delta = Mathf.Abs(r1.y - r2.y);
-            delta = delta < 180 ? delta : delta - 360;
-            delta = Mathf.Abs(delta) / 180;
-
+            var delta = Mathf.Abs(RotationDelta.y) / 180;
             var lookDot = Mathf.Cos(4 * Mathf.PI * delta) * 0.5f + 0.5f;
+
             return lookDot;
         }
+    }
+
+    public void SortLeg()
+    {
+        var delta = RotationDelta.y;
+        var absDelta = Mathf.Abs(delta);
+
+        if (absDelta < 45)
+            firstLeg = 0;
+        else if (absDelta < 135)
+            firstLeg = delta > 0 ? 1 : 3;
+        else
+            firstLeg = 2;
     }
 
     private void Awake()
@@ -62,6 +97,38 @@ public class SymmetryQuadPedController : LegController
         controllers.Add(thighY4);
         controllers.Add(thighX4);
         controllers.Add(shine4);
+
+        _legs.Add(new Leg()
+        {
+            thighY = thighY1,
+            thighX = thighX1,
+            shine = shine1,
+            foot = foot1
+        });
+
+        _legs.Add(new Leg()
+        {
+            thighY = thighY2,
+            thighX = thighX2,
+            shine = shine2,
+            foot = foot2
+        });
+
+        _legs.Add(new Leg()
+        {
+            thighY = thighY3,
+            thighX = thighX3,
+            shine = shine3,
+            foot = foot3
+        });
+
+        _legs.Add(new Leg()
+        {
+            thighY = thighY4,
+            thighX = thighX4,
+            shine = shine4,
+            foot = foot4
+        });
     }
 
     protected override Vector3 GetAvgVel()
@@ -82,20 +149,32 @@ public class SymmetryQuadPedController : LegController
         return velSum / bodyCount;
     }
 
+    private void CollectDriveObservations(DriveController controller, VectorSensor sensor)
+    {
+        sensor.AddObservation(controller.MaxForce);
+        sensor.AddObservation(controller.ForceUseRatio);
+        sensor.AddObservation(controller.Target);
+        sensor.AddObservation(controller.Target - controller.JointPos);
+        sensor.AddObservation(controller.JointPos);
+        sensor.AddObservation(controller.Velocity);
+        sensor.AddObservation(controller.Acceleration);
+    }
+
     public override void CollectObservations(VectorSensor sensor)
     {
+        SortLeg();
         supporter.UpdateOrientation(root.transform);
         MoveDir = supporter.transform.forward;
 
-        foreach (var controller in controllers)
+        for (int i = 0; i < _legs.Count; i++)
         {
-            sensor.AddObservation(controller.MaxForce);
-            sensor.AddObservation(controller.ForceUseRatio);
-            sensor.AddObservation(controller.Target);
-            sensor.AddObservation(controller.Target - controller.JointPos);
-            sensor.AddObservation(controller.JointPos);
-            sensor.AddObservation(controller.Velocity);
-            sensor.AddObservation(controller.Acceleration);
+            var legNum = firstLeg + i;
+            legNum = legNum < _legs.Count ? legNum : legNum - _legs.Count;
+            var leg = _legs[legNum];
+            CollectDriveObservations(leg.thighY, sensor);
+            CollectDriveObservations(leg.thighX, sensor);
+            CollectDriveObservations(leg.shine, sensor);
+            sensor.AddObservation(supporter.transform.InverseTransformDirection(leg.foot.transform.position - supporter.transform.position));
         }
 
         RaycastHit hit;
@@ -107,26 +186,58 @@ public class SymmetryQuadPedController : LegController
         else
             sensor.AddObservation(1);
 
-        sensor.AddObservation(supporter.transform.InverseTransformDirection(foot1.transform.position - supporter.transform.position));
-        sensor.AddObservation(supporter.transform.InverseTransformDirection(foot2.transform.position - supporter.transform.position));
-        sensor.AddObservation(supporter.transform.InverseTransformDirection(foot3.transform.position - supporter.transform.position));
-        sensor.AddObservation(supporter.transform.InverseTransformDirection(foot4.transform.position - supporter.transform.position));
-
         sensor.AddObservation(Vector3.Distance(GetAvgVel(), targetVelocity * MoveDir));
         sensor.AddObservation(supporter.transform.InverseTransformDirection(GetAvgVel()));
         sensor.AddObservation(supporter.transform.InverseTransformDirection(targetVelocity * MoveDir));
-        sensor.AddObservation(Vector3.Dot(root.transform.up, Vector3.up));
 
-        var r1 = Quaternion.LookRotation(moveDir).eulerAngles;
-        var r2 = root.transform.rotation.eulerAngles;
-
-        var delta = Mathf.Abs(r1.y - r2.y);
-        delta = delta < 180 ? delta : delta - 360;
-        delta /= 180;
+        var delta = RotationDelta / 180;
         sensor.AddObservation(delta);
 
         sensor.AddObservation(supporter.transform.InverseTransformDirection(root.linearVelocity));
         sensor.AddObservation(supporter.transform.InverseTransformDirection(root.angularVelocity));
+    }
+
+    public override void SetDrive(float[] forceRatios, float[] targets)
+    {
+        if (forceRatios.Length != controllers.Count)
+            throw new Exception("forceRatios.length is Not Match Controllers.Count");
+
+        if (targets.Length != controllers.Count)
+            throw new Exception("targets.length is Not Match Controllers.Count");
+
+        float usableForce = powerHub.UsableForce;
+        float requestedForcesSum = 0f;
+
+        int i = 0;
+        controllers.ForEach(controller => requestedForcesSum += controller.MaxForce * forceRatios[i++]);
+
+        float forceToUse = requestedForcesSum < usableForce ? requestedForcesSum : usableForce;
+        float usableRatio = requestedForcesSum == 0 ? 1 : forceToUse / requestedForcesSum;
+
+        powerHub.ReleaseForce(forceToUse);
+        Efficiency = 1f - forceToUse / usableForce;
+
+        i = 0;
+        for (int l = 0; l < _legs.Count; l++)
+        {
+            var legNum = firstLeg + l;
+            legNum = legNum < _legs.Count ? legNum : legNum - _legs.Count;
+            var leg = _legs[legNum];
+            leg.thighY.Target = targets[i++];
+            leg.thighX.Target = targets[i++];
+            leg.shine.Target = targets[i++];
+        }
+
+        i = 0;
+        for (int l = 0; l < _legs.Count; l++)
+        {
+            var legNum = firstLeg + l;
+            legNum = legNum < _legs.Count ? legNum : legNum - _legs.Count;
+            var leg = _legs[legNum];
+            leg.thighY.ForceUseRatio = forceRatios[i++] * usableRatio;
+            leg.thighX.ForceUseRatio = forceRatios[i++] * usableRatio;
+            leg.shine.ForceUseRatio = forceRatios[i++] * usableRatio;
+        }
     }
 }
 }
