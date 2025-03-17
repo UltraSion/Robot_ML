@@ -8,7 +8,7 @@ namespace Agent.SymmetryQuadPed
 {
 public class SymmetryQuadPedController : LegController
 {
-    private class Leg
+    public class Leg
     {
         public DriveController thighY;
         public DriveController thighX;
@@ -38,8 +38,8 @@ public class SymmetryQuadPedController : LegController
     public GameObject foot3;
     public GameObject foot4;
 
-    private int firstLeg = 0;
-    private List<Leg> _legs = new();
+    public int FirstLeg { get; private set; } = 0;
+    public readonly List<Leg> _legs = new();
 
     private Vector3 RotationDelta
     {
@@ -73,11 +73,11 @@ public class SymmetryQuadPedController : LegController
         var absDelta = Mathf.Abs(delta);
 
         if (absDelta < 45)
-            firstLeg = 0;
+            FirstLeg = 0;
         else if (absDelta < 135)
-            firstLeg = delta > 0 ? 1 : 3;
+            FirstLeg = delta > 0 ? 1 : 3;
         else
-            firstLeg = 2;
+            FirstLeg = 2;
     }
 
     private void Awake()
@@ -168,7 +168,7 @@ public class SymmetryQuadPedController : LegController
 
         for (int i = 0; i < _legs.Count; i++)
         {
-            var legNum = firstLeg + i;
+            var legNum = FirstLeg + i;
             legNum = legNum < _legs.Count ? legNum : legNum - _legs.Count;
             var leg = _legs[legNum];
             CollectDriveObservations(leg.thighY, sensor);
@@ -220,7 +220,7 @@ public class SymmetryQuadPedController : LegController
         i = 0;
         for (int l = 0; l < _legs.Count; l++)
         {
-            var legNum = firstLeg + l;
+            var legNum = FirstLeg + l;
             legNum = legNum < _legs.Count ? legNum : legNum - _legs.Count;
             var leg = _legs[legNum];
             leg.thighY.Target = targets[i++];
@@ -231,7 +231,7 @@ public class SymmetryQuadPedController : LegController
         i = 0;
         for (int l = 0; l < _legs.Count; l++)
         {
-            var legNum = firstLeg + l;
+            var legNum = FirstLeg + l;
             legNum = legNum < _legs.Count ? legNum : legNum - _legs.Count;
             var leg = _legs[legNum];
             leg.thighY.ForceUseRatio = forceRatios[i++] * usableRatio;
