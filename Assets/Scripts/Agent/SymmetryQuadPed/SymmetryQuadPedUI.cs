@@ -51,7 +51,7 @@ public class SymmetryQuadPedUI : MonoBehaviour
         speedRewardSlider.value = agentSpeedReward;
         speedReward_avgSlider.value = LegAgent.Avg_speedReward;
         effortRewardSlider.value = agentEffortReward;
-        totalRewardSlider.value = agentEffortReward;
+        totalRewardSlider.value = agentTotalReward;
         episodeLengthSlider.value = LegAgent.CurStep / LegAgent.MaxStep;
     }
 
