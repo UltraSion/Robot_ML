@@ -23,7 +23,7 @@ public abstract class LegController : MonoBehaviour
 
     public TargetObject targetObject;
 
-    public float Efficiency { get; private set; }
+    public float Efficiency { get; protected set; }
 
     protected Vector3 MoveDir
     {
@@ -72,7 +72,7 @@ public abstract class LegController : MonoBehaviour
     protected abstract Vector3 GetAvgVel();
     public abstract void CollectObservations(VectorSensor sensor);
 
-    public void SetDrive(float[] forceRatios, float[] targets)
+    public virtual void SetDrive(float[] forceRatios, float[] targets)
     {
         if (forceRatios.Length != controllers.Count)
             throw new Exception("forceRatios.length is Not Match Controllers.Count");
