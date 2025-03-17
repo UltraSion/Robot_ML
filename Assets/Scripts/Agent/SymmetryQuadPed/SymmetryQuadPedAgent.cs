@@ -18,23 +18,20 @@ public class SymmetryQuadPedAgent : LegAgent
         {
             var controller = LegController;
 
-            var leg1Forward = controller.thighY1.transform.forward;
-            var leg2Forward = controller.thighY2.transform.forward;
-            var leg3Forward = controller.thighY3.transform.forward;
-            var leg4Forward = controller.thighY4.transform.forward;
+            var legs = new SymmetryQuadPedController.Leg[4];
 
-            leg1Forward.y = 0;
-            leg2Forward.y = 0;
-            leg3Forward.y = 0;
-            leg4Forward.y = 0;
+            for (int l = 0; l < controller._legs.Count; l++)
+            {
+                var legNum = controller.FirstLeg + l;
+                legNum = legNum < controller._legs.Count ? legNum : legNum - controller._legs.Count;
+                legs[l] = controller._legs[legNum];
+            }
 
-            leg1Forward.Normalize();
-            leg2Forward.Normalize();
-            leg3Forward.Normalize();
-            leg4Forward.Normalize();
+            var r1 = legs[0].thighY.Target + legs[3].thighY.Target;
+            var r2 = legs[1].thighY.Target + legs[2].thighY.Target;
 
-            float r1 = (Vector3.Dot(leg1Forward, -leg3Forward) + 1f) * 0.5f;
-            float r2 = (Vector3.Dot(leg2Forward, -leg4Forward) + 1f) * 0.5f;
+            r1 = 1 - Mathf.Abs(r1) / 180;
+            r2 = 1 - Mathf.Abs(r2) / 180;
 
             return r1 * r2;
         }
@@ -56,7 +53,6 @@ public class SymmetryQuadPedAgent : LegAgent
         float reward = speedReward * effortReward * lookReward * symmetryReward;
 
         ui?.UpdateParameters(legController.TargetVelocity, speedReward, effortReward, reward);
-
         return reward;
     }
 }
