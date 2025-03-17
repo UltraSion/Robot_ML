@@ -100,6 +100,14 @@ public class SymmetryQuadPedController : LegController
 
         _legs.Add(new Leg()
         {
+            thighY = thighY4,
+            thighX = thighX4,
+            shine = shine4,
+            foot = foot4
+        });
+
+        _legs.Add(new Leg()
+        {
             thighY = thighY1,
             thighX = thighX1,
             shine = shine1,
@@ -120,14 +128,6 @@ public class SymmetryQuadPedController : LegController
             thighX = thighX3,
             shine = shine3,
             foot = foot3
-        });
-
-        _legs.Add(new Leg()
-        {
-            thighY = thighY4,
-            thighX = thighX4,
-            shine = shine4,
-            foot = foot4
         });
     }
 
