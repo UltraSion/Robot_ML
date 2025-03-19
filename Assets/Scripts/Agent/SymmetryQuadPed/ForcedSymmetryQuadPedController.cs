@@ -128,9 +128,11 @@ public class ForcedSymmetryQuadPedController : LegController
             shine = shine3,
             foot = foot3
         });
+
+        supporter.targetObject = targetObject.gameObject;
     }
 
-    protected override Vector3 GetAvgVel()
+    public override Vector3 GetAvgVel()
     {
         Vector3 velSum = Vector3.zero;
         int bodyCount = 0;
@@ -248,6 +250,73 @@ public class ForcedSymmetryQuadPedController : LegController
 
         legs[1].shine.Target = t2;
         legs[2].shine.Target = t2;
+
+        //--------------------------------------------------------------------
+
+        // float[] t = new float[4];
+        // float axis = targets[0];
+        // float delta = targets[1] * 2f - 1f;
+        // range = 0.5f - Mathf.Abs(0.5f - axis);
+        // t[0] = axis + range * delta;
+        // t[1] = 1 - axis + range * delta;
+        // t[2] = axis - range * delta;
+        // t[3] = 1 - axis - range * delta;
+        //
+        // legs[0].thighY.Target = t[0];
+        // legs[1].thighY.Target = t[1];
+        // legs[2].thighY.Target = t[2];
+        // legs[3].thighY.Target = t[3];
+        //
+        // axis = targets[2];
+        // delta = targets[3] * 2f - 1f;
+        // range = 0.5f - Mathf.Abs(0.5f - axis);
+        // t[0] = axis + range * delta;
+        // t[1] = axis + range * delta;
+        // t[2] = axis - range * delta;
+        // t[3] = axis - range * delta;
+        //
+        // axis = targets[3];
+        // delta = targets[4] * 2f - 1f;
+        // range = 0.5f - Mathf.Abs(0.5f - axis);
+        // t[0] = axis + range * delta;
+        // t[1] = axis + range * delta;
+        // t[2] = axis - range * delta;
+        // t[3] = axis - range * delta;
+        //
+        // // for (int j = 0; j < t.Length; j++)
+        // // {
+        // //     axis = targets[2];
+        // //     delta = targets[3] * 2f - 1f;
+        // //     range = 0.5f - Mathf.Abs(0.5f - axis);
+        // //
+        // //     axis = axis + range * delta;
+        // //     delta = targets[4] * 2f - 1f;
+        // //     range = 0.5f - Mathf.Abs(0.5f - axis);
+        // //
+        // //     axis = axis + range * delta;
+        // //     delta = targets[5] * 2f - 1f;
+        // //     range = 0.5f - Mathf.Abs(0.5f - axis);
+        // // }
+        //
+        // legs[0].thighX.Target = t[0];
+        // legs[1].thighX.Target = t[1];
+        // legs[2].thighX.Target = t[2];
+        // legs[3].thighX.Target = t[3];
+        //
+        //
+        // axis = targets[4];
+        // delta = targets[5] * 2f - 1f;
+        // range = 0.5f - Mathf.Abs(0.5f - axis);
+        // t[0] = axis + range * delta;
+        // t[1] = axis - range * delta;
+        //
+        // legs[0].shine.Target = t[0];
+        // legs[3].shine.Target = t[0];
+        //
+        // legs[1].shine.Target = t[1];
+        // legs[2].shine.Target = t[1];
+
+        //--------------------------------------------------------------------
 
         i = 0;
         for (int l = 0; l < _legs.Count; l++)

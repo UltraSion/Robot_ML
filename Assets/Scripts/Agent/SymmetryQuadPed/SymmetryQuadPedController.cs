@@ -131,7 +131,7 @@ public class SymmetryQuadPedController : LegController
         });
     }
 
-    protected override Vector3 GetAvgVel()
+    public override Vector3 GetAvgVel()
     {
         Vector3 velSum = Vector3.zero;
         int bodyCount = 0;

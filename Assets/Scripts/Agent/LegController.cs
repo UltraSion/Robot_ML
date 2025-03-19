@@ -69,7 +69,7 @@ public abstract class LegController : MonoBehaviour
         }
     }
 
-    protected abstract Vector3 GetAvgVel();
+    public abstract Vector3 GetAvgVel();
     public abstract void CollectObservations(VectorSensor sensor);
 
     public virtual void SetDrive(float[] forceRatios, float[] targets)
