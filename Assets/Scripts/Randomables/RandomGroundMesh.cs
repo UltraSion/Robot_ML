@@ -30,8 +30,6 @@ namespace DefaultNamespace
             filter.mesh = mesh;
         }
 
-
-
         public void GenerateShape()
         {
             if (mesh != null)
