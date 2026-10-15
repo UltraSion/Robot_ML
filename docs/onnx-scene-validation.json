@@ -1,0 +1,60 @@
+{
+    "scenes": [
+        {
+            "scene": "01_ForcedQuad_113_18",
+            "robots": 4,
+            "minimumActionCallbacks": 100,
+            "minimumObservationCount": 113,
+            "passed": true,
+            "errors": []
+        },
+        {
+            "scene": "02_Bipedal_191_22",
+            "robots": 7,
+            "minimumActionCallbacks": 100,
+            "minimumObservationCount": 191,
+            "passed": true,
+            "errors": []
+        },
+        {
+            "scene": "03_LegacyBipedal_175_20",
+            "robots": 35,
+            "minimumActionCallbacks": 100,
+            "minimumObservationCount": 175,
+            "passed": true,
+            "errors": []
+        },
+        {
+            "scene": "04_LegacyBipedal_158_21",
+            "robots": 13,
+            "minimumActionCallbacks": 100,
+            "minimumObservationCount": 158,
+            "passed": true,
+            "errors": []
+        },
+        {
+            "scene": "05_LegacyQuad_126_32",
+            "robots": 2,
+            "minimumActionCallbacks": 100,
+            "minimumObservationCount": 126,
+            "passed": true,
+            "errors": []
+        },
+        {
+            "scene": "06_SQW04_Order1234_113_32",
+            "robots": 1,
+            "minimumActionCallbacks": 100,
+            "minimumObservationCount": 113,
+            "passed": true,
+            "errors": []
+        },
+        {
+            "scene": "07_SQW04_Order4123_113_32",
+            "robots": 1,
+            "minimumActionCallbacks": 100,
+            "minimumObservationCount": 113,
+            "passed": true,
+            "errors": []
+        }
+    ]
+}

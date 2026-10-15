@@ -1,0 +1,4566 @@
+{
+  "baseline": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07",
+  "training_provenance": "Unknown: every model first added in one bulk commit; matches are code-contract candidates, not verified training commits.",
+  "source_snapshots_are_unmodified": true,
+  "snapshots_are_not_runnable_unity_projects": true,
+  "groups": [
+    {
+      "observations": 175,
+      "continuous_actions": 20,
+      "id": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "refs": [
+        "5a2aec4"
+      ],
+      "controller": "Assets/Scripts/Controller/BipedalController02.cs",
+      "agent": "Assets/Scripts/Agent/BipedalAgent02.cs",
+      "notes": "10 serialized joints; preserve their order; same historical script GUIDs as legacy prefabs. Restore DriveController02 and support code together."
+    },
+    {
+      "observations": 158,
+      "continuous_actions": 21,
+      "id": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "refs": [
+        "7723886",
+        "5a2aec4"
+      ],
+      "controller": "Assets/Scripts/Controller/BipedalController.cs",
+      "agent": "Assets/Scripts/Agent/BipedalAgent.cs",
+      "notes": "10 joints; first action is global forceUsage, then interleaved forceRatio/target. No matching legacy robot prefab proven."
+    },
+    {
+      "observations": 191,
+      "continuous_actions": 22,
+      "id": "bipedal_191_22",
+      "status": "current_contract_match",
+      "refs": [
+        "80333ed",
+        "HEAD"
+      ],
+      "controller": "Assets/Scripts/Controller/BipedalController.cs",
+      "agent": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs",
+      "notes": "11 joints including body. 1f5b25a introduced this contract; 80333ed restored non-02 class names. Reassign model and wire scene references."
+    },
+    {
+      "observations": 126,
+      "continuous_actions": 32,
+      "id": "quad_126_32",
+      "status": "historical_contract_match",
+      "refs": [
+        "c0f9018",
+        "117054b"
+      ],
+      "controller": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs",
+      "agent": "Assets/Scripts/Agent/LegAgent.cs",
+      "notes": "16 joints including four foot joints. 112 joint scalars + 14 body observations. Restore foot articulation and matching prefab schema; old robot asset not proven."
+    },
+    {
+      "observations": 113,
+      "continuous_actions": 32,
+      "id": "quad_113_32",
+      "status": "partial_contract_match",
+      "refs": [
+        "da9c6aa",
+        "f1ef807",
+        "HEAD"
+      ],
+      "controller": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs",
+      "agent": "Assets/Scripts/Agent/LegAgent.cs",
+      "notes": "113 observations from da9c6aa; code uses 24 of 32 actions. da9c6aa leg order 1,2,3,4; f1ef807 order 4,1,2,3. Neither is proven training mapping; remaining eight actions unused."
+    },
+    {
+      "observations": 113,
+      "continuous_actions": 18,
+      "id": "forced_quad_113_18",
+      "status": "current_contract_match",
+      "refs": [
+        "2f873f7",
+        "HEAD"
+      ],
+      "controller": "Assets/Scripts/Agent/SymmetryQuadPed/ForcedSymmetryQuadPedController.cs",
+      "agent": "Assets/Scripts/Agent/SymmetryQuadPed/ForcedSymmetryQuadPedAgent.cs",
+      "notes": "12 force ratios followed by six symmetry targets. Reference wiring required before Awake."
+    }
+  ],
+  "snapshots": {
+    "5a2aec4": {
+      "commit": "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c",
+      "folder": "docs/onnx-candidates/sources/5a2aec4",
+      "subject": "Lazy Commit",
+      "date": "2025-02-22",
+      "files": [
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs",
+          "sha256": "38c01f7598c579d7b0b97b34e97311d3b8572c30b9426e54f74e1328f52fbff3"
+        },
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs.meta",
+          "sha256": "82cc458f8d6c8a968a4592a69822d7fe4f23db38ee4745ada530394e55872a44"
+        },
+        {
+          "path": "Assets/Scripts/Agent/BipedalAgent.cs",
+          "sha256": "770f752eaf36a696b284fea253a2c19edf7b5959233a6d1a33b3713bf16dc0f4"
+        },
+        {
+          "path": "Assets/Scripts/Agent/BipedalAgent.cs.meta",
+          "sha256": "e2bc20395829c12aa55cb182e5d2b339f5f47401560dca57398f31ada2a8d8c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/BipedalAgent02.cs",
+          "sha256": "abbe0c8ffbd1c2c0295044d2f5df7c30ce63878624dcb048e62b5b4dbabb1e2f"
+        },
+        {
+          "path": "Assets/Scripts/Agent/BipedalAgent02.cs.meta",
+          "sha256": "ce19cf27b62e331670ad57decd97c9d376172404afe12ead5ed4675fb82ad3c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/PositionSupporter.cs",
+          "sha256": "7a3f9006999de13c6778605a97249599b3f40c895ed3ff9afefad6ad7a27257a"
+        },
+        {
+          "path": "Assets/Scripts/Agent/PositionSupporter.cs.meta",
+          "sha256": "f4cf414975d92f7482a2dc41a2c02c724fe37c3ba863f37751e83d66a13d6195"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs",
+          "sha256": "8f0d374338a09d4b556aa5e44e95e23b1872b640286d335cbbfec37eff3754f9"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs.meta",
+          "sha256": "84319fdc760f5a72dc48f6900ad6a0c205b39f8b32e72e83966d99644a76c425"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs",
+          "sha256": "d8d71568c12ca5715eb2f41d4d80ff0254318a008b3c6a7f353976a7fec6267b"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs.meta",
+          "sha256": "98163ce456b686e61cf162029cf6d58642d07144f0bf8b2e0452afca211ebe19"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs",
+          "sha256": "cca0b574066d315d24f7eadda68e8f0a479193f877af2256e9eca4d875b41cdf"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs.meta",
+          "sha256": "9f84c12359d056a8d10ab32a27e9172a304feebe02ef68ff044a47b963067d89"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs",
+          "sha256": "f2e49aefa8884918e8f095397d41d5c9accaabbe968b29c5b0bb9583f7301ae5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs.meta",
+          "sha256": "8865c69f18b2ab1fad8a5d121b04224557b1be308fdd11ae8d0c5101822ca085"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs",
+          "sha256": "0cc2e987a0ccdc37a6bfb7d7e83de2898d34ed9f0911511f9ffad5f89c075353"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs.meta",
+          "sha256": "aa5c8467a9bd683a6e97b148e3e5e5d32cf42fbe2beceff483bdaf7c18751d49"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs",
+          "sha256": "149d54237ec1903877b1d50799e3fbf04dd4590024011dd779d622c3a6b7be3c"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs.meta",
+          "sha256": "7dcdeaffb7ccc0c9dda9d210b9f7684e82b98ebaed494f49f78e27a04e396658"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs",
+          "sha256": "985fd732744e6d618a566f90920e7b46a3649f6d022530a8c22a6a9f8491e9fd"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs.meta",
+          "sha256": "e1827646a0f2be02b19cdd38a38c823beec484fe0fc6e2c4a338a7954b924b2a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs",
+          "sha256": "84c37604b1f3ac0aa39c90e5782ce3dbf7c72f2cbcb0720406cedfaf9e1cafc4"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs.meta",
+          "sha256": "4091e2e720cdc7625a29ed9253eed02213ac98b4dcf8360c84e85fdb9d9fde2b"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs",
+          "sha256": "d351cfbb1febc1bb003518de4cc0d1de20d27cb256d515cc31318ce0c80cef1d"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs.meta",
+          "sha256": "fc24695817e0b382d4d86548faa77fab4737b7f86bc012ec20d7a90e0eb6e50a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController02.cs",
+          "sha256": "f22191ed48b67f562015d4ff923d8df00f29cce0796906ed87891145c7849738"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController02.cs.meta",
+          "sha256": "f4f4561b72e1325d2fd61b9c99fdf5678c5b5648040bc61357a98260d53d35c5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs",
+          "sha256": "d07ad1f4592e6eac50b80cb6daeb0f0efb032d1a1269eccdb4bed460f42b2385"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs.meta",
+          "sha256": "d8196a626380ba8067e26539d71cc4ad2c7de1e82c2d231995b72fa87214ef55"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs",
+          "sha256": "73818b7ea504b6066bb9e96826c312d61b8ec09af270c1dffeefb8e8b7ac1069"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs",
+          "sha256": "ff26df1c570eab4a0b465153d1dfd1a1271c624c96e3fc9c414860df5027f54e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs.meta",
+          "sha256": "e1272dc91522c4da41c6a9a3a43e6014e0ca666b937de1e3e881fb0b22a7a373"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs",
+          "sha256": "f88d12fce07567e784cb536e74b6e57101e56c42b1a8c6e399c96eaa4df6af50"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs.meta",
+          "sha256": "895bb6b117cfa8b2f5397342080525b6e817c2261262c11211b9c8f39dc1f423"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs",
+          "sha256": "48b1ae4ed70854ada4f79ec93e742153f93b1ddd45a73a2091ca4ee75f46f9fc"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs.meta",
+          "sha256": "617fe2f1c3ee63b8da393736f69169ef281748bce406a15eb1a664db97b40d4d"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController02.cs",
+          "sha256": "009e3e1fa82037ae4b6c53143f6f64a05fb8b21aeae1d3b718797216429565c3"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController02.cs.meta",
+          "sha256": "447983d4e5962f92f8fc9073f29e82d96f4a337af63c92c3bc50b332f290d1d9"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs",
+          "sha256": "d1bd92bb99cdcf5e13acacfc4f200b0d7edc050c4a0bcfd003f53b605b8bed8e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs.meta",
+          "sha256": "a0eac185f5001bbeedb30d24ec8d0c17506741ab8092076e06809371881c104f"
+        },
+        {
+          "path": "Assets/Scripts/ETC/ABControllerTest.cs",
+          "sha256": "5ad6aeefa74bf15870d59f4ef3e28fe498b4c613f0f4e35d8ae41a75c9a9ec27"
+        },
+        {
+          "path": "Assets/Scripts/ETC/ABControllerTest.cs.meta",
+          "sha256": "5f08b45080b0d27cdb82c4138bf5a52fcd55687dd42f098ee42e035c388f715b"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs",
+          "sha256": "5be3b4d1de499e4383960b64306621abcb2707bd2b64d71463ab841a8d8fa1b1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs.meta",
+          "sha256": "29759010f734796a469c6f705d748bae161f74d87eb4558d298e08763e4f6c1a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs",
+          "sha256": "221b36680d5e3c96ffecf7471868e90b5f17c87db065c24130e595915e6f44a1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs.meta",
+          "sha256": "9f13d5e286ea09d2ab60c5a8380b06eec84ed4b603a1346cbb2c5ef8eb5f4dd0"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs",
+          "sha256": "03cc0fccce323965890389a5d58944e635f8baca4f917092d79d5cddabdae302"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs.meta",
+          "sha256": "ab5212bb55e1a87f5d9f11e5286010d23557bf53b3c99f23a80d54122451b259"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs",
+          "sha256": "5b04acdfae8591b202a74ed8c8cf4ecc47c5febc8ba7e141d894afa617a07a58"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs.meta",
+          "sha256": "76e3d94c41796fea997d5b7dd20af48213f1fb6af88cab17b4502a77c892fe8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs",
+          "sha256": "6c59a603a412aa589d203c00852aaa7a9806b3b779f077030b72656a374350e3"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs.meta",
+          "sha256": "ce971eaca65db353094590140a7d6cc428b24f96dad8903698d2e572227ab90f"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs",
+          "sha256": "0023ba1729eaa5b1e9266d61bff0cb8dff88431f37a572e07d809303920f432b"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs.meta",
+          "sha256": "5d4954cb401ac6cb0b3cdb4056fe2a968f16fc3f04b5c43b2a9bedbd655aaf5b"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs",
+          "sha256": "97169c099d9476a12564d53cc89c981769e11be0e7bc3f68dae3376e49f42711"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs.meta",
+          "sha256": "b544f10ef2624aa5e14f3dcbcc807af3c9c71b5031f9cba5f03c357e735b4659"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs",
+          "sha256": "9ab05df545ac357431d8cd748baab5942b114801708ac623af8a14f715d80f1d"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs.meta",
+          "sha256": "b10bb68804d6b31bd1ef917a38488183b3c9cad1acb92a91f0141b3c77443d07"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs",
+          "sha256": "61c9be74b32d35bf427fdae0ff690b944783aaa89dc0f317504e99a4d3ec94d2"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs.meta",
+          "sha256": "5f4920835d725b386f5c1c717309eddae445a3b94d40666e565f9d21d055d959"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs",
+          "sha256": "2e94acd538ff244a27b5f24c377738b714f51f0697a02ad138346d48c682a2dd"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs.meta",
+          "sha256": "2d20ec8873e0cb8e82f6ef202d8592b1f6e633d1b955143ef1601210463dda2c"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs",
+          "sha256": "1df7cf155e712df8dd84acfdabadce5a882f053135f85d6b92bfa718d690cd31"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs.meta",
+          "sha256": "9dcf7ccae2d8d0cecf32a633f62eccd313b9f27226fe32dcb5b4714a46d98b20"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs",
+          "sha256": "67f66403e09adc45827b8fe9557fade52363710478dea48cace1bc860b896fb6"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs.meta",
+          "sha256": "89b014244fbbc23318a47351be327ba0b1eb247058bf694787fb5abf76411436"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs",
+          "sha256": "c2fa017ccabe4bf1a0de7aff5480b95b467e076e2eb1615f64e7fb6c0560e1b3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs.meta",
+          "sha256": "ec0ad3dbab01397b576bc46b0a8e81ffdc5fe9a9ac4a9e6d4294d29bd571f35b"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs",
+          "sha256": "9123f2a953a1ea48249157be9fbcb2dfba5cdf4222eb0ea8d1ea5a1924efe0e2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs.meta",
+          "sha256": "d483f469355e2319d23263bd2c57cdf847351a5e077dd76d57d78642ef8f8d20"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs",
+          "sha256": "37fb45bbf836288d270a99f49b5dd328cddda6c003d3bcd8ac86a99a6dde7ef9"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs.meta",
+          "sha256": "9ee357f1207fc66e85741740191331d21c549b965cf67a48b4f8c754fc22aa8a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs",
+          "sha256": "aa26ae289ee778d47651cf61cf93646b4e266e649bc5982a861f92c142855911"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs.meta",
+          "sha256": "a1359e319893b9587604604897796995e0eed1f67c4b6da778714f29ac480ae3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs",
+          "sha256": "7feeddcecb5b5fe3bb76aef61fae77559d90e5c5dcc4bf93b8a0e77621761c1a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs.meta",
+          "sha256": "5d84cfa5253cc05eb82af4a6b22f560c58af07a15f27efaab4640763c05639f5"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs",
+          "sha256": "cc6ae7fd7c109dab68e88bb56984e23d80843127aec0d2211dd7916fdd3ea4e4"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs.meta",
+          "sha256": "ae3d8aea45d87dcff04b9ca2148629d1fd38e987572a87356da0f401cfdfc42d"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs",
+          "sha256": "65576738d8041b1a3c856de683fe2cd983dc9c6e07d5a23102c929c4b7f01fc2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs.meta",
+          "sha256": "b509df4f4d816cc35b6228eb63cd9b214549b6daa679ef2cd727adbc15d4acb1"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs",
+          "sha256": "539759034a7fd64cb82058069010289e774cf0c7cfee8cd8fab9fd5f5c5f184e"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs.meta",
+          "sha256": "14d9a57cc630b96c6507b09ea0318b661cbe6df716b8c6837a5c81203eaf07e5"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs",
+          "sha256": "027ff8259bf46ac2b0c5c7c0a608bc9521bd445542d7c04f577b349997e7bbc7"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs.meta",
+          "sha256": "edbabeed1780a31d01405f3362a4c20579fcc8687af678f02f2c9d42696b5794"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs",
+          "sha256": "863d3d916a0e6f51177dcf2649f209a67a09c0d9eca5c62193f13ecb9e2e7f2a"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs.meta",
+          "sha256": "621da796e5a2be1792753db5faf3d1153144c85546adf41e5881e80441c4ba67"
+        }
+      ]
+    },
+    "7723886": {
+      "commit": "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+      "folder": "docs/onnx-candidates/sources/7723886",
+      "subject": "Big Commit",
+      "date": "2025-02-02",
+      "files": [
+        {
+          "path": "Assets/Scripts/Agent/BipedalAgent.cs",
+          "sha256": "fe961d5160902dfbdd7c6f3102eca3f8be9c70aa75fd9c104f4cd71c35d4f8a9"
+        },
+        {
+          "path": "Assets/Scripts/Agent/BipedalAgent.cs.meta",
+          "sha256": "e2bc20395829c12aa55cb182e5d2b339f5f47401560dca57398f31ada2a8d8c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/PositionSupporter.cs",
+          "sha256": "7a3f9006999de13c6778605a97249599b3f40c895ed3ff9afefad6ad7a27257a"
+        },
+        {
+          "path": "Assets/Scripts/Agent/PositionSupporter.cs.meta",
+          "sha256": "f4cf414975d92f7482a2dc41a2c02c724fe37c3ba863f37751e83d66a13d6195"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs",
+          "sha256": "8f0d374338a09d4b556aa5e44e95e23b1872b640286d335cbbfec37eff3754f9"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs.meta",
+          "sha256": "84319fdc760f5a72dc48f6900ad6a0c205b39f8b32e72e83966d99644a76c425"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs",
+          "sha256": "3f3b6d713bd5667ea8871baed57081a81e4ba26b2ad17ea1aa47246939db40cf"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs.meta",
+          "sha256": "8865c69f18b2ab1fad8a5d121b04224557b1be308fdd11ae8d0c5101822ca085"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs",
+          "sha256": "2a4687082cf7cdc8620f5a3e9bf5bbff079e520c9a1e78edd907e85d39131526"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs.meta",
+          "sha256": "aa5c8467a9bd683a6e97b148e3e5e5d32cf42fbe2beceff483bdaf7c18751d49"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs",
+          "sha256": "149d54237ec1903877b1d50799e3fbf04dd4590024011dd779d622c3a6b7be3c"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs.meta",
+          "sha256": "7dcdeaffb7ccc0c9dda9d210b9f7684e82b98ebaed494f49f78e27a04e396658"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs",
+          "sha256": "da8d8bab93a32efbd4b7f23c142e8e97779bb89a6a3af14ecfd86341a81da1d0"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs.meta",
+          "sha256": "4091e2e720cdc7625a29ed9253eed02213ac98b4dcf8360c84e85fdb9d9fde2b"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs",
+          "sha256": "d351cfbb1febc1bb003518de4cc0d1de20d27cb256d515cc31318ce0c80cef1d"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs.meta",
+          "sha256": "fc24695817e0b382d4d86548faa77fab4737b7f86bc012ec20d7a90e0eb6e50a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs",
+          "sha256": "d07ad1f4592e6eac50b80cb6daeb0f0efb032d1a1269eccdb4bed460f42b2385"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs.meta",
+          "sha256": "d8196a626380ba8067e26539d71cc4ad2c7de1e82c2d231995b72fa87214ef55"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs",
+          "sha256": "73818b7ea504b6066bb9e96826c312d61b8ec09af270c1dffeefb8e8b7ac1069"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs",
+          "sha256": "ff26df1c570eab4a0b465153d1dfd1a1271c624c96e3fc9c414860df5027f54e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs.meta",
+          "sha256": "e1272dc91522c4da41c6a9a3a43e6014e0ca666b937de1e3e881fb0b22a7a373"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs",
+          "sha256": "f88d12fce07567e784cb536e74b6e57101e56c42b1a8c6e399c96eaa4df6af50"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs.meta",
+          "sha256": "895bb6b117cfa8b2f5397342080525b6e817c2261262c11211b9c8f39dc1f423"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs",
+          "sha256": "48b1ae4ed70854ada4f79ec93e742153f93b1ddd45a73a2091ca4ee75f46f9fc"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs.meta",
+          "sha256": "617fe2f1c3ee63b8da393736f69169ef281748bce406a15eb1a664db97b40d4d"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs",
+          "sha256": "d1bd92bb99cdcf5e13acacfc4f200b0d7edc050c4a0bcfd003f53b605b8bed8e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs.meta",
+          "sha256": "a0eac185f5001bbeedb30d24ec8d0c17506741ab8092076e06809371881c104f"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ITurret.cs",
+          "sha256": "180835f567e1ad848b1a5ce885fc2e9dddbe59c0af657ba217ff7eafcd36710d"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ITurret.cs.meta",
+          "sha256": "9ee357f1207fc66e85741740191331d21c549b965cf67a48b4f8c754fc22aa8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/ABControllerTest.cs",
+          "sha256": "5ad6aeefa74bf15870d59f4ef3e28fe498b4c613f0f4e35d8ae41a75c9a9ec27"
+        },
+        {
+          "path": "Assets/Scripts/ETC/ABControllerTest.cs.meta",
+          "sha256": "5f08b45080b0d27cdb82c4138bf5a52fcd55687dd42f098ee42e035c388f715b"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs",
+          "sha256": "5be3b4d1de499e4383960b64306621abcb2707bd2b64d71463ab841a8d8fa1b1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs.meta",
+          "sha256": "29759010f734796a469c6f705d748bae161f74d87eb4558d298e08763e4f6c1a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs",
+          "sha256": "221b36680d5e3c96ffecf7471868e90b5f17c87db065c24130e595915e6f44a1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs.meta",
+          "sha256": "9f13d5e286ea09d2ab60c5a8380b06eec84ed4b603a1346cbb2c5ef8eb5f4dd0"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs",
+          "sha256": "03cc0fccce323965890389a5d58944e635f8baca4f917092d79d5cddabdae302"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs.meta",
+          "sha256": "ab5212bb55e1a87f5d9f11e5286010d23557bf53b3c99f23a80d54122451b259"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs",
+          "sha256": "5b04acdfae8591b202a74ed8c8cf4ecc47c5febc8ba7e141d894afa617a07a58"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs.meta",
+          "sha256": "76e3d94c41796fea997d5b7dd20af48213f1fb6af88cab17b4502a77c892fe8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs",
+          "sha256": "6c59a603a412aa589d203c00852aaa7a9806b3b779f077030b72656a374350e3"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs.meta",
+          "sha256": "ce971eaca65db353094590140a7d6cc428b24f96dad8903698d2e572227ab90f"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs",
+          "sha256": "027ff8259bf46ac2b0c5c7c0a608bc9521bd445542d7c04f577b349997e7bbc7"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs.meta",
+          "sha256": "edbabeed1780a31d01405f3362a4c20579fcc8687af678f02f2c9d42696b5794"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs",
+          "sha256": "863d3d916a0e6f51177dcf2649f209a67a09c0d9eca5c62193f13ecb9e2e7f2a"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs.meta",
+          "sha256": "621da796e5a2be1792753db5faf3d1153144c85546adf41e5881e80441c4ba67"
+        }
+      ]
+    },
+    "80333ed": {
+      "commit": "80333edb729710530ae5535e7471765cb201a9a7",
+      "folder": "docs/onnx-candidates/sources/80333ed",
+      "subject": "Change className 02 =>",
+      "date": "2025-03-13",
+      "files": [
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs",
+          "sha256": "71b12d696ebb4ecaf9878776bbd8351e1999b76dc62d8deab137747b6f510463"
+        },
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs.meta",
+          "sha256": "82cc458f8d6c8a968a4592a69822d7fe4f23db38ee4745ada530394e55872a44"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs",
+          "sha256": "1a62ed4940dc118436d13495ad89c668e24650365e77f6c0bc4a13370d48f66f"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs.meta",
+          "sha256": "64ac8911cdf47532cb48a765e585bdc8632830ed1b536716b1c8e9390bdd41e2"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs",
+          "sha256": "8e76a3c968a550a177df9d0e0621764ab430c1fb4d6dbfb93558bcc148cf99eb"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs.meta",
+          "sha256": "ce19cf27b62e331670ad57decd97c9d376172404afe12ead5ed4675fb82ad3c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgentUI.cs",
+          "sha256": "315ce70303441fbddcdf46630def12a100e258a71d30da98bc213ae024eca4f5"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs",
+          "sha256": "a18b58121f44732d1370c240c12c94d962b386d35e2f54486e3d54677217e376"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs.meta",
+          "sha256": "f4cf414975d92f7482a2dc41a2c02c724fe37c3ba863f37751e83d66a13d6195"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs",
+          "sha256": "98984e5ccee30c2a17f49c81f8711abee751f721d8605036d035fca2124488a6"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs.meta",
+          "sha256": "b8f9ba0992519adb3595124d0bdb648c980b27c808a8f6ffa71f9d990f1c0437"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs",
+          "sha256": "f7c73cc9f23fc83c8cfa18ead8325c6142edb594ec06e1f6f9e6e46ca65b47d6"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs.meta",
+          "sha256": "243cde1700b0716a056052d5030b512962da68dbd8a28b7c57ae2a7f1831ef61"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs",
+          "sha256": "fae7f8975e7ab3213fc348ad6939264737675085319b5e5b6eab5761ebe30904"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs.meta",
+          "sha256": "84319fdc760f5a72dc48f6900ad6a0c205b39f8b32e72e83966d99644a76c425"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs",
+          "sha256": "8a9e95103b4f2e8ec6977ba65f0eb7da292e4589144fafd32c511cde7fbb1548"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs.meta",
+          "sha256": "d8cf40d8d4904a53f090cb523b6514b6f1bee529c3c1dc42e2ea754069467526"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs",
+          "sha256": "1b06f85bed376d1db13f35a7400dc5ac79e2a441c23e8928ec4c9306837e8d5a"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs.meta",
+          "sha256": "168166cfa1dd4fbd065440169e40fe1c4203adf275b04b09fa51a1a211e42288"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs",
+          "sha256": "d8d71568c12ca5715eb2f41d4d80ff0254318a008b3c6a7f353976a7fec6267b"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs.meta",
+          "sha256": "98163ce456b686e61cf162029cf6d58642d07144f0bf8b2e0452afca211ebe19"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs",
+          "sha256": "cca0b574066d315d24f7eadda68e8f0a479193f877af2256e9eca4d875b41cdf"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs.meta",
+          "sha256": "9f84c12359d056a8d10ab32a27e9172a304feebe02ef68ff044a47b963067d89"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs",
+          "sha256": "f2e49aefa8884918e8f095397d41d5c9accaabbe968b29c5b0bb9583f7301ae5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs.meta",
+          "sha256": "8865c69f18b2ab1fad8a5d121b04224557b1be308fdd11ae8d0c5101822ca085"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs",
+          "sha256": "0cc2e987a0ccdc37a6bfb7d7e83de2898d34ed9f0911511f9ffad5f89c075353"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs.meta",
+          "sha256": "aa5c8467a9bd683a6e97b148e3e5e5d32cf42fbe2beceff483bdaf7c18751d49"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs",
+          "sha256": "149d54237ec1903877b1d50799e3fbf04dd4590024011dd779d622c3a6b7be3c"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs.meta",
+          "sha256": "7dcdeaffb7ccc0c9dda9d210b9f7684e82b98ebaed494f49f78e27a04e396658"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs",
+          "sha256": "985fd732744e6d618a566f90920e7b46a3649f6d022530a8c22a6a9f8491e9fd"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs.meta",
+          "sha256": "e1827646a0f2be02b19cdd38a38c823beec484fe0fc6e2c4a338a7954b924b2a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs",
+          "sha256": "84c37604b1f3ac0aa39c90e5782ce3dbf7c72f2cbcb0720406cedfaf9e1cafc4"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs.meta",
+          "sha256": "4091e2e720cdc7625a29ed9253eed02213ac98b4dcf8360c84e85fdb9d9fde2b"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs",
+          "sha256": "8000e7961f6eff02de1c250d2052b3143f0d11aa89279503f1924307a544387a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs.meta",
+          "sha256": "f4f4561b72e1325d2fd61b9c99fdf5678c5b5648040bc61357a98260d53d35c5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs",
+          "sha256": "d07ad1f4592e6eac50b80cb6daeb0f0efb032d1a1269eccdb4bed460f42b2385"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs.meta",
+          "sha256": "d8196a626380ba8067e26539d71cc4ad2c7de1e82c2d231995b72fa87214ef55"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs",
+          "sha256": "73818b7ea504b6066bb9e96826c312d61b8ec09af270c1dffeefb8e8b7ac1069"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs",
+          "sha256": "ff26df1c570eab4a0b465153d1dfd1a1271c624c96e3fc9c414860df5027f54e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs.meta",
+          "sha256": "e1272dc91522c4da41c6a9a3a43e6014e0ca666b937de1e3e881fb0b22a7a373"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs",
+          "sha256": "f88d12fce07567e784cb536e74b6e57101e56c42b1a8c6e399c96eaa4df6af50"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs.meta",
+          "sha256": "895bb6b117cfa8b2f5397342080525b6e817c2261262c11211b9c8f39dc1f423"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs",
+          "sha256": "8dd3524984454c299a703336e69678d2c8796a2e3e60c025750ec56bf0601c6f"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs.meta",
+          "sha256": "447983d4e5962f92f8fc9073f29e82d96f4a337af63c92c3bc50b332f290d1d9"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs",
+          "sha256": "d1bd92bb99cdcf5e13acacfc4f200b0d7edc050c4a0bcfd003f53b605b8bed8e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs.meta",
+          "sha256": "a0eac185f5001bbeedb30d24ec8d0c17506741ab8092076e06809371881c104f"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs",
+          "sha256": "5be3b4d1de499e4383960b64306621abcb2707bd2b64d71463ab841a8d8fa1b1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs.meta",
+          "sha256": "29759010f734796a469c6f705d748bae161f74d87eb4558d298e08763e4f6c1a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs",
+          "sha256": "221b36680d5e3c96ffecf7471868e90b5f17c87db065c24130e595915e6f44a1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs.meta",
+          "sha256": "9f13d5e286ea09d2ab60c5a8380b06eec84ed4b603a1346cbb2c5ef8eb5f4dd0"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs",
+          "sha256": "03cc0fccce323965890389a5d58944e635f8baca4f917092d79d5cddabdae302"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs.meta",
+          "sha256": "ab5212bb55e1a87f5d9f11e5286010d23557bf53b3c99f23a80d54122451b259"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs",
+          "sha256": "5b04acdfae8591b202a74ed8c8cf4ecc47c5febc8ba7e141d894afa617a07a58"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs.meta",
+          "sha256": "76e3d94c41796fea997d5b7dd20af48213f1fb6af88cab17b4502a77c892fe8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs",
+          "sha256": "6c59a603a412aa589d203c00852aaa7a9806b3b779f077030b72656a374350e3"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs.meta",
+          "sha256": "ce971eaca65db353094590140a7d6cc428b24f96dad8903698d2e572227ab90f"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs",
+          "sha256": "0023ba1729eaa5b1e9266d61bff0cb8dff88431f37a572e07d809303920f432b"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs.meta",
+          "sha256": "5d4954cb401ac6cb0b3cdb4056fe2a968f16fc3f04b5c43b2a9bedbd655aaf5b"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs",
+          "sha256": "990b21e52dc63ed9d0813a9e59167656ea3c2c5e8d3fe166749e65b41abb4370"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs.meta",
+          "sha256": "524cb79494f1b5a5f4f83f5dc5294bec9c37e8a4bd5e43caba9452bd07e09b36"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs",
+          "sha256": "97169c099d9476a12564d53cc89c981769e11be0e7bc3f68dae3376e49f42711"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs.meta",
+          "sha256": "b544f10ef2624aa5e14f3dcbcc807af3c9c71b5031f9cba5f03c357e735b4659"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs",
+          "sha256": "9ab05df545ac357431d8cd748baab5942b114801708ac623af8a14f715d80f1d"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs.meta",
+          "sha256": "b10bb68804d6b31bd1ef917a38488183b3c9cad1acb92a91f0141b3c77443d07"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs",
+          "sha256": "461294808a4634d579a6de27ac94c90aec27ad8e2efe46e4ae1288b055d8716d"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs.meta",
+          "sha256": "6102418172d93f5de2a6890f23a17747590630ee03dbce27e6a300774578e96d"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs",
+          "sha256": "61c9be74b32d35bf427fdae0ff690b944783aaa89dc0f317504e99a4d3ec94d2"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs.meta",
+          "sha256": "5f4920835d725b386f5c1c717309eddae445a3b94d40666e565f9d21d055d959"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs",
+          "sha256": "2e94acd538ff244a27b5f24c377738b714f51f0697a02ad138346d48c682a2dd"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs.meta",
+          "sha256": "2d20ec8873e0cb8e82f6ef202d8592b1f6e633d1b955143ef1601210463dda2c"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs",
+          "sha256": "792ab6634fd1145b1c87be1ec73fcdb04e8289adbec8e278a7a63e3c73b9778d"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs.meta",
+          "sha256": "e13dadc88c0f2be013d77818a2920b4ace6c9fc9ac7ddd784cc725c669d633a7"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs",
+          "sha256": "27d1e96893d68fd8d319420e808a9166dd08b884c9b4f6bb2a6c351a7c1e3b4a"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs.meta",
+          "sha256": "4b89061ab9be7cad5a3c5f80ef8f7ac990bef34cbdb66492d38ef4e87c7a88c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs",
+          "sha256": "f43084985bacb7e40b5cc4b7274937178d6f9f3fa9f2a961ebfa9339b9d12233"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs.meta",
+          "sha256": "9691a8a4bac55b510b68314dd252c7182ff0f0bd27311db41eebd2f941086dda"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs",
+          "sha256": "345aff1d49a5ccc2022df0d8422f2b5a32e834425c4bcc3b397f25274d4899c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs.meta",
+          "sha256": "974eee2f63107dfe0bc8b1c86671983fccb8927c16f381a01f153348ab0118a3"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs",
+          "sha256": "4cbb2cea661f2ec8a244572a147164ce1f65122a48a6128c87e19fee84c5e60f"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs.meta",
+          "sha256": "a8101d4e4132024ecbd2c29d4448e14bfe0fa36c9f97fa288b9cd6da716c4126"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs",
+          "sha256": "1df7cf155e712df8dd84acfdabadce5a882f053135f85d6b92bfa718d690cd31"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs.meta",
+          "sha256": "9dcf7ccae2d8d0cecf32a633f62eccd313b9f27226fe32dcb5b4714a46d98b20"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs",
+          "sha256": "67f66403e09adc45827b8fe9557fade52363710478dea48cace1bc860b896fb6"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs.meta",
+          "sha256": "89b014244fbbc23318a47351be327ba0b1eb247058bf694787fb5abf76411436"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs",
+          "sha256": "c2fa017ccabe4bf1a0de7aff5480b95b467e076e2eb1615f64e7fb6c0560e1b3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs.meta",
+          "sha256": "ec0ad3dbab01397b576bc46b0a8e81ffdc5fe9a9ac4a9e6d4294d29bd571f35b"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs",
+          "sha256": "9123f2a953a1ea48249157be9fbcb2dfba5cdf4222eb0ea8d1ea5a1924efe0e2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs.meta",
+          "sha256": "d483f469355e2319d23263bd2c57cdf847351a5e077dd76d57d78642ef8f8d20"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs",
+          "sha256": "37fb45bbf836288d270a99f49b5dd328cddda6c003d3bcd8ac86a99a6dde7ef9"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs.meta",
+          "sha256": "9ee357f1207fc66e85741740191331d21c549b965cf67a48b4f8c754fc22aa8a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs",
+          "sha256": "aa26ae289ee778d47651cf61cf93646b4e266e649bc5982a861f92c142855911"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs.meta",
+          "sha256": "a1359e319893b9587604604897796995e0eed1f67c4b6da778714f29ac480ae3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs",
+          "sha256": "7feeddcecb5b5fe3bb76aef61fae77559d90e5c5dcc4bf93b8a0e77621761c1a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs.meta",
+          "sha256": "5d84cfa5253cc05eb82af4a6b22f560c58af07a15f27efaab4640763c05639f5"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs",
+          "sha256": "cc6ae7fd7c109dab68e88bb56984e23d80843127aec0d2211dd7916fdd3ea4e4"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs.meta",
+          "sha256": "ae3d8aea45d87dcff04b9ca2148629d1fd38e987572a87356da0f401cfdfc42d"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs",
+          "sha256": "65576738d8041b1a3c856de683fe2cd983dc9c6e07d5a23102c929c4b7f01fc2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs.meta",
+          "sha256": "b509df4f4d816cc35b6228eb63cd9b214549b6daa679ef2cd727adbc15d4acb1"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs",
+          "sha256": "17ffa17a26527bcfdea5e575f1c263f70fb6b0d18be7b21777a7cfc4ffe625f6"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs.meta",
+          "sha256": "14d9a57cc630b96c6507b09ea0318b661cbe6df716b8c6837a5c81203eaf07e5"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs",
+          "sha256": "acb3d5020ebcac2902ffcec84ff2ad58960fc2168339751adbbdfb510a9f470d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs.meta",
+          "sha256": "edbabeed1780a31d01405f3362a4c20579fcc8687af678f02f2c9d42696b5794"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs",
+          "sha256": "3c32d805a7655f9699550a0c490004b7c38aa10d0c8034cffaf86ffbb9aa3660"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs.meta",
+          "sha256": "621da796e5a2be1792753db5faf3d1153144c85546adf41e5881e80441c4ba67"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs",
+          "sha256": "058af37d994efc18f0a2deea9f2bee248309e6a92840fcc550c32ef04fb96e2d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs.meta",
+          "sha256": "f275d560211d2ef4830b66425a392ae43f4cf53ca2c0d8f84c58faa693a96326"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs",
+          "sha256": "d4e2bd88b2af8a88fe7fa2e2aba7fb0792e63450c4dd26387e67f1dad842e461"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs.meta",
+          "sha256": "aadb249297335ad79341e2c4340990c3ed4350a0d89f14f78fdedfe553dab333"
+        }
+      ]
+    },
+    "HEAD": {
+      "commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07",
+      "folder": "docs/onnx-candidates/sources/6e218b1",
+      "subject": "to pull",
+      "date": "2025-08-02",
+      "files": [
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs",
+          "sha256": "71b12d696ebb4ecaf9878776bbd8351e1999b76dc62d8deab137747b6f510463"
+        },
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs.meta",
+          "sha256": "82cc458f8d6c8a968a4592a69822d7fe4f23db38ee4745ada530394e55872a44"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs",
+          "sha256": "1a62ed4940dc118436d13495ad89c668e24650365e77f6c0bc4a13370d48f66f"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs.meta",
+          "sha256": "64ac8911cdf47532cb48a765e585bdc8632830ed1b536716b1c8e9390bdd41e2"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs",
+          "sha256": "8e76a3c968a550a177df9d0e0621764ab430c1fb4d6dbfb93558bcc148cf99eb"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs.meta",
+          "sha256": "ce19cf27b62e331670ad57decd97c9d376172404afe12ead5ed4675fb82ad3c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgentUI.cs",
+          "sha256": "4270222a83ce83d5dc74e5b1065820a4585b07fc45d97ab9767fd948a5276055"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgentUI.cs.meta",
+          "sha256": "166643b15e14520d3142c99551c5c7ecfdac97f4c51177e6864e4b6c89b48625"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs",
+          "sha256": "a18b58121f44732d1370c240c12c94d962b386d35e2f54486e3d54677217e376"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs.meta",
+          "sha256": "f4cf414975d92f7482a2dc41a2c02c724fe37c3ba863f37751e83d66a13d6195"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs",
+          "sha256": "e6930a19a15ddc356262da002e378b91ee76c51b07fe639c12327cc570c47335"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs.meta",
+          "sha256": "b8f9ba0992519adb3595124d0bdb648c980b27c808a8f6ffa71f9d990f1c0437"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs",
+          "sha256": "8eeb9444bb9c9c2fd66c0821ba06ff3208d0a78552900fbc8c074e66141edabd"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs.meta",
+          "sha256": "243cde1700b0716a056052d5030b512962da68dbd8a28b7c57ae2a7f1831ef61"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs",
+          "sha256": "fae7f8975e7ab3213fc348ad6939264737675085319b5e5b6eab5761ebe30904"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs.meta",
+          "sha256": "84319fdc760f5a72dc48f6900ad6a0c205b39f8b32e72e83966d99644a76c425"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/ForcedSymmetryQuadPedAgent.cs",
+          "sha256": "1a02facaf8124f1abfd84c48238bd00c8c8a607860eaf45518fe9c4d35e96c07"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/ForcedSymmetryQuadPedAgent.cs.meta",
+          "sha256": "1322d103a219fc5783f4187a7d7d3cded86b350f11c4d804433cb80af28683e3"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/ForcedSymmetryQuadPedController.cs",
+          "sha256": "639078d3c24a0bb2b23c5c81948cb4e7a21c759120a0b177fe7f1f3fcefd51ce"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/ForcedSymmetryQuadPedController.cs.meta",
+          "sha256": "b476b523d0b2f3a3fd5c28adf295a13ce5ac1f74785864200aea7adeaebf9011"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs",
+          "sha256": "8aec143e87509b964ec1c07d16c55372973bf5c96de5b3981059d777b8d24e2b"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs.meta",
+          "sha256": "d8cf40d8d4904a53f090cb523b6514b6f1bee529c3c1dc42e2ea754069467526"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs",
+          "sha256": "3c3158b2b52063bd4b9d8f532818cf19313568c531ac74dce3b51514f7869eb7"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs.meta",
+          "sha256": "168166cfa1dd4fbd065440169e40fe1c4203adf275b04b09fa51a1a211e42288"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs",
+          "sha256": "ea16a7bd007660ea91363a3457ff36a0c8bc14a7032c7dd5c4cdfd825b5c12f5"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs.meta",
+          "sha256": "3962bfccc8c0ec512f402b5dc1e41fc2027f0f924e6d4ac07d16591a0642c0bc"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs",
+          "sha256": "d8d71568c12ca5715eb2f41d4d80ff0254318a008b3c6a7f353976a7fec6267b"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs.meta",
+          "sha256": "98163ce456b686e61cf162029cf6d58642d07144f0bf8b2e0452afca211ebe19"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs",
+          "sha256": "cca0b574066d315d24f7eadda68e8f0a479193f877af2256e9eca4d875b41cdf"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs.meta",
+          "sha256": "9f84c12359d056a8d10ab32a27e9172a304feebe02ef68ff044a47b963067d89"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs",
+          "sha256": "f2e49aefa8884918e8f095397d41d5c9accaabbe968b29c5b0bb9583f7301ae5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs.meta",
+          "sha256": "8865c69f18b2ab1fad8a5d121b04224557b1be308fdd11ae8d0c5101822ca085"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs",
+          "sha256": "0cc2e987a0ccdc37a6bfb7d7e83de2898d34ed9f0911511f9ffad5f89c075353"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs.meta",
+          "sha256": "aa5c8467a9bd683a6e97b148e3e5e5d32cf42fbe2beceff483bdaf7c18751d49"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs",
+          "sha256": "149d54237ec1903877b1d50799e3fbf04dd4590024011dd779d622c3a6b7be3c"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs.meta",
+          "sha256": "7dcdeaffb7ccc0c9dda9d210b9f7684e82b98ebaed494f49f78e27a04e396658"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs",
+          "sha256": "985fd732744e6d618a566f90920e7b46a3649f6d022530a8c22a6a9f8491e9fd"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs.meta",
+          "sha256": "e1827646a0f2be02b19cdd38a38c823beec484fe0fc6e2c4a338a7954b924b2a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs",
+          "sha256": "84c37604b1f3ac0aa39c90e5782ce3dbf7c72f2cbcb0720406cedfaf9e1cafc4"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs.meta",
+          "sha256": "4091e2e720cdc7625a29ed9253eed02213ac98b4dcf8360c84e85fdb9d9fde2b"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs",
+          "sha256": "8000e7961f6eff02de1c250d2052b3143f0d11aa89279503f1924307a544387a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs.meta",
+          "sha256": "f4f4561b72e1325d2fd61b9c99fdf5678c5b5648040bc61357a98260d53d35c5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs",
+          "sha256": "d07ad1f4592e6eac50b80cb6daeb0f0efb032d1a1269eccdb4bed460f42b2385"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs.meta",
+          "sha256": "d8196a626380ba8067e26539d71cc4ad2c7de1e82c2d231995b72fa87214ef55"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs",
+          "sha256": "73818b7ea504b6066bb9e96826c312d61b8ec09af270c1dffeefb8e8b7ac1069"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs.meta",
+          "sha256": "6770589197e563b2f25dcfae494edfd5af026fc9a09baf185538d90be5c614db"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs",
+          "sha256": "ff26df1c570eab4a0b465153d1dfd1a1271c624c96e3fc9c414860df5027f54e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs.meta",
+          "sha256": "e1272dc91522c4da41c6a9a3a43e6014e0ca666b937de1e3e881fb0b22a7a373"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs",
+          "sha256": "f88d12fce07567e784cb536e74b6e57101e56c42b1a8c6e399c96eaa4df6af50"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs.meta",
+          "sha256": "895bb6b117cfa8b2f5397342080525b6e817c2261262c11211b9c8f39dc1f423"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs",
+          "sha256": "8dd3524984454c299a703336e69678d2c8796a2e3e60c025750ec56bf0601c6f"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs.meta",
+          "sha256": "447983d4e5962f92f8fc9073f29e82d96f4a337af63c92c3bc50b332f290d1d9"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs",
+          "sha256": "d1bd92bb99cdcf5e13acacfc4f200b0d7edc050c4a0bcfd003f53b605b8bed8e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs.meta",
+          "sha256": "a0eac185f5001bbeedb30d24ec8d0c17506741ab8092076e06809371881c104f"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs",
+          "sha256": "5be3b4d1de499e4383960b64306621abcb2707bd2b64d71463ab841a8d8fa1b1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs.meta",
+          "sha256": "29759010f734796a469c6f705d748bae161f74d87eb4558d298e08763e4f6c1a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs",
+          "sha256": "221b36680d5e3c96ffecf7471868e90b5f17c87db065c24130e595915e6f44a1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs.meta",
+          "sha256": "9f13d5e286ea09d2ab60c5a8380b06eec84ed4b603a1346cbb2c5ef8eb5f4dd0"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs",
+          "sha256": "03cc0fccce323965890389a5d58944e635f8baca4f917092d79d5cddabdae302"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs.meta",
+          "sha256": "ab5212bb55e1a87f5d9f11e5286010d23557bf53b3c99f23a80d54122451b259"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs",
+          "sha256": "5b04acdfae8591b202a74ed8c8cf4ecc47c5febc8ba7e141d894afa617a07a58"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs.meta",
+          "sha256": "76e3d94c41796fea997d5b7dd20af48213f1fb6af88cab17b4502a77c892fe8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs",
+          "sha256": "6c59a603a412aa589d203c00852aaa7a9806b3b779f077030b72656a374350e3"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs.meta",
+          "sha256": "ce971eaca65db353094590140a7d6cc428b24f96dad8903698d2e572227ab90f"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs",
+          "sha256": "0023ba1729eaa5b1e9266d61bff0cb8dff88431f37a572e07d809303920f432b"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs.meta",
+          "sha256": "5d4954cb401ac6cb0b3cdb4056fe2a968f16fc3f04b5c43b2a9bedbd655aaf5b"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs",
+          "sha256": "53632dadce26d4dd56de93e10d66cddee254a103f034d054575eb76d7db56913"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs.meta",
+          "sha256": "524cb79494f1b5a5f4f83f5dc5294bec9c37e8a4bd5e43caba9452bd07e09b36"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs",
+          "sha256": "97169c099d9476a12564d53cc89c981769e11be0e7bc3f68dae3376e49f42711"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs.meta",
+          "sha256": "b544f10ef2624aa5e14f3dcbcc807af3c9c71b5031f9cba5f03c357e735b4659"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs",
+          "sha256": "9ab05df545ac357431d8cd748baab5942b114801708ac623af8a14f715d80f1d"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs.meta",
+          "sha256": "b10bb68804d6b31bd1ef917a38488183b3c9cad1acb92a91f0141b3c77443d07"
+        },
+        {
+          "path": "Assets/Scripts/LookDotTest.cs",
+          "sha256": "384a60a4971a5f227dbba11fce7d8987ec0857a7f04dcb4acedb7b79cf36cf30"
+        },
+        {
+          "path": "Assets/Scripts/LookDotTest.cs.meta",
+          "sha256": "45cde84bf689fccca3a3862c45aab0ac75924bbb14abb0b66baf626a45af8889"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs",
+          "sha256": "461294808a4634d579a6de27ac94c90aec27ad8e2efe46e4ae1288b055d8716d"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs.meta",
+          "sha256": "6102418172d93f5de2a6890f23a17747590630ee03dbce27e6a300774578e96d"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs",
+          "sha256": "61c9be74b32d35bf427fdae0ff690b944783aaa89dc0f317504e99a4d3ec94d2"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs.meta",
+          "sha256": "5f4920835d725b386f5c1c717309eddae445a3b94d40666e565f9d21d055d959"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs",
+          "sha256": "2e94acd538ff244a27b5f24c377738b714f51f0697a02ad138346d48c682a2dd"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs.meta",
+          "sha256": "2d20ec8873e0cb8e82f6ef202d8592b1f6e633d1b955143ef1601210463dda2c"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs",
+          "sha256": "792ab6634fd1145b1c87be1ec73fcdb04e8289adbec8e278a7a63e3c73b9778d"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs.meta",
+          "sha256": "e13dadc88c0f2be013d77818a2920b4ace6c9fc9ac7ddd784cc725c669d633a7"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs",
+          "sha256": "b620e94946131e4e4a9c21ef69c934bc1ddf13b8a53b41a9850147745bc363b9"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs.meta",
+          "sha256": "4b89061ab9be7cad5a3c5f80ef8f7ac990bef34cbdb66492d38ef4e87c7a88c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs",
+          "sha256": "f43084985bacb7e40b5cc4b7274937178d6f9f3fa9f2a961ebfa9339b9d12233"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs.meta",
+          "sha256": "9691a8a4bac55b510b68314dd252c7182ff0f0bd27311db41eebd2f941086dda"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs",
+          "sha256": "345aff1d49a5ccc2022df0d8422f2b5a32e834425c4bcc3b397f25274d4899c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs.meta",
+          "sha256": "974eee2f63107dfe0bc8b1c86671983fccb8927c16f381a01f153348ab0118a3"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs",
+          "sha256": "4cbb2cea661f2ec8a244572a147164ce1f65122a48a6128c87e19fee84c5e60f"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs.meta",
+          "sha256": "a8101d4e4132024ecbd2c29d4448e14bfe0fa36c9f97fa288b9cd6da716c4126"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs",
+          "sha256": "1df7cf155e712df8dd84acfdabadce5a882f053135f85d6b92bfa718d690cd31"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs.meta",
+          "sha256": "9dcf7ccae2d8d0cecf32a633f62eccd313b9f27226fe32dcb5b4714a46d98b20"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs",
+          "sha256": "67f66403e09adc45827b8fe9557fade52363710478dea48cace1bc860b896fb6"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs.meta",
+          "sha256": "89b014244fbbc23318a47351be327ba0b1eb247058bf694787fb5abf76411436"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs",
+          "sha256": "c2fa017ccabe4bf1a0de7aff5480b95b467e076e2eb1615f64e7fb6c0560e1b3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs.meta",
+          "sha256": "ec0ad3dbab01397b576bc46b0a8e81ffdc5fe9a9ac4a9e6d4294d29bd571f35b"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs",
+          "sha256": "9123f2a953a1ea48249157be9fbcb2dfba5cdf4222eb0ea8d1ea5a1924efe0e2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs.meta",
+          "sha256": "d483f469355e2319d23263bd2c57cdf847351a5e077dd76d57d78642ef8f8d20"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs",
+          "sha256": "37fb45bbf836288d270a99f49b5dd328cddda6c003d3bcd8ac86a99a6dde7ef9"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs.meta",
+          "sha256": "9ee357f1207fc66e85741740191331d21c549b965cf67a48b4f8c754fc22aa8a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs",
+          "sha256": "aa26ae289ee778d47651cf61cf93646b4e266e649bc5982a861f92c142855911"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs.meta",
+          "sha256": "a1359e319893b9587604604897796995e0eed1f67c4b6da778714f29ac480ae3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs",
+          "sha256": "7feeddcecb5b5fe3bb76aef61fae77559d90e5c5dcc4bf93b8a0e77621761c1a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs.meta",
+          "sha256": "5d84cfa5253cc05eb82af4a6b22f560c58af07a15f27efaab4640763c05639f5"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs",
+          "sha256": "cc6ae7fd7c109dab68e88bb56984e23d80843127aec0d2211dd7916fdd3ea4e4"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs.meta",
+          "sha256": "ae3d8aea45d87dcff04b9ca2148629d1fd38e987572a87356da0f401cfdfc42d"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs",
+          "sha256": "65576738d8041b1a3c856de683fe2cd983dc9c6e07d5a23102c929c4b7f01fc2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs.meta",
+          "sha256": "b509df4f4d816cc35b6228eb63cd9b214549b6daa679ef2cd727adbc15d4acb1"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs",
+          "sha256": "17ffa17a26527bcfdea5e575f1c263f70fb6b0d18be7b21777a7cfc4ffe625f6"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs.meta",
+          "sha256": "14d9a57cc630b96c6507b09ea0318b661cbe6df716b8c6837a5c81203eaf07e5"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs",
+          "sha256": "acb3d5020ebcac2902ffcec84ff2ad58960fc2168339751adbbdfb510a9f470d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs.meta",
+          "sha256": "edbabeed1780a31d01405f3362a4c20579fcc8687af678f02f2c9d42696b5794"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs",
+          "sha256": "3c32d805a7655f9699550a0c490004b7c38aa10d0c8034cffaf86ffbb9aa3660"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs.meta",
+          "sha256": "621da796e5a2be1792753db5faf3d1153144c85546adf41e5881e80441c4ba67"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs",
+          "sha256": "058af37d994efc18f0a2deea9f2bee248309e6a92840fcc550c32ef04fb96e2d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs.meta",
+          "sha256": "f275d560211d2ef4830b66425a392ae43f4cf53ca2c0d8f84c58faa693a96326"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs",
+          "sha256": "d4e2bd88b2af8a88fe7fa2e2aba7fb0792e63450c4dd26387e67f1dad842e461"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs.meta",
+          "sha256": "aadb249297335ad79341e2c4340990c3ed4350a0d89f14f78fdedfe553dab333"
+        }
+      ]
+    },
+    "c0f9018": {
+      "commit": "c0f90188f19351a037e86fd2c8a8d951bbedcef9",
+      "folder": "docs/onnx-candidates/sources/c0f9018",
+      "subject": "first SymmetryQuadPed Test",
+      "date": "2025-03-13",
+      "files": [
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs",
+          "sha256": "71b12d696ebb4ecaf9878776bbd8351e1999b76dc62d8deab137747b6f510463"
+        },
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs.meta",
+          "sha256": "82cc458f8d6c8a968a4592a69822d7fe4f23db38ee4745ada530394e55872a44"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs",
+          "sha256": "1a62ed4940dc118436d13495ad89c668e24650365e77f6c0bc4a13370d48f66f"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs.meta",
+          "sha256": "64ac8911cdf47532cb48a765e585bdc8632830ed1b536716b1c8e9390bdd41e2"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs",
+          "sha256": "68f1efb902bc97dc7ccb91338b1c5e1c25b931f5fa5b85f0239f4c0971bc9c1a"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs.meta",
+          "sha256": "ce19cf27b62e331670ad57decd97c9d376172404afe12ead5ed4675fb82ad3c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgentUI.cs",
+          "sha256": "4d2d82107d31bd44571b6b1aff513269968513cff5d70ee0184e886f85222e13"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs",
+          "sha256": "a18b58121f44732d1370c240c12c94d962b386d35e2f54486e3d54677217e376"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs.meta",
+          "sha256": "f4cf414975d92f7482a2dc41a2c02c724fe37c3ba863f37751e83d66a13d6195"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs",
+          "sha256": "98984e5ccee30c2a17f49c81f8711abee751f721d8605036d035fca2124488a6"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs.meta",
+          "sha256": "b8f9ba0992519adb3595124d0bdb648c980b27c808a8f6ffa71f9d990f1c0437"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs",
+          "sha256": "f7c73cc9f23fc83c8cfa18ead8325c6142edb594ec06e1f6f9e6e46ca65b47d6"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs.meta",
+          "sha256": "243cde1700b0716a056052d5030b512962da68dbd8a28b7c57ae2a7f1831ef61"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs",
+          "sha256": "fae7f8975e7ab3213fc348ad6939264737675085319b5e5b6eab5761ebe30904"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs.meta",
+          "sha256": "84319fdc760f5a72dc48f6900ad6a0c205b39f8b32e72e83966d99644a76c425"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs",
+          "sha256": "8a9e95103b4f2e8ec6977ba65f0eb7da292e4589144fafd32c511cde7fbb1548"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs.meta",
+          "sha256": "d8cf40d8d4904a53f090cb523b6514b6f1bee529c3c1dc42e2ea754069467526"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs",
+          "sha256": "1b06f85bed376d1db13f35a7400dc5ac79e2a441c23e8928ec4c9306837e8d5a"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs.meta",
+          "sha256": "168166cfa1dd4fbd065440169e40fe1c4203adf275b04b09fa51a1a211e42288"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs",
+          "sha256": "d8d71568c12ca5715eb2f41d4d80ff0254318a008b3c6a7f353976a7fec6267b"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs.meta",
+          "sha256": "98163ce456b686e61cf162029cf6d58642d07144f0bf8b2e0452afca211ebe19"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs",
+          "sha256": "cca0b574066d315d24f7eadda68e8f0a479193f877af2256e9eca4d875b41cdf"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs.meta",
+          "sha256": "9f84c12359d056a8d10ab32a27e9172a304feebe02ef68ff044a47b963067d89"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs",
+          "sha256": "f2e49aefa8884918e8f095397d41d5c9accaabbe968b29c5b0bb9583f7301ae5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs.meta",
+          "sha256": "8865c69f18b2ab1fad8a5d121b04224557b1be308fdd11ae8d0c5101822ca085"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs",
+          "sha256": "0cc2e987a0ccdc37a6bfb7d7e83de2898d34ed9f0911511f9ffad5f89c075353"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs.meta",
+          "sha256": "aa5c8467a9bd683a6e97b148e3e5e5d32cf42fbe2beceff483bdaf7c18751d49"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs",
+          "sha256": "149d54237ec1903877b1d50799e3fbf04dd4590024011dd779d622c3a6b7be3c"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs.meta",
+          "sha256": "7dcdeaffb7ccc0c9dda9d210b9f7684e82b98ebaed494f49f78e27a04e396658"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs",
+          "sha256": "985fd732744e6d618a566f90920e7b46a3649f6d022530a8c22a6a9f8491e9fd"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs.meta",
+          "sha256": "e1827646a0f2be02b19cdd38a38c823beec484fe0fc6e2c4a338a7954b924b2a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs",
+          "sha256": "84c37604b1f3ac0aa39c90e5782ce3dbf7c72f2cbcb0720406cedfaf9e1cafc4"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs.meta",
+          "sha256": "4091e2e720cdc7625a29ed9253eed02213ac98b4dcf8360c84e85fdb9d9fde2b"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs",
+          "sha256": "654a78a16f4c6f4edd49e15d535708b72d1ec19e64d8efc0efcce27e68b3a932"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs.meta",
+          "sha256": "f4f4561b72e1325d2fd61b9c99fdf5678c5b5648040bc61357a98260d53d35c5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs",
+          "sha256": "d07ad1f4592e6eac50b80cb6daeb0f0efb032d1a1269eccdb4bed460f42b2385"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs.meta",
+          "sha256": "d8196a626380ba8067e26539d71cc4ad2c7de1e82c2d231995b72fa87214ef55"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs",
+          "sha256": "73818b7ea504b6066bb9e96826c312d61b8ec09af270c1dffeefb8e8b7ac1069"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs",
+          "sha256": "ff26df1c570eab4a0b465153d1dfd1a1271c624c96e3fc9c414860df5027f54e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs.meta",
+          "sha256": "e1272dc91522c4da41c6a9a3a43e6014e0ca666b937de1e3e881fb0b22a7a373"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs",
+          "sha256": "f88d12fce07567e784cb536e74b6e57101e56c42b1a8c6e399c96eaa4df6af50"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs.meta",
+          "sha256": "895bb6b117cfa8b2f5397342080525b6e817c2261262c11211b9c8f39dc1f423"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs",
+          "sha256": "8dd3524984454c299a703336e69678d2c8796a2e3e60c025750ec56bf0601c6f"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs.meta",
+          "sha256": "447983d4e5962f92f8fc9073f29e82d96f4a337af63c92c3bc50b332f290d1d9"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs",
+          "sha256": "d1bd92bb99cdcf5e13acacfc4f200b0d7edc050c4a0bcfd003f53b605b8bed8e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs.meta",
+          "sha256": "a0eac185f5001bbeedb30d24ec8d0c17506741ab8092076e06809371881c104f"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs",
+          "sha256": "5be3b4d1de499e4383960b64306621abcb2707bd2b64d71463ab841a8d8fa1b1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs.meta",
+          "sha256": "29759010f734796a469c6f705d748bae161f74d87eb4558d298e08763e4f6c1a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs",
+          "sha256": "221b36680d5e3c96ffecf7471868e90b5f17c87db065c24130e595915e6f44a1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs.meta",
+          "sha256": "9f13d5e286ea09d2ab60c5a8380b06eec84ed4b603a1346cbb2c5ef8eb5f4dd0"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs",
+          "sha256": "03cc0fccce323965890389a5d58944e635f8baca4f917092d79d5cddabdae302"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs.meta",
+          "sha256": "ab5212bb55e1a87f5d9f11e5286010d23557bf53b3c99f23a80d54122451b259"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs",
+          "sha256": "5b04acdfae8591b202a74ed8c8cf4ecc47c5febc8ba7e141d894afa617a07a58"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs.meta",
+          "sha256": "76e3d94c41796fea997d5b7dd20af48213f1fb6af88cab17b4502a77c892fe8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs",
+          "sha256": "6c59a603a412aa589d203c00852aaa7a9806b3b779f077030b72656a374350e3"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs.meta",
+          "sha256": "ce971eaca65db353094590140a7d6cc428b24f96dad8903698d2e572227ab90f"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs",
+          "sha256": "0023ba1729eaa5b1e9266d61bff0cb8dff88431f37a572e07d809303920f432b"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs.meta",
+          "sha256": "5d4954cb401ac6cb0b3cdb4056fe2a968f16fc3f04b5c43b2a9bedbd655aaf5b"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs",
+          "sha256": "990b21e52dc63ed9d0813a9e59167656ea3c2c5e8d3fe166749e65b41abb4370"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs.meta",
+          "sha256": "524cb79494f1b5a5f4f83f5dc5294bec9c37e8a4bd5e43caba9452bd07e09b36"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs",
+          "sha256": "97169c099d9476a12564d53cc89c981769e11be0e7bc3f68dae3376e49f42711"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs.meta",
+          "sha256": "b544f10ef2624aa5e14f3dcbcc807af3c9c71b5031f9cba5f03c357e735b4659"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs",
+          "sha256": "9ab05df545ac357431d8cd748baab5942b114801708ac623af8a14f715d80f1d"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs.meta",
+          "sha256": "b10bb68804d6b31bd1ef917a38488183b3c9cad1acb92a91f0141b3c77443d07"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs",
+          "sha256": "461294808a4634d579a6de27ac94c90aec27ad8e2efe46e4ae1288b055d8716d"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs.meta",
+          "sha256": "6102418172d93f5de2a6890f23a17747590630ee03dbce27e6a300774578e96d"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs",
+          "sha256": "61c9be74b32d35bf427fdae0ff690b944783aaa89dc0f317504e99a4d3ec94d2"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs.meta",
+          "sha256": "5f4920835d725b386f5c1c717309eddae445a3b94d40666e565f9d21d055d959"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs",
+          "sha256": "2e94acd538ff244a27b5f24c377738b714f51f0697a02ad138346d48c682a2dd"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs.meta",
+          "sha256": "2d20ec8873e0cb8e82f6ef202d8592b1f6e633d1b955143ef1601210463dda2c"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs",
+          "sha256": "792ab6634fd1145b1c87be1ec73fcdb04e8289adbec8e278a7a63e3c73b9778d"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs.meta",
+          "sha256": "e13dadc88c0f2be013d77818a2920b4ace6c9fc9ac7ddd784cc725c669d633a7"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs",
+          "sha256": "27d1e96893d68fd8d319420e808a9166dd08b884c9b4f6bb2a6c351a7c1e3b4a"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs.meta",
+          "sha256": "4b89061ab9be7cad5a3c5f80ef8f7ac990bef34cbdb66492d38ef4e87c7a88c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs",
+          "sha256": "f43084985bacb7e40b5cc4b7274937178d6f9f3fa9f2a961ebfa9339b9d12233"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs.meta",
+          "sha256": "9691a8a4bac55b510b68314dd252c7182ff0f0bd27311db41eebd2f941086dda"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs",
+          "sha256": "345aff1d49a5ccc2022df0d8422f2b5a32e834425c4bcc3b397f25274d4899c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs.meta",
+          "sha256": "974eee2f63107dfe0bc8b1c86671983fccb8927c16f381a01f153348ab0118a3"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs",
+          "sha256": "4cbb2cea661f2ec8a244572a147164ce1f65122a48a6128c87e19fee84c5e60f"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs.meta",
+          "sha256": "a8101d4e4132024ecbd2c29d4448e14bfe0fa36c9f97fa288b9cd6da716c4126"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs",
+          "sha256": "1df7cf155e712df8dd84acfdabadce5a882f053135f85d6b92bfa718d690cd31"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs.meta",
+          "sha256": "9dcf7ccae2d8d0cecf32a633f62eccd313b9f27226fe32dcb5b4714a46d98b20"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs",
+          "sha256": "67f66403e09adc45827b8fe9557fade52363710478dea48cace1bc860b896fb6"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs.meta",
+          "sha256": "89b014244fbbc23318a47351be327ba0b1eb247058bf694787fb5abf76411436"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs",
+          "sha256": "c2fa017ccabe4bf1a0de7aff5480b95b467e076e2eb1615f64e7fb6c0560e1b3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs.meta",
+          "sha256": "ec0ad3dbab01397b576bc46b0a8e81ffdc5fe9a9ac4a9e6d4294d29bd571f35b"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs",
+          "sha256": "9123f2a953a1ea48249157be9fbcb2dfba5cdf4222eb0ea8d1ea5a1924efe0e2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs.meta",
+          "sha256": "d483f469355e2319d23263bd2c57cdf847351a5e077dd76d57d78642ef8f8d20"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs",
+          "sha256": "37fb45bbf836288d270a99f49b5dd328cddda6c003d3bcd8ac86a99a6dde7ef9"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs.meta",
+          "sha256": "9ee357f1207fc66e85741740191331d21c549b965cf67a48b4f8c754fc22aa8a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs",
+          "sha256": "aa26ae289ee778d47651cf61cf93646b4e266e649bc5982a861f92c142855911"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs.meta",
+          "sha256": "a1359e319893b9587604604897796995e0eed1f67c4b6da778714f29ac480ae3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs",
+          "sha256": "7feeddcecb5b5fe3bb76aef61fae77559d90e5c5dcc4bf93b8a0e77621761c1a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs.meta",
+          "sha256": "5d84cfa5253cc05eb82af4a6b22f560c58af07a15f27efaab4640763c05639f5"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs",
+          "sha256": "cc6ae7fd7c109dab68e88bb56984e23d80843127aec0d2211dd7916fdd3ea4e4"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs.meta",
+          "sha256": "ae3d8aea45d87dcff04b9ca2148629d1fd38e987572a87356da0f401cfdfc42d"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs",
+          "sha256": "65576738d8041b1a3c856de683fe2cd983dc9c6e07d5a23102c929c4b7f01fc2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs.meta",
+          "sha256": "b509df4f4d816cc35b6228eb63cd9b214549b6daa679ef2cd727adbc15d4acb1"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs",
+          "sha256": "17ffa17a26527bcfdea5e575f1c263f70fb6b0d18be7b21777a7cfc4ffe625f6"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs.meta",
+          "sha256": "14d9a57cc630b96c6507b09ea0318b661cbe6df716b8c6837a5c81203eaf07e5"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs",
+          "sha256": "acb3d5020ebcac2902ffcec84ff2ad58960fc2168339751adbbdfb510a9f470d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs.meta",
+          "sha256": "edbabeed1780a31d01405f3362a4c20579fcc8687af678f02f2c9d42696b5794"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs",
+          "sha256": "3c32d805a7655f9699550a0c490004b7c38aa10d0c8034cffaf86ffbb9aa3660"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs.meta",
+          "sha256": "621da796e5a2be1792753db5faf3d1153144c85546adf41e5881e80441c4ba67"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs",
+          "sha256": "058af37d994efc18f0a2deea9f2bee248309e6a92840fcc550c32ef04fb96e2d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs.meta",
+          "sha256": "f275d560211d2ef4830b66425a392ae43f4cf53ca2c0d8f84c58faa693a96326"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs",
+          "sha256": "d4e2bd88b2af8a88fe7fa2e2aba7fb0792e63450c4dd26387e67f1dad842e461"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs.meta",
+          "sha256": "aadb249297335ad79341e2c4340990c3ed4350a0d89f14f78fdedfe553dab333"
+        }
+      ]
+    },
+    "117054b": {
+      "commit": "117054bf85b62c8dc998b5c87704aa98e0f87187",
+      "folder": "docs/onnx-candidates/sources/117054b",
+      "subject": "Add symmetry Reward",
+      "date": "2025-03-16",
+      "files": [
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs",
+          "sha256": "71b12d696ebb4ecaf9878776bbd8351e1999b76dc62d8deab137747b6f510463"
+        },
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs.meta",
+          "sha256": "82cc458f8d6c8a968a4592a69822d7fe4f23db38ee4745ada530394e55872a44"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs",
+          "sha256": "1a62ed4940dc118436d13495ad89c668e24650365e77f6c0bc4a13370d48f66f"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs.meta",
+          "sha256": "64ac8911cdf47532cb48a765e585bdc8632830ed1b536716b1c8e9390bdd41e2"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs",
+          "sha256": "8e76a3c968a550a177df9d0e0621764ab430c1fb4d6dbfb93558bcc148cf99eb"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs.meta",
+          "sha256": "ce19cf27b62e331670ad57decd97c9d376172404afe12ead5ed4675fb82ad3c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgentUI.cs",
+          "sha256": "315ce70303441fbddcdf46630def12a100e258a71d30da98bc213ae024eca4f5"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs",
+          "sha256": "a18b58121f44732d1370c240c12c94d962b386d35e2f54486e3d54677217e376"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs.meta",
+          "sha256": "f4cf414975d92f7482a2dc41a2c02c724fe37c3ba863f37751e83d66a13d6195"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs",
+          "sha256": "e6930a19a15ddc356262da002e378b91ee76c51b07fe639c12327cc570c47335"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs.meta",
+          "sha256": "b8f9ba0992519adb3595124d0bdb648c980b27c808a8f6ffa71f9d990f1c0437"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs",
+          "sha256": "fb9a4ae803600459fca6826048bde0dee425a932c0baf4f5cff1f2fdb72770d6"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs.meta",
+          "sha256": "243cde1700b0716a056052d5030b512962da68dbd8a28b7c57ae2a7f1831ef61"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs",
+          "sha256": "fae7f8975e7ab3213fc348ad6939264737675085319b5e5b6eab5761ebe30904"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs.meta",
+          "sha256": "84319fdc760f5a72dc48f6900ad6a0c205b39f8b32e72e83966d99644a76c425"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs",
+          "sha256": "16de0721fc4c9e6aab7fd9db2ba281171ce3c655edfbc591882d77c7b76a1b87"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs.meta",
+          "sha256": "d8cf40d8d4904a53f090cb523b6514b6f1bee529c3c1dc42e2ea754069467526"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs",
+          "sha256": "8ae65ee815b38512cf35f0eb8bf4fcb471a71ae2dfe2d0088f5b385df300fb73"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs.meta",
+          "sha256": "168166cfa1dd4fbd065440169e40fe1c4203adf275b04b09fa51a1a211e42288"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs",
+          "sha256": "5f9b8c2eaf04d32e8ded845e65ebd296ecbd4519debb4d02e2b8b929bbc35bfa"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs.meta",
+          "sha256": "3962bfccc8c0ec512f402b5dc1e41fc2027f0f924e6d4ac07d16591a0642c0bc"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs",
+          "sha256": "d8d71568c12ca5715eb2f41d4d80ff0254318a008b3c6a7f353976a7fec6267b"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs.meta",
+          "sha256": "98163ce456b686e61cf162029cf6d58642d07144f0bf8b2e0452afca211ebe19"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs",
+          "sha256": "cca0b574066d315d24f7eadda68e8f0a479193f877af2256e9eca4d875b41cdf"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs.meta",
+          "sha256": "9f84c12359d056a8d10ab32a27e9172a304feebe02ef68ff044a47b963067d89"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs",
+          "sha256": "f2e49aefa8884918e8f095397d41d5c9accaabbe968b29c5b0bb9583f7301ae5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs.meta",
+          "sha256": "8865c69f18b2ab1fad8a5d121b04224557b1be308fdd11ae8d0c5101822ca085"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs",
+          "sha256": "0cc2e987a0ccdc37a6bfb7d7e83de2898d34ed9f0911511f9ffad5f89c075353"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs.meta",
+          "sha256": "aa5c8467a9bd683a6e97b148e3e5e5d32cf42fbe2beceff483bdaf7c18751d49"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs",
+          "sha256": "149d54237ec1903877b1d50799e3fbf04dd4590024011dd779d622c3a6b7be3c"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs.meta",
+          "sha256": "7dcdeaffb7ccc0c9dda9d210b9f7684e82b98ebaed494f49f78e27a04e396658"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs",
+          "sha256": "985fd732744e6d618a566f90920e7b46a3649f6d022530a8c22a6a9f8491e9fd"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs.meta",
+          "sha256": "e1827646a0f2be02b19cdd38a38c823beec484fe0fc6e2c4a338a7954b924b2a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs",
+          "sha256": "84c37604b1f3ac0aa39c90e5782ce3dbf7c72f2cbcb0720406cedfaf9e1cafc4"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs.meta",
+          "sha256": "4091e2e720cdc7625a29ed9253eed02213ac98b4dcf8360c84e85fdb9d9fde2b"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs",
+          "sha256": "8000e7961f6eff02de1c250d2052b3143f0d11aa89279503f1924307a544387a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs.meta",
+          "sha256": "f4f4561b72e1325d2fd61b9c99fdf5678c5b5648040bc61357a98260d53d35c5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs",
+          "sha256": "d07ad1f4592e6eac50b80cb6daeb0f0efb032d1a1269eccdb4bed460f42b2385"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs.meta",
+          "sha256": "d8196a626380ba8067e26539d71cc4ad2c7de1e82c2d231995b72fa87214ef55"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs",
+          "sha256": "73818b7ea504b6066bb9e96826c312d61b8ec09af270c1dffeefb8e8b7ac1069"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs",
+          "sha256": "ff26df1c570eab4a0b465153d1dfd1a1271c624c96e3fc9c414860df5027f54e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs.meta",
+          "sha256": "e1272dc91522c4da41c6a9a3a43e6014e0ca666b937de1e3e881fb0b22a7a373"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs",
+          "sha256": "f88d12fce07567e784cb536e74b6e57101e56c42b1a8c6e399c96eaa4df6af50"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs.meta",
+          "sha256": "895bb6b117cfa8b2f5397342080525b6e817c2261262c11211b9c8f39dc1f423"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs",
+          "sha256": "8dd3524984454c299a703336e69678d2c8796a2e3e60c025750ec56bf0601c6f"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs.meta",
+          "sha256": "447983d4e5962f92f8fc9073f29e82d96f4a337af63c92c3bc50b332f290d1d9"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs",
+          "sha256": "d1bd92bb99cdcf5e13acacfc4f200b0d7edc050c4a0bcfd003f53b605b8bed8e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs.meta",
+          "sha256": "a0eac185f5001bbeedb30d24ec8d0c17506741ab8092076e06809371881c104f"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs",
+          "sha256": "5be3b4d1de499e4383960b64306621abcb2707bd2b64d71463ab841a8d8fa1b1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs.meta",
+          "sha256": "29759010f734796a469c6f705d748bae161f74d87eb4558d298e08763e4f6c1a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs",
+          "sha256": "221b36680d5e3c96ffecf7471868e90b5f17c87db065c24130e595915e6f44a1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs.meta",
+          "sha256": "9f13d5e286ea09d2ab60c5a8380b06eec84ed4b603a1346cbb2c5ef8eb5f4dd0"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs",
+          "sha256": "03cc0fccce323965890389a5d58944e635f8baca4f917092d79d5cddabdae302"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs.meta",
+          "sha256": "ab5212bb55e1a87f5d9f11e5286010d23557bf53b3c99f23a80d54122451b259"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs",
+          "sha256": "5b04acdfae8591b202a74ed8c8cf4ecc47c5febc8ba7e141d894afa617a07a58"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs.meta",
+          "sha256": "76e3d94c41796fea997d5b7dd20af48213f1fb6af88cab17b4502a77c892fe8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs",
+          "sha256": "6c59a603a412aa589d203c00852aaa7a9806b3b779f077030b72656a374350e3"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs.meta",
+          "sha256": "ce971eaca65db353094590140a7d6cc428b24f96dad8903698d2e572227ab90f"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs",
+          "sha256": "0023ba1729eaa5b1e9266d61bff0cb8dff88431f37a572e07d809303920f432b"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs.meta",
+          "sha256": "5d4954cb401ac6cb0b3cdb4056fe2a968f16fc3f04b5c43b2a9bedbd655aaf5b"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs",
+          "sha256": "990b21e52dc63ed9d0813a9e59167656ea3c2c5e8d3fe166749e65b41abb4370"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs.meta",
+          "sha256": "524cb79494f1b5a5f4f83f5dc5294bec9c37e8a4bd5e43caba9452bd07e09b36"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs",
+          "sha256": "97169c099d9476a12564d53cc89c981769e11be0e7bc3f68dae3376e49f42711"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs.meta",
+          "sha256": "b544f10ef2624aa5e14f3dcbcc807af3c9c71b5031f9cba5f03c357e735b4659"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs",
+          "sha256": "9ab05df545ac357431d8cd748baab5942b114801708ac623af8a14f715d80f1d"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs.meta",
+          "sha256": "b10bb68804d6b31bd1ef917a38488183b3c9cad1acb92a91f0141b3c77443d07"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs",
+          "sha256": "461294808a4634d579a6de27ac94c90aec27ad8e2efe46e4ae1288b055d8716d"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs.meta",
+          "sha256": "6102418172d93f5de2a6890f23a17747590630ee03dbce27e6a300774578e96d"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs",
+          "sha256": "61c9be74b32d35bf427fdae0ff690b944783aaa89dc0f317504e99a4d3ec94d2"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs.meta",
+          "sha256": "5f4920835d725b386f5c1c717309eddae445a3b94d40666e565f9d21d055d959"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs",
+          "sha256": "2e94acd538ff244a27b5f24c377738b714f51f0697a02ad138346d48c682a2dd"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs.meta",
+          "sha256": "2d20ec8873e0cb8e82f6ef202d8592b1f6e633d1b955143ef1601210463dda2c"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs",
+          "sha256": "792ab6634fd1145b1c87be1ec73fcdb04e8289adbec8e278a7a63e3c73b9778d"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs.meta",
+          "sha256": "e13dadc88c0f2be013d77818a2920b4ace6c9fc9ac7ddd784cc725c669d633a7"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs",
+          "sha256": "27d1e96893d68fd8d319420e808a9166dd08b884c9b4f6bb2a6c351a7c1e3b4a"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs.meta",
+          "sha256": "4b89061ab9be7cad5a3c5f80ef8f7ac990bef34cbdb66492d38ef4e87c7a88c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs",
+          "sha256": "f43084985bacb7e40b5cc4b7274937178d6f9f3fa9f2a961ebfa9339b9d12233"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs.meta",
+          "sha256": "9691a8a4bac55b510b68314dd252c7182ff0f0bd27311db41eebd2f941086dda"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs",
+          "sha256": "345aff1d49a5ccc2022df0d8422f2b5a32e834425c4bcc3b397f25274d4899c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs.meta",
+          "sha256": "974eee2f63107dfe0bc8b1c86671983fccb8927c16f381a01f153348ab0118a3"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs",
+          "sha256": "4cbb2cea661f2ec8a244572a147164ce1f65122a48a6128c87e19fee84c5e60f"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs.meta",
+          "sha256": "a8101d4e4132024ecbd2c29d4448e14bfe0fa36c9f97fa288b9cd6da716c4126"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs",
+          "sha256": "1df7cf155e712df8dd84acfdabadce5a882f053135f85d6b92bfa718d690cd31"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs.meta",
+          "sha256": "9dcf7ccae2d8d0cecf32a633f62eccd313b9f27226fe32dcb5b4714a46d98b20"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs",
+          "sha256": "67f66403e09adc45827b8fe9557fade52363710478dea48cace1bc860b896fb6"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs.meta",
+          "sha256": "89b014244fbbc23318a47351be327ba0b1eb247058bf694787fb5abf76411436"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs",
+          "sha256": "c2fa017ccabe4bf1a0de7aff5480b95b467e076e2eb1615f64e7fb6c0560e1b3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs.meta",
+          "sha256": "ec0ad3dbab01397b576bc46b0a8e81ffdc5fe9a9ac4a9e6d4294d29bd571f35b"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs",
+          "sha256": "9123f2a953a1ea48249157be9fbcb2dfba5cdf4222eb0ea8d1ea5a1924efe0e2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs.meta",
+          "sha256": "d483f469355e2319d23263bd2c57cdf847351a5e077dd76d57d78642ef8f8d20"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs",
+          "sha256": "37fb45bbf836288d270a99f49b5dd328cddda6c003d3bcd8ac86a99a6dde7ef9"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs.meta",
+          "sha256": "9ee357f1207fc66e85741740191331d21c549b965cf67a48b4f8c754fc22aa8a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs",
+          "sha256": "aa26ae289ee778d47651cf61cf93646b4e266e649bc5982a861f92c142855911"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs.meta",
+          "sha256": "a1359e319893b9587604604897796995e0eed1f67c4b6da778714f29ac480ae3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs",
+          "sha256": "7feeddcecb5b5fe3bb76aef61fae77559d90e5c5dcc4bf93b8a0e77621761c1a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs.meta",
+          "sha256": "5d84cfa5253cc05eb82af4a6b22f560c58af07a15f27efaab4640763c05639f5"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs",
+          "sha256": "cc6ae7fd7c109dab68e88bb56984e23d80843127aec0d2211dd7916fdd3ea4e4"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs.meta",
+          "sha256": "ae3d8aea45d87dcff04b9ca2148629d1fd38e987572a87356da0f401cfdfc42d"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs",
+          "sha256": "65576738d8041b1a3c856de683fe2cd983dc9c6e07d5a23102c929c4b7f01fc2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs.meta",
+          "sha256": "b509df4f4d816cc35b6228eb63cd9b214549b6daa679ef2cd727adbc15d4acb1"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs",
+          "sha256": "17ffa17a26527bcfdea5e575f1c263f70fb6b0d18be7b21777a7cfc4ffe625f6"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs.meta",
+          "sha256": "14d9a57cc630b96c6507b09ea0318b661cbe6df716b8c6837a5c81203eaf07e5"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs",
+          "sha256": "acb3d5020ebcac2902ffcec84ff2ad58960fc2168339751adbbdfb510a9f470d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs.meta",
+          "sha256": "edbabeed1780a31d01405f3362a4c20579fcc8687af678f02f2c9d42696b5794"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs",
+          "sha256": "3c32d805a7655f9699550a0c490004b7c38aa10d0c8034cffaf86ffbb9aa3660"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs.meta",
+          "sha256": "621da796e5a2be1792753db5faf3d1153144c85546adf41e5881e80441c4ba67"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs",
+          "sha256": "058af37d994efc18f0a2deea9f2bee248309e6a92840fcc550c32ef04fb96e2d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs.meta",
+          "sha256": "f275d560211d2ef4830b66425a392ae43f4cf53ca2c0d8f84c58faa693a96326"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs",
+          "sha256": "d4e2bd88b2af8a88fe7fa2e2aba7fb0792e63450c4dd26387e67f1dad842e461"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs.meta",
+          "sha256": "aadb249297335ad79341e2c4340990c3ed4350a0d89f14f78fdedfe553dab333"
+        }
+      ]
+    },
+    "da9c6aa": {
+      "commit": "da9c6aadfc30b8c60ba1484fb177fd5e043a80d8",
+      "folder": "docs/onnx-candidates/sources/da9c6aa",
+      "subject": "Set Legs sequence always same by targetDirection",
+      "date": "2025-03-17",
+      "files": [
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs",
+          "sha256": "71b12d696ebb4ecaf9878776bbd8351e1999b76dc62d8deab137747b6f510463"
+        },
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs.meta",
+          "sha256": "82cc458f8d6c8a968a4592a69822d7fe4f23db38ee4745ada530394e55872a44"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs",
+          "sha256": "1a62ed4940dc118436d13495ad89c668e24650365e77f6c0bc4a13370d48f66f"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs.meta",
+          "sha256": "64ac8911cdf47532cb48a765e585bdc8632830ed1b536716b1c8e9390bdd41e2"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs",
+          "sha256": "8e76a3c968a550a177df9d0e0621764ab430c1fb4d6dbfb93558bcc148cf99eb"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs.meta",
+          "sha256": "ce19cf27b62e331670ad57decd97c9d376172404afe12ead5ed4675fb82ad3c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgentUI.cs",
+          "sha256": "315ce70303441fbddcdf46630def12a100e258a71d30da98bc213ae024eca4f5"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs",
+          "sha256": "a18b58121f44732d1370c240c12c94d962b386d35e2f54486e3d54677217e376"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs.meta",
+          "sha256": "f4cf414975d92f7482a2dc41a2c02c724fe37c3ba863f37751e83d66a13d6195"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs",
+          "sha256": "e6930a19a15ddc356262da002e378b91ee76c51b07fe639c12327cc570c47335"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs.meta",
+          "sha256": "b8f9ba0992519adb3595124d0bdb648c980b27c808a8f6ffa71f9d990f1c0437"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs",
+          "sha256": "d87486bb31363b0be73170f6af3950333c5a24549c35a36db6e603bca7a648a6"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs.meta",
+          "sha256": "243cde1700b0716a056052d5030b512962da68dbd8a28b7c57ae2a7f1831ef61"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs",
+          "sha256": "fae7f8975e7ab3213fc348ad6939264737675085319b5e5b6eab5761ebe30904"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs.meta",
+          "sha256": "84319fdc760f5a72dc48f6900ad6a0c205b39f8b32e72e83966d99644a76c425"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs",
+          "sha256": "16de0721fc4c9e6aab7fd9db2ba281171ce3c655edfbc591882d77c7b76a1b87"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs.meta",
+          "sha256": "d8cf40d8d4904a53f090cb523b6514b6f1bee529c3c1dc42e2ea754069467526"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs",
+          "sha256": "49c383c9ee203d68899fb3c84d43aee355d30eb09a9ad8499edadefada49bce2"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs.meta",
+          "sha256": "168166cfa1dd4fbd065440169e40fe1c4203adf275b04b09fa51a1a211e42288"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs",
+          "sha256": "5f9b8c2eaf04d32e8ded845e65ebd296ecbd4519debb4d02e2b8b929bbc35bfa"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs.meta",
+          "sha256": "3962bfccc8c0ec512f402b5dc1e41fc2027f0f924e6d4ac07d16591a0642c0bc"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs",
+          "sha256": "d8d71568c12ca5715eb2f41d4d80ff0254318a008b3c6a7f353976a7fec6267b"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs.meta",
+          "sha256": "98163ce456b686e61cf162029cf6d58642d07144f0bf8b2e0452afca211ebe19"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs",
+          "sha256": "cca0b574066d315d24f7eadda68e8f0a479193f877af2256e9eca4d875b41cdf"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs.meta",
+          "sha256": "9f84c12359d056a8d10ab32a27e9172a304feebe02ef68ff044a47b963067d89"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs",
+          "sha256": "f2e49aefa8884918e8f095397d41d5c9accaabbe968b29c5b0bb9583f7301ae5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs.meta",
+          "sha256": "8865c69f18b2ab1fad8a5d121b04224557b1be308fdd11ae8d0c5101822ca085"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs",
+          "sha256": "0cc2e987a0ccdc37a6bfb7d7e83de2898d34ed9f0911511f9ffad5f89c075353"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs.meta",
+          "sha256": "aa5c8467a9bd683a6e97b148e3e5e5d32cf42fbe2beceff483bdaf7c18751d49"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs",
+          "sha256": "149d54237ec1903877b1d50799e3fbf04dd4590024011dd779d622c3a6b7be3c"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs.meta",
+          "sha256": "7dcdeaffb7ccc0c9dda9d210b9f7684e82b98ebaed494f49f78e27a04e396658"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs",
+          "sha256": "985fd732744e6d618a566f90920e7b46a3649f6d022530a8c22a6a9f8491e9fd"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs.meta",
+          "sha256": "e1827646a0f2be02b19cdd38a38c823beec484fe0fc6e2c4a338a7954b924b2a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs",
+          "sha256": "84c37604b1f3ac0aa39c90e5782ce3dbf7c72f2cbcb0720406cedfaf9e1cafc4"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs.meta",
+          "sha256": "4091e2e720cdc7625a29ed9253eed02213ac98b4dcf8360c84e85fdb9d9fde2b"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs",
+          "sha256": "8000e7961f6eff02de1c250d2052b3143f0d11aa89279503f1924307a544387a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs.meta",
+          "sha256": "f4f4561b72e1325d2fd61b9c99fdf5678c5b5648040bc61357a98260d53d35c5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs",
+          "sha256": "d07ad1f4592e6eac50b80cb6daeb0f0efb032d1a1269eccdb4bed460f42b2385"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs.meta",
+          "sha256": "d8196a626380ba8067e26539d71cc4ad2c7de1e82c2d231995b72fa87214ef55"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs",
+          "sha256": "73818b7ea504b6066bb9e96826c312d61b8ec09af270c1dffeefb8e8b7ac1069"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs",
+          "sha256": "ff26df1c570eab4a0b465153d1dfd1a1271c624c96e3fc9c414860df5027f54e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs.meta",
+          "sha256": "e1272dc91522c4da41c6a9a3a43e6014e0ca666b937de1e3e881fb0b22a7a373"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs",
+          "sha256": "f88d12fce07567e784cb536e74b6e57101e56c42b1a8c6e399c96eaa4df6af50"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs.meta",
+          "sha256": "895bb6b117cfa8b2f5397342080525b6e817c2261262c11211b9c8f39dc1f423"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs",
+          "sha256": "8dd3524984454c299a703336e69678d2c8796a2e3e60c025750ec56bf0601c6f"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs.meta",
+          "sha256": "447983d4e5962f92f8fc9073f29e82d96f4a337af63c92c3bc50b332f290d1d9"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs",
+          "sha256": "d1bd92bb99cdcf5e13acacfc4f200b0d7edc050c4a0bcfd003f53b605b8bed8e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs.meta",
+          "sha256": "a0eac185f5001bbeedb30d24ec8d0c17506741ab8092076e06809371881c104f"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs",
+          "sha256": "5be3b4d1de499e4383960b64306621abcb2707bd2b64d71463ab841a8d8fa1b1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs.meta",
+          "sha256": "29759010f734796a469c6f705d748bae161f74d87eb4558d298e08763e4f6c1a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs",
+          "sha256": "221b36680d5e3c96ffecf7471868e90b5f17c87db065c24130e595915e6f44a1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs.meta",
+          "sha256": "9f13d5e286ea09d2ab60c5a8380b06eec84ed4b603a1346cbb2c5ef8eb5f4dd0"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs",
+          "sha256": "03cc0fccce323965890389a5d58944e635f8baca4f917092d79d5cddabdae302"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs.meta",
+          "sha256": "ab5212bb55e1a87f5d9f11e5286010d23557bf53b3c99f23a80d54122451b259"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs",
+          "sha256": "5b04acdfae8591b202a74ed8c8cf4ecc47c5febc8ba7e141d894afa617a07a58"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs.meta",
+          "sha256": "76e3d94c41796fea997d5b7dd20af48213f1fb6af88cab17b4502a77c892fe8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs",
+          "sha256": "6c59a603a412aa589d203c00852aaa7a9806b3b779f077030b72656a374350e3"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs.meta",
+          "sha256": "ce971eaca65db353094590140a7d6cc428b24f96dad8903698d2e572227ab90f"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs",
+          "sha256": "0023ba1729eaa5b1e9266d61bff0cb8dff88431f37a572e07d809303920f432b"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs.meta",
+          "sha256": "5d4954cb401ac6cb0b3cdb4056fe2a968f16fc3f04b5c43b2a9bedbd655aaf5b"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs",
+          "sha256": "990b21e52dc63ed9d0813a9e59167656ea3c2c5e8d3fe166749e65b41abb4370"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs.meta",
+          "sha256": "524cb79494f1b5a5f4f83f5dc5294bec9c37e8a4bd5e43caba9452bd07e09b36"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs",
+          "sha256": "97169c099d9476a12564d53cc89c981769e11be0e7bc3f68dae3376e49f42711"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs.meta",
+          "sha256": "b544f10ef2624aa5e14f3dcbcc807af3c9c71b5031f9cba5f03c357e735b4659"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs",
+          "sha256": "9ab05df545ac357431d8cd748baab5942b114801708ac623af8a14f715d80f1d"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs.meta",
+          "sha256": "b10bb68804d6b31bd1ef917a38488183b3c9cad1acb92a91f0141b3c77443d07"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs",
+          "sha256": "461294808a4634d579a6de27ac94c90aec27ad8e2efe46e4ae1288b055d8716d"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs.meta",
+          "sha256": "6102418172d93f5de2a6890f23a17747590630ee03dbce27e6a300774578e96d"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs",
+          "sha256": "61c9be74b32d35bf427fdae0ff690b944783aaa89dc0f317504e99a4d3ec94d2"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs.meta",
+          "sha256": "5f4920835d725b386f5c1c717309eddae445a3b94d40666e565f9d21d055d959"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs",
+          "sha256": "2e94acd538ff244a27b5f24c377738b714f51f0697a02ad138346d48c682a2dd"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs.meta",
+          "sha256": "2d20ec8873e0cb8e82f6ef202d8592b1f6e633d1b955143ef1601210463dda2c"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs",
+          "sha256": "792ab6634fd1145b1c87be1ec73fcdb04e8289adbec8e278a7a63e3c73b9778d"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs.meta",
+          "sha256": "e13dadc88c0f2be013d77818a2920b4ace6c9fc9ac7ddd784cc725c669d633a7"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs",
+          "sha256": "27d1e96893d68fd8d319420e808a9166dd08b884c9b4f6bb2a6c351a7c1e3b4a"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs.meta",
+          "sha256": "4b89061ab9be7cad5a3c5f80ef8f7ac990bef34cbdb66492d38ef4e87c7a88c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs",
+          "sha256": "f43084985bacb7e40b5cc4b7274937178d6f9f3fa9f2a961ebfa9339b9d12233"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs.meta",
+          "sha256": "9691a8a4bac55b510b68314dd252c7182ff0f0bd27311db41eebd2f941086dda"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs",
+          "sha256": "345aff1d49a5ccc2022df0d8422f2b5a32e834425c4bcc3b397f25274d4899c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs.meta",
+          "sha256": "974eee2f63107dfe0bc8b1c86671983fccb8927c16f381a01f153348ab0118a3"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs",
+          "sha256": "4cbb2cea661f2ec8a244572a147164ce1f65122a48a6128c87e19fee84c5e60f"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs.meta",
+          "sha256": "a8101d4e4132024ecbd2c29d4448e14bfe0fa36c9f97fa288b9cd6da716c4126"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs",
+          "sha256": "1df7cf155e712df8dd84acfdabadce5a882f053135f85d6b92bfa718d690cd31"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs.meta",
+          "sha256": "9dcf7ccae2d8d0cecf32a633f62eccd313b9f27226fe32dcb5b4714a46d98b20"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs",
+          "sha256": "67f66403e09adc45827b8fe9557fade52363710478dea48cace1bc860b896fb6"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs.meta",
+          "sha256": "89b014244fbbc23318a47351be327ba0b1eb247058bf694787fb5abf76411436"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs",
+          "sha256": "c2fa017ccabe4bf1a0de7aff5480b95b467e076e2eb1615f64e7fb6c0560e1b3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs.meta",
+          "sha256": "ec0ad3dbab01397b576bc46b0a8e81ffdc5fe9a9ac4a9e6d4294d29bd571f35b"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs",
+          "sha256": "9123f2a953a1ea48249157be9fbcb2dfba5cdf4222eb0ea8d1ea5a1924efe0e2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs.meta",
+          "sha256": "d483f469355e2319d23263bd2c57cdf847351a5e077dd76d57d78642ef8f8d20"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs",
+          "sha256": "37fb45bbf836288d270a99f49b5dd328cddda6c003d3bcd8ac86a99a6dde7ef9"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs.meta",
+          "sha256": "9ee357f1207fc66e85741740191331d21c549b965cf67a48b4f8c754fc22aa8a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs",
+          "sha256": "aa26ae289ee778d47651cf61cf93646b4e266e649bc5982a861f92c142855911"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs.meta",
+          "sha256": "a1359e319893b9587604604897796995e0eed1f67c4b6da778714f29ac480ae3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs",
+          "sha256": "7feeddcecb5b5fe3bb76aef61fae77559d90e5c5dcc4bf93b8a0e77621761c1a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs.meta",
+          "sha256": "5d84cfa5253cc05eb82af4a6b22f560c58af07a15f27efaab4640763c05639f5"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs",
+          "sha256": "cc6ae7fd7c109dab68e88bb56984e23d80843127aec0d2211dd7916fdd3ea4e4"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs.meta",
+          "sha256": "ae3d8aea45d87dcff04b9ca2148629d1fd38e987572a87356da0f401cfdfc42d"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs",
+          "sha256": "65576738d8041b1a3c856de683fe2cd983dc9c6e07d5a23102c929c4b7f01fc2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs.meta",
+          "sha256": "b509df4f4d816cc35b6228eb63cd9b214549b6daa679ef2cd727adbc15d4acb1"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs",
+          "sha256": "17ffa17a26527bcfdea5e575f1c263f70fb6b0d18be7b21777a7cfc4ffe625f6"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs.meta",
+          "sha256": "14d9a57cc630b96c6507b09ea0318b661cbe6df716b8c6837a5c81203eaf07e5"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs",
+          "sha256": "acb3d5020ebcac2902ffcec84ff2ad58960fc2168339751adbbdfb510a9f470d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs.meta",
+          "sha256": "edbabeed1780a31d01405f3362a4c20579fcc8687af678f02f2c9d42696b5794"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs",
+          "sha256": "3c32d805a7655f9699550a0c490004b7c38aa10d0c8034cffaf86ffbb9aa3660"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs.meta",
+          "sha256": "621da796e5a2be1792753db5faf3d1153144c85546adf41e5881e80441c4ba67"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs",
+          "sha256": "058af37d994efc18f0a2deea9f2bee248309e6a92840fcc550c32ef04fb96e2d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs.meta",
+          "sha256": "f275d560211d2ef4830b66425a392ae43f4cf53ca2c0d8f84c58faa693a96326"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs",
+          "sha256": "d4e2bd88b2af8a88fe7fa2e2aba7fb0792e63450c4dd26387e67f1dad842e461"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs.meta",
+          "sha256": "aadb249297335ad79341e2c4340990c3ed4350a0d89f14f78fdedfe553dab333"
+        }
+      ]
+    },
+    "f1ef807": {
+      "commit": "f1ef807b2adb434e813bacc513b71fcd4bd5bafb",
+      "folder": "docs/onnx-candidates/sources/f1ef807",
+      "subject": "Fix legs Sequence",
+      "date": "2025-03-17",
+      "files": [
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs",
+          "sha256": "71b12d696ebb4ecaf9878776bbd8351e1999b76dc62d8deab137747b6f510463"
+        },
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs.meta",
+          "sha256": "82cc458f8d6c8a968a4592a69822d7fe4f23db38ee4745ada530394e55872a44"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs",
+          "sha256": "1a62ed4940dc118436d13495ad89c668e24650365e77f6c0bc4a13370d48f66f"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs.meta",
+          "sha256": "64ac8911cdf47532cb48a765e585bdc8632830ed1b536716b1c8e9390bdd41e2"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs",
+          "sha256": "8e76a3c968a550a177df9d0e0621764ab430c1fb4d6dbfb93558bcc148cf99eb"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs.meta",
+          "sha256": "ce19cf27b62e331670ad57decd97c9d376172404afe12ead5ed4675fb82ad3c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgentUI.cs",
+          "sha256": "315ce70303441fbddcdf46630def12a100e258a71d30da98bc213ae024eca4f5"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs",
+          "sha256": "a18b58121f44732d1370c240c12c94d962b386d35e2f54486e3d54677217e376"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs.meta",
+          "sha256": "f4cf414975d92f7482a2dc41a2c02c724fe37c3ba863f37751e83d66a13d6195"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs",
+          "sha256": "e6930a19a15ddc356262da002e378b91ee76c51b07fe639c12327cc570c47335"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs.meta",
+          "sha256": "b8f9ba0992519adb3595124d0bdb648c980b27c808a8f6ffa71f9d990f1c0437"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs",
+          "sha256": "d87486bb31363b0be73170f6af3950333c5a24549c35a36db6e603bca7a648a6"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs.meta",
+          "sha256": "243cde1700b0716a056052d5030b512962da68dbd8a28b7c57ae2a7f1831ef61"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs",
+          "sha256": "fae7f8975e7ab3213fc348ad6939264737675085319b5e5b6eab5761ebe30904"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs.meta",
+          "sha256": "84319fdc760f5a72dc48f6900ad6a0c205b39f8b32e72e83966d99644a76c425"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs",
+          "sha256": "8aec143e87509b964ec1c07d16c55372973bf5c96de5b3981059d777b8d24e2b"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs.meta",
+          "sha256": "d8cf40d8d4904a53f090cb523b6514b6f1bee529c3c1dc42e2ea754069467526"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs",
+          "sha256": "3e6997cf8c82e07c3fc2393f3200d5f1d7b90463fbc263a07b7c2ae0475bfc82"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs.meta",
+          "sha256": "168166cfa1dd4fbd065440169e40fe1c4203adf275b04b09fa51a1a211e42288"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs",
+          "sha256": "ea16a7bd007660ea91363a3457ff36a0c8bc14a7032c7dd5c4cdfd825b5c12f5"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs.meta",
+          "sha256": "3962bfccc8c0ec512f402b5dc1e41fc2027f0f924e6d4ac07d16591a0642c0bc"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs",
+          "sha256": "d8d71568c12ca5715eb2f41d4d80ff0254318a008b3c6a7f353976a7fec6267b"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs.meta",
+          "sha256": "98163ce456b686e61cf162029cf6d58642d07144f0bf8b2e0452afca211ebe19"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs",
+          "sha256": "cca0b574066d315d24f7eadda68e8f0a479193f877af2256e9eca4d875b41cdf"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs.meta",
+          "sha256": "9f84c12359d056a8d10ab32a27e9172a304feebe02ef68ff044a47b963067d89"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs",
+          "sha256": "f2e49aefa8884918e8f095397d41d5c9accaabbe968b29c5b0bb9583f7301ae5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs.meta",
+          "sha256": "8865c69f18b2ab1fad8a5d121b04224557b1be308fdd11ae8d0c5101822ca085"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs",
+          "sha256": "0cc2e987a0ccdc37a6bfb7d7e83de2898d34ed9f0911511f9ffad5f89c075353"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs.meta",
+          "sha256": "aa5c8467a9bd683a6e97b148e3e5e5d32cf42fbe2beceff483bdaf7c18751d49"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs",
+          "sha256": "149d54237ec1903877b1d50799e3fbf04dd4590024011dd779d622c3a6b7be3c"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs.meta",
+          "sha256": "7dcdeaffb7ccc0c9dda9d210b9f7684e82b98ebaed494f49f78e27a04e396658"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs",
+          "sha256": "985fd732744e6d618a566f90920e7b46a3649f6d022530a8c22a6a9f8491e9fd"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs.meta",
+          "sha256": "e1827646a0f2be02b19cdd38a38c823beec484fe0fc6e2c4a338a7954b924b2a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs",
+          "sha256": "84c37604b1f3ac0aa39c90e5782ce3dbf7c72f2cbcb0720406cedfaf9e1cafc4"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs.meta",
+          "sha256": "4091e2e720cdc7625a29ed9253eed02213ac98b4dcf8360c84e85fdb9d9fde2b"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs",
+          "sha256": "8000e7961f6eff02de1c250d2052b3143f0d11aa89279503f1924307a544387a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs.meta",
+          "sha256": "f4f4561b72e1325d2fd61b9c99fdf5678c5b5648040bc61357a98260d53d35c5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs",
+          "sha256": "d07ad1f4592e6eac50b80cb6daeb0f0efb032d1a1269eccdb4bed460f42b2385"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs.meta",
+          "sha256": "d8196a626380ba8067e26539d71cc4ad2c7de1e82c2d231995b72fa87214ef55"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs",
+          "sha256": "73818b7ea504b6066bb9e96826c312d61b8ec09af270c1dffeefb8e8b7ac1069"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs",
+          "sha256": "ff26df1c570eab4a0b465153d1dfd1a1271c624c96e3fc9c414860df5027f54e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs.meta",
+          "sha256": "e1272dc91522c4da41c6a9a3a43e6014e0ca666b937de1e3e881fb0b22a7a373"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs",
+          "sha256": "f88d12fce07567e784cb536e74b6e57101e56c42b1a8c6e399c96eaa4df6af50"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs.meta",
+          "sha256": "895bb6b117cfa8b2f5397342080525b6e817c2261262c11211b9c8f39dc1f423"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs",
+          "sha256": "8dd3524984454c299a703336e69678d2c8796a2e3e60c025750ec56bf0601c6f"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs.meta",
+          "sha256": "447983d4e5962f92f8fc9073f29e82d96f4a337af63c92c3bc50b332f290d1d9"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs",
+          "sha256": "d1bd92bb99cdcf5e13acacfc4f200b0d7edc050c4a0bcfd003f53b605b8bed8e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs.meta",
+          "sha256": "a0eac185f5001bbeedb30d24ec8d0c17506741ab8092076e06809371881c104f"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs",
+          "sha256": "5be3b4d1de499e4383960b64306621abcb2707bd2b64d71463ab841a8d8fa1b1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs.meta",
+          "sha256": "29759010f734796a469c6f705d748bae161f74d87eb4558d298e08763e4f6c1a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs",
+          "sha256": "221b36680d5e3c96ffecf7471868e90b5f17c87db065c24130e595915e6f44a1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs.meta",
+          "sha256": "9f13d5e286ea09d2ab60c5a8380b06eec84ed4b603a1346cbb2c5ef8eb5f4dd0"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs",
+          "sha256": "03cc0fccce323965890389a5d58944e635f8baca4f917092d79d5cddabdae302"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs.meta",
+          "sha256": "ab5212bb55e1a87f5d9f11e5286010d23557bf53b3c99f23a80d54122451b259"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs",
+          "sha256": "5b04acdfae8591b202a74ed8c8cf4ecc47c5febc8ba7e141d894afa617a07a58"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs.meta",
+          "sha256": "76e3d94c41796fea997d5b7dd20af48213f1fb6af88cab17b4502a77c892fe8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs",
+          "sha256": "6c59a603a412aa589d203c00852aaa7a9806b3b779f077030b72656a374350e3"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs.meta",
+          "sha256": "ce971eaca65db353094590140a7d6cc428b24f96dad8903698d2e572227ab90f"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs",
+          "sha256": "0023ba1729eaa5b1e9266d61bff0cb8dff88431f37a572e07d809303920f432b"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs.meta",
+          "sha256": "5d4954cb401ac6cb0b3cdb4056fe2a968f16fc3f04b5c43b2a9bedbd655aaf5b"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs",
+          "sha256": "990b21e52dc63ed9d0813a9e59167656ea3c2c5e8d3fe166749e65b41abb4370"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs.meta",
+          "sha256": "524cb79494f1b5a5f4f83f5dc5294bec9c37e8a4bd5e43caba9452bd07e09b36"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs",
+          "sha256": "97169c099d9476a12564d53cc89c981769e11be0e7bc3f68dae3376e49f42711"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs.meta",
+          "sha256": "b544f10ef2624aa5e14f3dcbcc807af3c9c71b5031f9cba5f03c357e735b4659"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs",
+          "sha256": "9ab05df545ac357431d8cd748baab5942b114801708ac623af8a14f715d80f1d"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs.meta",
+          "sha256": "b10bb68804d6b31bd1ef917a38488183b3c9cad1acb92a91f0141b3c77443d07"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs",
+          "sha256": "461294808a4634d579a6de27ac94c90aec27ad8e2efe46e4ae1288b055d8716d"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs.meta",
+          "sha256": "6102418172d93f5de2a6890f23a17747590630ee03dbce27e6a300774578e96d"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs",
+          "sha256": "61c9be74b32d35bf427fdae0ff690b944783aaa89dc0f317504e99a4d3ec94d2"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs.meta",
+          "sha256": "5f4920835d725b386f5c1c717309eddae445a3b94d40666e565f9d21d055d959"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs",
+          "sha256": "2e94acd538ff244a27b5f24c377738b714f51f0697a02ad138346d48c682a2dd"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs.meta",
+          "sha256": "2d20ec8873e0cb8e82f6ef202d8592b1f6e633d1b955143ef1601210463dda2c"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs",
+          "sha256": "792ab6634fd1145b1c87be1ec73fcdb04e8289adbec8e278a7a63e3c73b9778d"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs.meta",
+          "sha256": "e13dadc88c0f2be013d77818a2920b4ace6c9fc9ac7ddd784cc725c669d633a7"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs",
+          "sha256": "27d1e96893d68fd8d319420e808a9166dd08b884c9b4f6bb2a6c351a7c1e3b4a"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs.meta",
+          "sha256": "4b89061ab9be7cad5a3c5f80ef8f7ac990bef34cbdb66492d38ef4e87c7a88c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs",
+          "sha256": "f43084985bacb7e40b5cc4b7274937178d6f9f3fa9f2a961ebfa9339b9d12233"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs.meta",
+          "sha256": "9691a8a4bac55b510b68314dd252c7182ff0f0bd27311db41eebd2f941086dda"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs",
+          "sha256": "345aff1d49a5ccc2022df0d8422f2b5a32e834425c4bcc3b397f25274d4899c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs.meta",
+          "sha256": "974eee2f63107dfe0bc8b1c86671983fccb8927c16f381a01f153348ab0118a3"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs",
+          "sha256": "4cbb2cea661f2ec8a244572a147164ce1f65122a48a6128c87e19fee84c5e60f"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs.meta",
+          "sha256": "a8101d4e4132024ecbd2c29d4448e14bfe0fa36c9f97fa288b9cd6da716c4126"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs",
+          "sha256": "1df7cf155e712df8dd84acfdabadce5a882f053135f85d6b92bfa718d690cd31"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs.meta",
+          "sha256": "9dcf7ccae2d8d0cecf32a633f62eccd313b9f27226fe32dcb5b4714a46d98b20"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs",
+          "sha256": "67f66403e09adc45827b8fe9557fade52363710478dea48cace1bc860b896fb6"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs.meta",
+          "sha256": "89b014244fbbc23318a47351be327ba0b1eb247058bf694787fb5abf76411436"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs",
+          "sha256": "c2fa017ccabe4bf1a0de7aff5480b95b467e076e2eb1615f64e7fb6c0560e1b3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs.meta",
+          "sha256": "ec0ad3dbab01397b576bc46b0a8e81ffdc5fe9a9ac4a9e6d4294d29bd571f35b"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs",
+          "sha256": "9123f2a953a1ea48249157be9fbcb2dfba5cdf4222eb0ea8d1ea5a1924efe0e2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs.meta",
+          "sha256": "d483f469355e2319d23263bd2c57cdf847351a5e077dd76d57d78642ef8f8d20"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs",
+          "sha256": "37fb45bbf836288d270a99f49b5dd328cddda6c003d3bcd8ac86a99a6dde7ef9"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs.meta",
+          "sha256": "9ee357f1207fc66e85741740191331d21c549b965cf67a48b4f8c754fc22aa8a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs",
+          "sha256": "aa26ae289ee778d47651cf61cf93646b4e266e649bc5982a861f92c142855911"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs.meta",
+          "sha256": "a1359e319893b9587604604897796995e0eed1f67c4b6da778714f29ac480ae3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs",
+          "sha256": "7feeddcecb5b5fe3bb76aef61fae77559d90e5c5dcc4bf93b8a0e77621761c1a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs.meta",
+          "sha256": "5d84cfa5253cc05eb82af4a6b22f560c58af07a15f27efaab4640763c05639f5"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs",
+          "sha256": "cc6ae7fd7c109dab68e88bb56984e23d80843127aec0d2211dd7916fdd3ea4e4"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs.meta",
+          "sha256": "ae3d8aea45d87dcff04b9ca2148629d1fd38e987572a87356da0f401cfdfc42d"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs",
+          "sha256": "65576738d8041b1a3c856de683fe2cd983dc9c6e07d5a23102c929c4b7f01fc2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs.meta",
+          "sha256": "b509df4f4d816cc35b6228eb63cd9b214549b6daa679ef2cd727adbc15d4acb1"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs",
+          "sha256": "17ffa17a26527bcfdea5e575f1c263f70fb6b0d18be7b21777a7cfc4ffe625f6"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs.meta",
+          "sha256": "14d9a57cc630b96c6507b09ea0318b661cbe6df716b8c6837a5c81203eaf07e5"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs",
+          "sha256": "acb3d5020ebcac2902ffcec84ff2ad58960fc2168339751adbbdfb510a9f470d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs.meta",
+          "sha256": "edbabeed1780a31d01405f3362a4c20579fcc8687af678f02f2c9d42696b5794"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs",
+          "sha256": "3c32d805a7655f9699550a0c490004b7c38aa10d0c8034cffaf86ffbb9aa3660"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs.meta",
+          "sha256": "621da796e5a2be1792753db5faf3d1153144c85546adf41e5881e80441c4ba67"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs",
+          "sha256": "058af37d994efc18f0a2deea9f2bee248309e6a92840fcc550c32ef04fb96e2d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs.meta",
+          "sha256": "f275d560211d2ef4830b66425a392ae43f4cf53ca2c0d8f84c58faa693a96326"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs",
+          "sha256": "d4e2bd88b2af8a88fe7fa2e2aba7fb0792e63450c4dd26387e67f1dad842e461"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs.meta",
+          "sha256": "aadb249297335ad79341e2c4340990c3ed4350a0d89f14f78fdedfe553dab333"
+        }
+      ]
+    },
+    "2f873f7": {
+      "commit": "2f873f7e5438d5fee2faed6679fc6e419c55478f",
+      "folder": "docs/onnx-candidates/sources/2f873f7",
+      "subject": "Add ForcedSymmetryQuadPed",
+      "date": "2025-03-18",
+      "files": [
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs",
+          "sha256": "71b12d696ebb4ecaf9878776bbd8351e1999b76dc62d8deab137747b6f510463"
+        },
+        {
+          "path": "Assets/Scripts/ATBDForceTest.cs.meta",
+          "sha256": "82cc458f8d6c8a968a4592a69822d7fe4f23db38ee4745ada530394e55872a44"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs",
+          "sha256": "1a62ed4940dc118436d13495ad89c668e24650365e77f6c0bc4a13370d48f66f"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/AgentSetting.cs.meta",
+          "sha256": "64ac8911cdf47532cb48a765e585bdc8632830ed1b536716b1c8e9390bdd41e2"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs",
+          "sha256": "8e76a3c968a550a177df9d0e0621764ab430c1fb4d6dbfb93558bcc148cf99eb"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgent.cs.meta",
+          "sha256": "ce19cf27b62e331670ad57decd97c9d376172404afe12ead5ed4675fb82ad3c8"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/BipedalAgentUI.cs",
+          "sha256": "315ce70303441fbddcdf46630def12a100e258a71d30da98bc213ae024eca4f5"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs",
+          "sha256": "a18b58121f44732d1370c240c12c94d962b386d35e2f54486e3d54677217e376"
+        },
+        {
+          "path": "Assets/Scripts/Agent/Bipedal/PositionSupporter.cs.meta",
+          "sha256": "f4cf414975d92f7482a2dc41a2c02c724fe37c3ba863f37751e83d66a13d6195"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs",
+          "sha256": "e6930a19a15ddc356262da002e378b91ee76c51b07fe639c12327cc570c47335"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegAgent.cs.meta",
+          "sha256": "b8f9ba0992519adb3595124d0bdb648c980b27c808a8f6ffa71f9d990f1c0437"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs",
+          "sha256": "d87486bb31363b0be73170f6af3950333c5a24549c35a36db6e603bca7a648a6"
+        },
+        {
+          "path": "Assets/Scripts/Agent/LegController.cs.meta",
+          "sha256": "243cde1700b0716a056052d5030b512962da68dbd8a28b7c57ae2a7f1831ef61"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs",
+          "sha256": "fae7f8975e7ab3213fc348ad6939264737675085319b5e5b6eab5761ebe30904"
+        },
+        {
+          "path": "Assets/Scripts/Agent/ResetDetector.cs.meta",
+          "sha256": "84319fdc760f5a72dc48f6900ad6a0c205b39f8b32e72e83966d99644a76c425"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/ForcedSymmetryQuadPedAgent.cs",
+          "sha256": "1a02facaf8124f1abfd84c48238bd00c8c8a607860eaf45518fe9c4d35e96c07"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/ForcedSymmetryQuadPedController.cs",
+          "sha256": "88f261b738e4aac9910e98cbb7220c02b8c0981392d8ea6e6894c1cb22407f63"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs",
+          "sha256": "8aec143e87509b964ec1c07d16c55372973bf5c96de5b3981059d777b8d24e2b"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedAgent.cs.meta",
+          "sha256": "d8cf40d8d4904a53f090cb523b6514b6f1bee529c3c1dc42e2ea754069467526"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs",
+          "sha256": "3e6997cf8c82e07c3fc2393f3200d5f1d7b90463fbc263a07b7c2ae0475bfc82"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedController.cs.meta",
+          "sha256": "168166cfa1dd4fbd065440169e40fe1c4203adf275b04b09fa51a1a211e42288"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs",
+          "sha256": "ea16a7bd007660ea91363a3457ff36a0c8bc14a7032c7dd5c4cdfd825b5c12f5"
+        },
+        {
+          "path": "Assets/Scripts/Agent/SymmetryQuadPed/SymmetryQuadPedUI.cs.meta",
+          "sha256": "3962bfccc8c0ec512f402b5dc1e41fc2027f0f924e6d4ac07d16591a0642c0bc"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs",
+          "sha256": "d8d71568c12ca5715eb2f41d4d80ff0254318a008b3c6a7f353976a7fec6267b"
+        },
+        {
+          "path": "Assets/Scripts/Battery.cs.meta",
+          "sha256": "98163ce456b686e61cf162029cf6d58642d07144f0bf8b2e0452afca211ebe19"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs",
+          "sha256": "cca0b574066d315d24f7eadda68e8f0a479193f877af2256e9eca4d875b41cdf"
+        },
+        {
+          "path": "Assets/Scripts/BatteryTest.cs.meta",
+          "sha256": "9f84c12359d056a8d10ab32a27e9172a304feebe02ef68ff044a47b963067d89"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs",
+          "sha256": "f2e49aefa8884918e8f095397d41d5c9accaabbe968b29c5b0bb9583f7301ae5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimController.cs.meta",
+          "sha256": "8865c69f18b2ab1fad8a5d121b04224557b1be308fdd11ae8d0c5101822ca085"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs",
+          "sha256": "0cc2e987a0ccdc37a6bfb7d7e83de2898d34ed9f0911511f9ffad5f89c075353"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimDirectionGetter.cs.meta",
+          "sha256": "aa5c8467a9bd683a6e97b148e3e5e5d32cf42fbe2beceff483bdaf7c18751d49"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs",
+          "sha256": "149d54237ec1903877b1d50799e3fbf04dd4590024011dd779d622c3a6b7be3c"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/AimTest.cs.meta",
+          "sha256": "7dcdeaffb7ccc0c9dda9d210b9f7684e82b98ebaed494f49f78e27a04e396658"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs",
+          "sha256": "985fd732744e6d618a566f90920e7b46a3649f6d022530a8c22a6a9f8491e9fd"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/CrossHair.cs.meta",
+          "sha256": "e1827646a0f2be02b19cdd38a38c823beec484fe0fc6e2c4a338a7954b924b2a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs",
+          "sha256": "84c37604b1f3ac0aa39c90e5782ce3dbf7c72f2cbcb0720406cedfaf9e1cafc4"
+        },
+        {
+          "path": "Assets/Scripts/Controller/AimControllers/MouseAimDirectionGetter.cs.meta",
+          "sha256": "4091e2e720cdc7625a29ed9253eed02213ac98b4dcf8360c84e85fdb9d9fde2b"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs",
+          "sha256": "8000e7961f6eff02de1c250d2052b3143f0d11aa89279503f1924307a544387a"
+        },
+        {
+          "path": "Assets/Scripts/Controller/BipedalController.cs.meta",
+          "sha256": "f4f4561b72e1325d2fd61b9c99fdf5678c5b5648040bc61357a98260d53d35c5"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs",
+          "sha256": "d07ad1f4592e6eac50b80cb6daeb0f0efb032d1a1269eccdb4bed460f42b2385"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraController.cs.meta",
+          "sha256": "d8196a626380ba8067e26539d71cc4ad2c7de1e82c2d231995b72fa87214ef55"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraDirectionGetter.cs",
+          "sha256": "73818b7ea504b6066bb9e96826c312d61b8ec09af270c1dffeefb8e8b7ac1069"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs",
+          "sha256": "ff26df1c570eab4a0b465153d1dfd1a1271c624c96e3fc9c414860df5027f54e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/CameraTest.cs.meta",
+          "sha256": "e1272dc91522c4da41c6a9a3a43e6014e0ca666b937de1e3e881fb0b22a7a373"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs",
+          "sha256": "f88d12fce07567e784cb536e74b6e57101e56c42b1a8c6e399c96eaa4df6af50"
+        },
+        {
+          "path": "Assets/Scripts/Controller/CameraControllers/MouseCameraDirectionGetter.cs.meta",
+          "sha256": "895bb6b117cfa8b2f5397342080525b6e817c2261262c11211b9c8f39dc1f423"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs",
+          "sha256": "8dd3524984454c299a703336e69678d2c8796a2e3e60c025750ec56bf0601c6f"
+        },
+        {
+          "path": "Assets/Scripts/Controller/DriveController.cs.meta",
+          "sha256": "447983d4e5962f92f8fc9073f29e82d96f4a337af63c92c3bc50b332f290d1d9"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs",
+          "sha256": "d1bd92bb99cdcf5e13acacfc4f200b0d7edc050c4a0bcfd003f53b605b8bed8e"
+        },
+        {
+          "path": "Assets/Scripts/Controller/ILeg.cs.meta",
+          "sha256": "a0eac185f5001bbeedb30d24ec8d0c17506741ab8092076e06809371881c104f"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs",
+          "sha256": "5be3b4d1de499e4383960b64306621abcb2707bd2b64d71463ab841a8d8fa1b1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Cpt_PostProcess.cs.meta",
+          "sha256": "29759010f734796a469c6f705d748bae161f74d87eb4558d298e08763e4f6c1a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs",
+          "sha256": "221b36680d5e3c96ffecf7471868e90b5f17c87db065c24130e595915e6f44a1"
+        },
+        {
+          "path": "Assets/Scripts/ETC/DirTest.cs.meta",
+          "sha256": "9f13d5e286ea09d2ab60c5a8380b06eec84ed4b603a1346cbb2c5ef8eb5f4dd0"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs",
+          "sha256": "03cc0fccce323965890389a5d58944e635f8baca4f917092d79d5cddabdae302"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Follower.cs.meta",
+          "sha256": "ab5212bb55e1a87f5d9f11e5286010d23557bf53b3c99f23a80d54122451b259"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs",
+          "sha256": "5b04acdfae8591b202a74ed8c8cf4ecc47c5febc8ba7e141d894afa617a07a58"
+        },
+        {
+          "path": "Assets/Scripts/ETC/Test.cs.meta",
+          "sha256": "76e3d94c41796fea997d5b7dd20af48213f1fb6af88cab17b4502a77c892fe8a"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs",
+          "sha256": "6c59a603a412aa589d203c00852aaa7a9806b3b779f077030b72656a374350e3"
+        },
+        {
+          "path": "Assets/Scripts/ETC/TestAgent.cs.meta",
+          "sha256": "ce971eaca65db353094590140a7d6cc428b24f96dad8903698d2e572227ab90f"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs",
+          "sha256": "0023ba1729eaa5b1e9266d61bff0cb8dff88431f37a572e07d809303920f432b"
+        },
+        {
+          "path": "Assets/Scripts/Generator.cs.meta",
+          "sha256": "5d4954cb401ac6cb0b3cdb4056fe2a968f16fc3f04b5c43b2a9bedbd655aaf5b"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs",
+          "sha256": "990b21e52dc63ed9d0813a9e59167656ea3c2c5e8d3fe166749e65b41abb4370"
+        },
+        {
+          "path": "Assets/Scripts/GroundChecker.cs.meta",
+          "sha256": "524cb79494f1b5a5f4f83f5dc5294bec9c37e8a4bd5e43caba9452bd07e09b36"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs",
+          "sha256": "97169c099d9476a12564d53cc89c981769e11be0e7bc3f68dae3376e49f42711"
+        },
+        {
+          "path": "Assets/Scripts/Hub.cs.meta",
+          "sha256": "b544f10ef2624aa5e14f3dcbcc807af3c9c71b5031f9cba5f03c357e735b4659"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs",
+          "sha256": "9ab05df545ac357431d8cd748baab5942b114801708ac623af8a14f715d80f1d"
+        },
+        {
+          "path": "Assets/Scripts/IPowerSource.cs.meta",
+          "sha256": "b10bb68804d6b31bd1ef917a38488183b3c9cad1acb92a91f0141b3c77443d07"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs",
+          "sha256": "461294808a4634d579a6de27ac94c90aec27ad8e2efe46e4ae1288b055d8716d"
+        },
+        {
+          "path": "Assets/Scripts/ObserveCamera.cs.meta",
+          "sha256": "6102418172d93f5de2a6890f23a17747590630ee03dbce27e6a300774578e96d"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs",
+          "sha256": "61c9be74b32d35bf427fdae0ff690b944783aaa89dc0f317504e99a4d3ec94d2"
+        },
+        {
+          "path": "Assets/Scripts/PowerHub.cs.meta",
+          "sha256": "5f4920835d725b386f5c1c717309eddae445a3b94d40666e565f9d21d055d959"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs",
+          "sha256": "2e94acd538ff244a27b5f24c377738b714f51f0697a02ad138346d48c682a2dd"
+        },
+        {
+          "path": "Assets/Scripts/PowerSource.cs.meta",
+          "sha256": "2d20ec8873e0cb8e82f6ef202d8592b1f6e633d1b955143ef1601210463dda2c"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs",
+          "sha256": "792ab6634fd1145b1c87be1ec73fcdb04e8289adbec8e278a7a63e3c73b9778d"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/Arena.cs.meta",
+          "sha256": "e13dadc88c0f2be013d77818a2920b4ace6c9fc9ac7ddd784cc725c669d633a7"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs",
+          "sha256": "27d1e96893d68fd8d319420e808a9166dd08b884c9b4f6bb2a6c351a7c1e3b4a"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomGroundMesh.cs.meta",
+          "sha256": "4b89061ab9be7cad5a3c5f80ef8f7ac990bef34cbdb66492d38ef4e87c7a88c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs",
+          "sha256": "f43084985bacb7e40b5cc4b7274937178d6f9f3fa9f2a961ebfa9339b9d12233"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/RandomObject.cs.meta",
+          "sha256": "9691a8a4bac55b510b68314dd252c7182ff0f0bd27311db41eebd2f941086dda"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs",
+          "sha256": "345aff1d49a5ccc2022df0d8422f2b5a32e834425c4bcc3b397f25274d4899c2"
+        },
+        {
+          "path": "Assets/Scripts/Randomables/TargetObject.cs.meta",
+          "sha256": "974eee2f63107dfe0bc8b1c86671983fccb8927c16f381a01f153348ab0118a3"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs",
+          "sha256": "4cbb2cea661f2ec8a244572a147164ce1f65122a48a6128c87e19fee84c5e60f"
+        },
+        {
+          "path": "Assets/Scripts/RewardTest.cs.meta",
+          "sha256": "a8101d4e4132024ecbd2c29d4448e14bfe0fa36c9f97fa288b9cd6da716c4126"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs",
+          "sha256": "1df7cf155e712df8dd84acfdabadce5a882f053135f85d6b92bfa718d690cd31"
+        },
+        {
+          "path": "Assets/Scripts/Robotic/RoboticArticulation.cs.meta",
+          "sha256": "9dcf7ccae2d8d0cecf32a633f62eccd313b9f27226fe32dcb5b4714a46d98b20"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs",
+          "sha256": "67f66403e09adc45827b8fe9557fade52363710478dea48cace1bc860b896fb6"
+        },
+        {
+          "path": "Assets/Scripts/Settings.cs.meta",
+          "sha256": "89b014244fbbc23318a47351be327ba0b1eb247058bf694787fb5abf76411436"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs",
+          "sha256": "c2fa017ccabe4bf1a0de7aff5480b95b467e076e2eb1615f64e7fb6c0560e1b3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/PrototypeTurret.cs.meta",
+          "sha256": "ec0ad3dbab01397b576bc46b0a8e81ffdc5fe9a9ac4a9e6d4294d29bd571f35b"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs",
+          "sha256": "9123f2a953a1ea48249157be9fbcb2dfba5cdf4222eb0ea8d1ea5a1924efe0e2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TestTurret.cs.meta",
+          "sha256": "d483f469355e2319d23263bd2c57cdf847351a5e077dd76d57d78642ef8f8d20"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs",
+          "sha256": "37fb45bbf836288d270a99f49b5dd328cddda6c003d3bcd8ac86a99a6dde7ef9"
+        },
+        {
+          "path": "Assets/Scripts/Turret/Turret.cs.meta",
+          "sha256": "9ee357f1207fc66e85741740191331d21c549b965cf67a48b4f8c754fc22aa8a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs",
+          "sha256": "aa26ae289ee778d47651cf61cf93646b4e266e649bc5982a861f92c142855911"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretAimGetter.cs.meta",
+          "sha256": "a1359e319893b9587604604897796995e0eed1f67c4b6da778714f29ac480ae3"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs",
+          "sha256": "7feeddcecb5b5fe3bb76aef61fae77559d90e5c5dcc4bf93b8a0e77621761c1a"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/MouseTurretController.cs.meta",
+          "sha256": "5d84cfa5253cc05eb82af4a6b22f560c58af07a15f27efaab4640763c05639f5"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs",
+          "sha256": "cc6ae7fd7c109dab68e88bb56984e23d80843127aec0d2211dd7916fdd3ea4e4"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretAimControl.cs.meta",
+          "sha256": "ae3d8aea45d87dcff04b9ca2148629d1fd38e987572a87356da0f401cfdfc42d"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs",
+          "sha256": "65576738d8041b1a3c856de683fe2cd983dc9c6e07d5a23102c929c4b7f01fc2"
+        },
+        {
+          "path": "Assets/Scripts/Turret/TurretControllers/TurretController.cs.meta",
+          "sha256": "b509df4f4d816cc35b6228eb63cd9b214549b6daa679ef2cd727adbc15d4acb1"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs",
+          "sha256": "17ffa17a26527bcfdea5e575f1c263f70fb6b0d18be7b21777a7cfc4ffe625f6"
+        },
+        {
+          "path": "Assets/Scripts/WalkChecker.cs.meta",
+          "sha256": "14d9a57cc630b96c6507b09ea0318b661cbe6df716b8c6837a5c81203eaf07e5"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs",
+          "sha256": "acb3d5020ebcac2902ffcec84ff2ad58960fc2168339751adbbdfb510a9f470d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/HarpoonShooter.cs.meta",
+          "sha256": "edbabeed1780a31d01405f3362a4c20579fcc8687af678f02f2c9d42696b5794"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs",
+          "sha256": "3c32d805a7655f9699550a0c490004b7c38aa10d0c8034cffaf86ffbb9aa3660"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ObjectShooter.cs.meta",
+          "sha256": "621da796e5a2be1792753db5faf3d1153144c85546adf41e5881e80441c4ba67"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs",
+          "sha256": "058af37d994efc18f0a2deea9f2bee248309e6a92840fcc550c32ef04fb96e2d"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/HarpoonProjectile.cs.meta",
+          "sha256": "f275d560211d2ef4830b66425a392ae43f4cf53ca2c0d8f84c58faa693a96326"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs",
+          "sha256": "d4e2bd88b2af8a88fe7fa2e2aba7fb0792e63450c4dd26387e67f1dad842e461"
+        },
+        {
+          "path": "Assets/Scripts/Weapons/ProjectileEntities/ProjectileEntity.cs.meta",
+          "sha256": "aadb249297335ad79341e2c4340990c3ed4350a0d89f14f78fdedfe553dab333"
+        }
+      ]
+    }
+  },
+  "models": [
+    {
+      "path": "Assets/AI/Bipedal-GGangGGangI.onnx",
+      "sha256": "24c875fe6fc9f1a4d887fab258e012a0dc6e9e13eedaf3f4353bbbe6764eaf49",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBS/Bipedal-14999948.onnx",
+      "sha256": "8ff059ea9c339aa21d1010eb1b8de18d573e76ecc62ec5f10da90baa4d1f78ce",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBS/Bipedal-53999994.onnx",
+      "sha256": "eddf4b282260ea1637c7927272afecc60676da69796e64cffb5d0decee8ccd07",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBSF/Bipedal-13524977.onnx",
+      "sha256": "267c41e60da69528267e8d6032e94d51308509efef19168c59a0e677188d3cc3",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-14499835.onnx",
+      "sha256": "0b9c43e220a469e8f901a9d841571db477154324bb062f637df5319ea5502a6d",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-17999976.onnx",
+      "sha256": "ea4a41fd346d1603dba60aabc69b09c13141f604c81519a703514312d5efd595",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-20063201.onnx",
+      "sha256": "1c4330bc4eef3bba7664b5b7c70a02b635caec437af3bc360b3dba0b4994f7d7",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-20999985.onnx",
+      "sha256": "31192e7bcaa78e1cdb5344d12030233256ade963cfd22a28a71eb5e922050d0d",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-22499874.onnx",
+      "sha256": "d300123ff04b35472e7c2fba77ccfda0e2a162a54f62e6f50f93b44b74f40716",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-25499936.onnx",
+      "sha256": "d4bb24d3c480f3660931b474ee367204a1c3fbdf02fabf36d846dc940eb12dc2",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-34999956.onnx",
+      "sha256": "e9084c67696c89256ea243c212c334448f0c8cafc5b0e38b0fd1e0cfca6e1964",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-38999949.onnx",
+      "sha256": "29c172d17654c6e89454577a7211c257a4f4d93ebc6f8f6e2ad3b97fa5dcceba",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-3999901.onnx",
+      "sha256": "84c6374a0222cf23d44b0f8daed2244535f5196185f4cd17a4f9f40ea0fbe059",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-40499920.onnx",
+      "sha256": "e4f48abc4bd7df2f25be80352bafdb36e888bc3c957640b31c9d92f381495aa2",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-499860.onnx",
+      "sha256": "702af8fc8929321ad5079f0f33b7709b305d23d0bc78c93d3b9b520623acaf85",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-6999963.onnx",
+      "sha256": "613c44e8bd4142db29cb12b28c5fe99361d5a3a2995618ce890e3cfe36aabd62",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal-75000033.onnx",
+      "sha256": "4cb28f97e9f9f7809378dabe2e0ede593f866d2a32a4e88bbd1124337ca0df13",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW05/Bipedal.onnx",
+      "sha256": "ca6b9a8909d18474ad73b0e6c12ee48f8d03cd298942bc1604d2286a9b494253",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW13/Bipedal-19999993.onnx",
+      "sha256": "4f753c5da7b897a6ef9542567b95fda52ecdcef09a992c0c812e2caf6e11a3cf",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW13/Bipedal-9999859.onnx",
+      "sha256": "63d3d73d023ceace017e3fe5edb86b5c927f6cb3420935d84a37e154dff230b4",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBW13/Bipedal.onnx",
+      "sha256": "3d94e136eaa709049dda2386ec296e20bf65c02e9769791ce1ed0446d905a86c",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-14999950.onnx",
+      "sha256": "b8b4e896d3b8b55d434087e1ee8faf735041c94d19b7cd23f1f83b09ad034db1",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-19999998.onnx",
+      "sha256": "ffb04fd013e692d6052fb11932aab909c91d952143702ba79d30d694bd878802",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-24999970.onnx",
+      "sha256": "9b56d4882c1e113bf1c530d4e34671e9ce6b26f3365ece8dbae055effb0579a5",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-29999967.onnx",
+      "sha256": "46f73008a3f48d18ac7afe79782df1cb17ca5b519651fb5507bd83e327f5de32",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-34999999 1.onnx",
+      "sha256": "2c5394804a7c443dc70b8dbbbf1d018169d0a91cc17ceb4bc3296d188f052b9d",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-34999999.onnx",
+      "sha256": "2c5394804a7c443dc70b8dbbbf1d018169d0a91cc17ceb4bc3296d188f052b9d",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-39999980.onnx",
+      "sha256": "29864104da02c00a25bfc5cae5b43e3cbd43cacb2c9b7262cd94a318f7ea68f6",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-44999973.onnx",
+      "sha256": "940eada8e3046ddd7dbbdbaa39fba09d0c772fb5808e13e04c363959d0c921c9",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-4999964.onnx",
+      "sha256": "5fe4b7c2c797900c3d996b567bb758e59c8f15237ab01e67c0d75db1b3567cf5",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-50000025.onnx",
+      "sha256": "2eee74fad049b7cb72331464927b9ac6976c89f30e776f03827cd3e7c65b4434",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWS7E3/Bipedal-9999989.onnx",
+      "sha256": "df265423466aa7e7cf33abdcb3f2a8c71e651267b30ae4ddfd06fef2d23544d3",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr/Bipedal-14999955.onnx",
+      "sha256": "c688c0d85746c3dbb46377243278e25511fe687916868f1915e59597c2e0d0df",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr/Bipedal-4999982.onnx",
+      "sha256": "cc05f14ef99c32bd138cb1f8e8b24669652b8d28a52b5c5c925ca20b82480538",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr/Bipedal.onnx",
+      "sha256": "4a3f23bd991140539f46b3d7c7fa8b361b98117a0ef96018f7c8a2d6e0785c04",
+      "observations": 175,
+      "continuous_actions": 20,
+      "group": "bipedal_175_20",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr_4L/Bipedal.onnx",
+      "sha256": "204d70ea3e63392c98fab632467df0426a205ec1d6b8f7632f21f79a20ba716c",
+      "observations": 191,
+      "continuous_actions": 22,
+      "group": "bipedal_191_22",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "80333edb729710530ae5535e7471765cb201a9a7",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr_512/Bipedal-19999983.onnx",
+      "sha256": "97a119c8b86cf60a24f4df4f58208e72eb2aeec1d30d658b5a0e4cc0c9637fb6",
+      "observations": 191,
+      "continuous_actions": 22,
+      "group": "bipedal_191_22",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "80333edb729710530ae5535e7471765cb201a9a7",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr_512/Bipedal-29999955.onnx",
+      "sha256": "0063bc093c6062efc5ea4b0a95b8eb3d39cd5b2c6cab0d6f109be45daa5cdd10",
+      "observations": 191,
+      "continuous_actions": 22,
+      "group": "bipedal_191_22",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "80333edb729710530ae5535e7471765cb201a9a7",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr_512/Bipedal-39999970.onnx",
+      "sha256": "65e24b622ac86fdd388cf45911dad8c23a00e179a0dfee8515cd4b7fb80ffaaa",
+      "observations": 191,
+      "continuous_actions": 22,
+      "group": "bipedal_191_22",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "80333edb729710530ae5535e7471765cb201a9a7",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr_512/Bipedal-49999961.onnx",
+      "sha256": "4a2357ac1566cd749afae5d291d26817e8106364a4ea16c349ccb96498f6e529",
+      "observations": 191,
+      "continuous_actions": 22,
+      "group": "bipedal_191_22",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "80333edb729710530ae5535e7471765cb201a9a7",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr_512/Bipedal-59999996.onnx",
+      "sha256": "c38833bcebf20f91d4626d31d9475afbbe6215467eac357b9c25357b4cd5406b",
+      "observations": 191,
+      "continuous_actions": 22,
+      "group": "bipedal_191_22",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "80333edb729710530ae5535e7471765cb201a9a7",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/LBW/LBWSrEr_512/Bipedal-9999977.onnx",
+      "sha256": "1b6e55a0d8ba7b485e2cc74a049512abfe926cf3a5d14888affdb24e65421540",
+      "observations": 191,
+      "continuous_actions": 22,
+      "group": "bipedal_191_22",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "80333edb729710530ae5535e7471765cb201a9a7",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/SQW/SymmetryQuadPed-4999788.onnx",
+      "sha256": "3576c839532639e440b2b16f66f2383950125c9b08ce5decf0fcf7aa6bda4052",
+      "observations": 126,
+      "continuous_actions": 32,
+      "group": "quad_126_32",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "c0f90188f19351a037e86fd2c8a8d951bbedcef9",
+        "117054bf85b62c8dc998b5c87704aa98e0f87187"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/SQW/SymmetryQuadPed.onnx",
+      "sha256": "623dfd0390191cc1ec26f980e0ec53a70d57bb6e762e34a379c8fc5ed658a3ba",
+      "observations": 126,
+      "continuous_actions": 32,
+      "group": "quad_126_32",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "c0f90188f19351a037e86fd2c8a8d951bbedcef9",
+        "117054bf85b62c8dc998b5c87704aa98e0f87187"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/SQW04/SymmetryQuadPed.onnx",
+      "sha256": "316b55cafc22593e943ea90a4f097a9a1e63cf6f9d8714040bf5917b8cc401fe",
+      "observations": 113,
+      "continuous_actions": 32,
+      "group": "quad_113_32",
+      "status": "partial_contract_match",
+      "candidate_commits": [
+        "da9c6aadfc30b8c60ba1484fb177fd5e043a80d8",
+        "f1ef807b2adb434e813bacc513b71fcd4bd5bafb",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/SQW04_Forced/SymmetryQuadPed-19999965.onnx",
+      "sha256": "7ba561cedb7d7f0ca7d94655b4ba43613baf599d5ac512b0d7088e3e563963b6",
+      "observations": 113,
+      "continuous_actions": 18,
+      "group": "forced_quad_113_18",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "2f873f7e5438d5fee2faed6679fc6e419c55478f",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/SQW04_Forced/SymmetryQuadPed.onnx",
+      "sha256": "4191816ebfcaf325ef69a3cb1e9ccbad02deeae367738429e3c9aee84ca0ee69",
+      "observations": 113,
+      "continuous_actions": 18,
+      "group": "forced_quad_113_18",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "2f873f7e5438d5fee2faed6679fc6e419c55478f",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/SQW04_FS_02/SymmetryQuadPed-64999978.onnx",
+      "sha256": "e0a05b279cb30b271fb9c2a18c79eccdb8cd2a675c33431d5db406e15b534f43",
+      "observations": 113,
+      "continuous_actions": 18,
+      "group": "forced_quad_113_18",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "2f873f7e5438d5fee2faed6679fc6e419c55478f",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/AI/SQW04_FS_02/SymmetryQuadPed.onnx",
+      "sha256": "7109c35582a700886856faeda3a2e752031e2af0fc4bd8b7e851e06af93eae95",
+      "observations": 113,
+      "continuous_actions": 18,
+      "group": "forced_quad_113_18",
+      "status": "current_contract_match",
+      "candidate_commits": [
+        "2f873f7e5438d5fee2faed6679fc6e419c55478f",
+        "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-27.onnx",
+      "sha256": "77bb71eb79794d3b5423e03351656c6a1663f27c84f50558984905d1bd3ef184",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-28.onnx",
+      "sha256": "3eeb9b9681a630df5d1da901b5636e6d65229e9f9e56a1caa8eea484c7a4d1fc",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-29.onnx",
+      "sha256": "51e3c00ea6d59ff0e66bb3edf45af862589a6fdabc0ff42bc03f918d581eac6b",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-30.onnx",
+      "sha256": "d42c4d2bbe9ab2a7c8c973d6f1718e38fb9d817a2c1456e4727d7a023ca72f3b",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-31.onnx",
+      "sha256": "8941839fff33fb74445739a2b7a02d3820f38755433d7ef2d8fc1681aca02c32",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-33.onnx",
+      "sha256": "78e79b5edcd64a08306199ad573f21355a2ae9644f6a54105b755c777ecb030b",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-331.onnx",
+      "sha256": "6c2a9ff70e58fc4dc54e3ea154aa8f3a33fb2f228883af1e49521c7d7e733898",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-3311.onnx",
+      "sha256": "408d0e43a6f23a4404aaf391c733b90aa039e62586eb35ee9770df2dea855266",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-33111.onnx",
+      "sha256": "43ab3f0fdce10bf2fbea766eceefc4a3518f903749c8fdfbb5ec6264b43288d2",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-331111.onnx",
+      "sha256": "6eb229588feaa8bf88991c60f268697d56928ab7b6943ef422b56aedb52e4094",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-3311112.onnx",
+      "sha256": "ef13a20f1d9fa612596abfcf0fb909fe742d0cee3ed135e1e50c5407219d9045",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal-331112.onnx",
+      "sha256": "ea7c42edc2dd51088005c08ed6556613351aeee4218b7149694c57ace76fd9c2",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    },
+    {
+      "path": "Assets/New Folder/Bipedal.onnx",
+      "sha256": "0e317fc56c103dcb05bb9cd4d3b7f6ba9b66169926aafbc8e650d86a2aecd0da",
+      "observations": 158,
+      "continuous_actions": 21,
+      "group": "bipedal_158_21",
+      "status": "historical_contract_match",
+      "candidate_commits": [
+        "772388643eddbf80513ecb0bf5f0f22d7ff022ea",
+        "5a2aec42ec1f96fac82aa8e56ef1522d2e1fd19c"
+      ],
+      "first_added_commit": "6e218b1074d89ed531ee1f65d9f3c611dfa3cd07"
+    }
+  ]
+}

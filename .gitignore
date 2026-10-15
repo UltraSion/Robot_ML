@@ -1,0 +1,12 @@
+# Local ONNX inspection environment
+.onnx-audit-venv/
+__pycache__/
+tools/UnityBootstrap/
+tools/CaptureProject/
+Recordings/*.log
+Logs/
+Temp/
+UserSettings/
+Library/
+docs/*.log
+output/

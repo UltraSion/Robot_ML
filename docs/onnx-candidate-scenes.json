@@ -1,0 +1,125 @@
+{
+    "scenes": [
+        {
+            "scene": "Assets/Scenes/ONNXCandidates/01_ForcedQuad_113_18.unity",
+            "group": "forced_quad_113_18",
+            "caveat": "Current contract. Inference only; flat floor, fixed target speed.",
+            "models": [
+                "Assets/AI/SQW04_Forced/SymmetryQuadPed-19999965.onnx",
+                "Assets/AI/SQW04_Forced/SymmetryQuadPed.onnx",
+                "Assets/AI/SQW04_FS_02/SymmetryQuadPed-64999978.onnx",
+                "Assets/AI/SQW04_FS_02/SymmetryQuadPed.onnx"
+            ],
+            "robotCount": 4
+        },
+        {
+            "scene": "Assets/Scenes/ONNXCandidates/02_Bipedal_191_22.unity",
+            "group": "bipedal_191_22",
+            "caveat": "Current 11-joint contract; original physical prefab preserved.",
+            "models": [
+                "Assets/AI/LBW/LBWSrEr_4L/Bipedal.onnx",
+                "Assets/AI/LBW/LBWSrEr_512/Bipedal-19999983.onnx",
+                "Assets/AI/LBW/LBWSrEr_512/Bipedal-29999955.onnx",
+                "Assets/AI/LBW/LBWSrEr_512/Bipedal-39999970.onnx",
+                "Assets/AI/LBW/LBWSrEr_512/Bipedal-49999961.onnx",
+                "Assets/AI/LBW/LBWSrEr_512/Bipedal-59999996.onnx",
+                "Assets/AI/LBW/LBWSrEr_512/Bipedal-9999977.onnx"
+            ],
+            "robotCount": 7
+        },
+        {
+            "scene": "Assets/Scenes/ONNXCandidates/03_LegacyBipedal_175_20.unity",
+            "group": "bipedal_175_20",
+            "caveat": "Historical 10-joint adapter. Matching prefab GUIDs; training commit unverified.",
+            "models": [
+                "Assets/AI/Bipedal-GGangGGangI.onnx",
+                "Assets/AI/LBS/Bipedal-14999948.onnx",
+                "Assets/AI/LBS/Bipedal-53999994.onnx",
+                "Assets/AI/LBSF/Bipedal-13524977.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-14499835.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-17999976.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-20063201.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-20999985.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-22499874.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-25499936.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-34999956.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-38999949.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-3999901.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-40499920.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-499860.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-6999963.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal-75000033.onnx",
+                "Assets/AI/LBW/LBW05/Bipedal.onnx",
+                "Assets/AI/LBW/LBW13/Bipedal-19999993.onnx",
+                "Assets/AI/LBW/LBW13/Bipedal-9999859.onnx",
+                "Assets/AI/LBW/LBW13/Bipedal.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-14999950.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-19999998.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-24999970.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-29999967.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-34999999 1.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-34999999.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-39999980.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-44999973.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-4999964.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-50000025.onnx",
+                "Assets/AI/LBW/LBWS7E3/Bipedal-9999989.onnx",
+                "Assets/AI/LBW/LBWSrEr/Bipedal-14999955.onnx",
+                "Assets/AI/LBW/LBWSrEr/Bipedal-4999982.onnx",
+                "Assets/AI/LBW/LBWSrEr/Bipedal.onnx"
+            ],
+            "robotCount": 35
+        },
+        {
+            "scene": "Assets/Scenes/ONNXCandidates/04_LegacyBipedal_158_21.unity",
+            "group": "bipedal_158_21",
+            "caveat": "Exploratory: 10-joint proxy robot. Historical forceUsage action restored; original physics unknown.",
+            "models": [
+                "Assets/New Folder/Bipedal-27.onnx",
+                "Assets/New Folder/Bipedal-28.onnx",
+                "Assets/New Folder/Bipedal-29.onnx",
+                "Assets/New Folder/Bipedal-30.onnx",
+                "Assets/New Folder/Bipedal-31.onnx",
+                "Assets/New Folder/Bipedal-33.onnx",
+                "Assets/New Folder/Bipedal-331.onnx",
+                "Assets/New Folder/Bipedal-3311.onnx",
+                "Assets/New Folder/Bipedal-33111.onnx",
+                "Assets/New Folder/Bipedal-331111.onnx",
+                "Assets/New Folder/Bipedal-3311112.onnx",
+                "Assets/New Folder/Bipedal-331112.onnx",
+                "Assets/New Folder/Bipedal.onnx"
+            ],
+            "robotCount": 13
+        },
+        {
+            "scene": "Assets/Scenes/ONNXCandidates/05_LegacyQuad_126_32.unity",
+            "group": "quad_126_32",
+            "caveat": "Exploratory: four foot joints reconstructed. Historical physical settings unavailable.",
+            "models": [
+                "Assets/AI/SQW/SymmetryQuadPed-4999788.onnx",
+                "Assets/AI/SQW/SymmetryQuadPed.onnx"
+            ],
+            "robotCount": 2
+        },
+        {
+            "scene": "Assets/Scenes/ONNXCandidates/06_SQW04_Order1234_113_32.unity",
+            "group": "quad_113_32",
+            "caveat": "Partial match: leg order 1,2,3,4. Only first 24 of 32 actions are consumed.",
+            "models": [
+                "Assets/AI/SQW04/SymmetryQuadPed.onnx"
+            ],
+            "robotCount": 1
+        },
+        {
+            "scene": "Assets/Scenes/ONNXCandidates/07_SQW04_Order4123_113_32.unity",
+            "group": "quad_113_32",
+            "caveat": "Partial match: leg order 4,1,2,3. Only first 24 of 32 actions are consumed.",
+            "models": [
+                "Assets/AI/SQW04/SymmetryQuadPed.onnx"
+            ],
+            "robotCount": 1
+        }
+    ],
+    "modelFiles": 62,
+    "robotInstances": 63
+}
